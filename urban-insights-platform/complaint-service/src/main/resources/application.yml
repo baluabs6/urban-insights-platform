@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: complaint-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: urban_complaints
+      username: urban_user
+      password: urban_pass
+      authentication-database: admin
+
+services:
+  ai-insight-service:
+    url: http://localhost:8083
+
+logging:
+  level:
+    com.urban.complaint: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      aiInsightService:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true

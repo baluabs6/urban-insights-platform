@@ -1,0 +1,88 @@
+version: "3.8"
+
+services:
+  # ---------- Data stores ----------
+  postgres:
+    image: pgvector/pgvector:pg16   # postgres:16 + the pgvector extension pre-installed
+    container_name: urban_postgres
+    environment:
+      POSTGRES_DB: urban_traffic
+      POSTGRES_USER: urban_user
+      POSTGRES_PASSWORD: urban_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres-init:/docker-entrypoint-initdb.d
+
+  mongodb:
+    image: mongo:7
+    container_name: urban_mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: urban_user
+      MONGO_INITDB_ROOT_PASSWORD: urban_pass
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:7-alpine
+    container_name: urban_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # ---------- Microservices ----------
+  traffic-service:
+    build: ./traffic-service
+    container_name: traffic-service
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/urban_traffic
+      SPRING_DATA_REDIS_HOST: redis
+
+  complaint-service:
+    build: ./complaint-service
+    container_name: complaint-service
+    depends_on:
+      - mongodb
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+      # Points at ai-insight-service for GenAI classification/duplicate-check.
+      # Calls are fail-soft (local heuristic fallback), so no depends_on needed here
+      # even though ai-insight-service itself depends on this service for data.
+      SERVICES_AI_INSIGHT_SERVICE_URL: http://ai-insight-service:8083
+
+  ai-insight-service:
+    build: ./ai-insight-service
+    container_name: ai-insight-service
+    depends_on:
+      - traffic-service
+      - complaint-service
+      - postgres
+    ports:
+      - "8083:8083"
+    environment:
+      SERVICES_TRAFFIC_SERVICE_URL: http://traffic-service:8081
+      SERVICES_COMPLAINT_SERVICE_URL: http://complaint-service:8082
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-demo-key}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      PGVECTOR_HOST: postgres
+      PGVECTOR_PORT: 5432
+      PGVECTOR_DATABASE: urban_traffic
+      PGVECTOR_USER: urban_user
+      PGVECTOR_PASSWORD: urban_pass
+
+volumes:
+  postgres_data:
+  mongo_data:
+  redis_data:

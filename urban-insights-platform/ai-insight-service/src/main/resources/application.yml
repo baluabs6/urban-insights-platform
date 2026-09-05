@@ -1,0 +1,65 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: ai-insight-service
+
+services:
+  traffic-service:
+    url: http://localhost:8081
+  complaint-service:
+    url: http://localhost:8082
+
+city:
+  zones: Whitefield,Koramangala,Connaught Place,Andheri
+  briefing-cron: 0 0 7 * * *   # every day at 7:00 AM server time
+
+sla:
+  hours:
+    default: 120
+  check-cron: 0 0 8 * * *   # every day at 8:00 AM server time
+
+ai:
+  openai:
+    api-key: ${OPENAI_API_KEY:demo-key}
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    model: ${OPENAI_MODEL:gpt-4o-mini}
+    # To use a local/open model instead (e.g. Ollama), set:
+    # OPENAI_BASE_URL=http://localhost:11434/v1
+    # OPENAI_MODEL=llama3
+  pgvector:
+    enabled: ${PGVECTOR_ENABLED:true}
+    host: ${PGVECTOR_HOST:localhost}
+    port: ${PGVECTOR_PORT:5432}
+    database: ${PGVECTOR_DATABASE:urban_traffic}
+    user: ${PGVECTOR_USER:urban_user}
+    password: ${PGVECTOR_PASSWORD:urban_pass}
+    table: urban_embeddings
+    dimension: 1536 # matches text-embedding-3-small
+
+logging:
+  level:
+    com.urban.ai: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      trafficService:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+      complaintService:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 15s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true

@@ -1,0 +1,24 @@
+package com.urban.complaint.repository;
+
+import com.urban.complaint.entity.CitizenComplaint;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+
+import java.util.List;
+
+public interface ComplaintRepository extends MongoRepository<CitizenComplaint, String> {
+
+    List<CitizenComplaint> findByZone(String zone);
+
+    List<CitizenComplaint> findByStatus(String status);
+
+    List<CitizenComplaint> findByCategory(String category);
+
+    @Query("{ 'location' : { $near : { $geometry : ?0, $maxDistance : ?1 } } }")
+    GeoResults<CitizenComplaint> findNear(GeoJsonPoint point, Distance maxDistance);
+
+    List<CitizenComplaint> findTop20ByOrderByUrgencyScoreDesc();
+}
