@@ -17,38 +17,49 @@ air quality, citizen complaints) built as **Java Spring Boot microservices**, co
 
 ```
                  ┌─────────────────────┐
-  IoT sensors ──▶│   traffic-service    │──▶ PostgreSQL (system of record)
-  (traffic/AQI)  │  (Spring Boot :8081) │──▶ Redis (latest-reading cache, anomaly counters)
+  IoT sensors ──▶│   traffic-service    │──▶ Kafka "traffic.readings" ──▶ consumer ──▶ PostgreSQL
+  (traffic/AQI)  │  (Spring Boot :8081) │                                          └─▶ Redis (cache)
                  └─────────┬────────────┘
-                           │ REST
+                           │ Kafka "traffic.anomalies"
                            ▼
                  ┌─────────────────────┐
   Citizen app ──▶│  complaint-service   │──▶ MongoDB (flexible complaint documents, geo-index)
-                 │  (Spring Boot :8082) │
-                 └─────────┬────────────┘
-                           │ REST (pulled at query time)
-                           ▼
-                 ┌─────────────────────────────┐
-  Ops team ─────▶│   ai-insight-service         │
-  "Why is AQI    │   (Spring Boot :8083)        │
-   high in       │   LangChain4j RAG pipeline:  │
-   Whitefield?"  │   retrieve → embed → search  │
-                 │   → augment prompt → LLM     │
-                 └─────────────────────────────┘
+                 │  (Spring Boot :8082) │──▶ Kafka "complaint.created"
+                 └─────────┬────────────┘        │
+                           │ REST (PATCH callback,│ consumed by
+                           │ paginated pulls)     ▼
+                 ┌─────────────────────────────────┐
+  Ops team ─────▶│   ai-insight-service             │──▶ pgvector (persistent RAG index)
+  "Why is AQI    │   (Spring Boot :8083)            │──▶ Redis (semantic cache, SLA dedup, briefing)
+   high in       │   Kafka consumers index-on-write; │
+   Whitefield?"  │   LangChain4j RAG pipeline:       │
+                 │   rewrite → retrieve → rerank      │
+                 │   → augment prompt → LLM → verify  │
+                 └─────────────────────────────────┘
 ```
+
+All inter-service HTTP calls require an `X-API-Key` header (shared secret,
+`ApiKeyAuthFilter` in each service) and are wrapped in Resilience4j `@Retry` +
+`@CircuitBreaker`.
 
 ## Modules
 
-- **traffic-service** — ingests sensor readings, persists to PostgreSQL, caches "latest
-  reading" and "zone summary" in Redis, and flags anomalies with a z-score check
-  against a 24h rolling mean/stddev.
-- **complaint-service** — accepts citizen complaints as MongoDB documents (geo-indexed,
-  tag/urgency fields left open for a GenAI classifier to populate), supports
-  zone/category/near-me queries.
-- **ai-insight-service** — the GenAI/RAG layer. On each question it re-indexes the
-  relevant zone's live traffic summary + complaints into an in-memory vector store
-  (swap for pgvector/Milvus/Pinecone in production), retrieves the top-k relevant
-  segments, and asks an LLM to answer **using only that retrieved context**.
+- **traffic-service** — publishes sensor readings to Kafka (`traffic.readings`) and
+  returns immediately; a consumer persists to PostgreSQL, caches "latest reading" /
+  "zone summary" in Redis (zone summary via SQL aggregates, not loading every row),
+  and flags anomalies with a z-score check against a 24h rolling mean/stddev,
+  publishing anomalies to `traffic.anomalies`.
+- **complaint-service** — accepts citizen complaints as MongoDB documents (geo-indexed),
+  saves instantly with a fast heuristic classification, and publishes `complaint.created`
+  for async enrichment. Exposes paginated zone/status queries and a callback endpoint
+  ai-insight-service uses to write back the real AI classification.
+- **ai-insight-service** — the GenAI/RAG layer. Kafka listeners index new complaints/
+  anomalies into a **persistent pgvector store** the moment they're written (not
+  re-embedded per query). RAG queries go through query rewriting, hybrid
+  (vector + keyword + recency) retrieval, cited/grounded generation, and a
+  faithfulness check, with a Redis-backed semantic cache short-circuiting repeat
+  questions. Also runs the async complaint classifier, a reclassification sweep,
+  SLA escalation drafting, and the daily city briefing.
 
 ## Running locally
 
@@ -56,26 +67,85 @@ air quality, citizen complaints) built as **Java Spring Boot microservices**, co
 docker compose up --build
 ```
 
-This starts PostgreSQL, MongoDB, Redis, and all three services.
+This starts PostgreSQL (with pgvector), MongoDB, Redis, Kafka, and all three
+services. **Every endpoint below requires an `X-API-Key: change-me-in-prod`
+header** (or whatever you set `INTERNAL_API_KEY` to before running compose) —
+curl examples elsewhere in this README that omit it for brevity will 401
+against a real running instance; add the header as shown in "Example calls" below.
+
+To populate it with realistic dummy data instead of starting from an empty
+city, see [`seed-data/README.md`](seed-data/README.md) — `cd seed-data &&
+./load_seed_data.sh` after compose is up.
 
 ## Example calls
 
 ```bash
-# 1. Push a sensor reading
+KEY="change-me-in-prod"
+
+# 1. Push a sensor reading — publishes to Kafka and returns immediately (202).
+#    Actual processing happens asynchronously in SensorReadingConsumer.
 curl -X POST http://localhost:8081/api/traffic/ingest \
-  -H "Content-Type: application/json" \
+  -H "Content-Type: application/json" -H "X-API-Key: $KEY" \
+  -d '{"sensorId":"AQI-WF-01","sensorType":"AQI","zone":"Whitefield","latitude":12.97,"longitude":77.75,"value":310,"unit":"AQI"}'
+# -> 202 {"status":"accepted","sensorId":"AQI-WF-01"}
+
+# Synchronous alternative for local testing (returns the saved row directly):
+curl -X POST http://localhost:8081/api/traffic/ingest-sync \
+  -H "Content-Type: application/json" -H "X-API-Key: $KEY" \
   -d '{"sensorId":"AQI-WF-01","sensorType":"AQI","zone":"Whitefield","latitude":12.97,"longitude":77.75,"value":310,"unit":"AQI"}'
 
-# 2. File a citizen complaint
+# 2. File a citizen complaint — saves instantly with a heuristic classification,
+#    then ai-insight-service classifies it for real asynchronously.
 curl -X POST http://localhost:8082/api/complaints \
-  -H "Content-Type: application/json" \
+  -H "Content-Type: application/json" -H "X-API-Key: $KEY" \
   -d '{"citizenId":"C123","category":"GARBAGE","description":"Garbage overflow near main road, causing bad smell","zone":"Whitefield","latitude":12.97,"longitude":77.75}'
 
 # 3. Ask the AI/RAG layer
 curl -X POST http://localhost:8083/api/insights/ask \
-  -H "Content-Type: application/json" \
+  -H "Content-Type: application/json" -H "X-API-Key: $KEY" \
   -d '{"zone":"Whitefield","question":"Why might air quality be poor here today, and are there related complaints?"}'
 ```
+
+## Real-time / production-readiness fixes (round 3)
+
+A prior review of this codebase surfaced concrete gaps between "demo" and
+"real-time, production" behavior. Here's what changed and why:
+
+| Gap | Fix |
+|---|---|
+| Ingestion was one blocking REST call per sensor reading | `traffic-service` now publishes to Kafka (`traffic.readings`) and returns `202 Accepted` immediately; a separate `SensorReadingConsumer` does the DB write + anomaly scoring on Kafka's own threads, not the servlet thread. `/api/traffic/ingest-sync` is kept as a synchronous fallback for local testing. |
+| Complaint submission blocked on 2+ LLM/embedding round-trips | `complaint-service` now saves instantly with a fast local heuristic and publishes `complaint.created`; `ai-insight-service`'s `ComplaintCreatedListener` does the real classification + duplicate-check asynchronously and PATCHes the result back. |
+| RAG re-embedded a whole zone's data on every question | Indexing is now event-driven: `ComplaintCreatedListener`/`TrafficAnomalyListener` index-on-write with a deterministic ID + best-effort upsert (`UrbanDataRetriever.indexComplaintDocument/indexAnomalyDocument`). The old pull-and-reindex-per-query path still exists behind `rag.index-on-query-fallback=true` for cold starts / Kafka outages. |
+| Heuristic-classified complaints stayed mis-tagged forever | `ReclassificationSweepService` runs every 15 minutes, retrying anything still `PENDING_AI`/`HEURISTIC_FALLBACK` (exposed at `GET /api/complaints/needing-reclassification`). |
+| SLA sweep re-drafted the same escalation every run | `SlaEscalationService` now checks a Redis key (`sla-escalated:{id}`, 24h TTL) before drafting again. |
+| City briefing lived in a single in-memory field | Persisted in Redis (`city-briefing:latest`) — survives restarts and stays consistent across multiple instances. |
+| Unbounded list endpoints (memory + LLM context blowups) | `complaint-service` and `traffic-service` list endpoints now return paginated `Page<T>`; `UrbanDataClient` unwraps `content` and caps page sizes before anything reaches an LLM prompt. `traffic-service`'s zone summary now uses SQL aggregates (`COUNT`/`AVG`) instead of loading every row. |
+| No auth — anyone could read citizen PII or call LLM endpoints for free | A shared-secret `X-API-Key` header, enforced by an `ApiKeyAuthFilter` in all three services; inter-service `WebClient`s send it automatically. This is intentionally simple — swap for OAuth2/JWT with per-role scopes before any real deployment. |
+| Citizen-supplied text went straight into LLM prompts unguarded | `PromptSafetyUtils` wraps untrusted text in explicit delimiters and logs suspicious patterns (jailbreak phrasing, fake role tags); wired into complaint classification and the status chatbot. |
+| Circuit breakers alone don't help transient blips | `UrbanDataClient` now stacks `@Retry` (exponential backoff, 3 attempts) inside `@CircuitBreaker` on every inter-service call. |
+| `docker-compose` build was broken (`./mvnw` doesn't exist in this repo) | All three Dockerfiles now use a real Maven image and build from the **repo root** context (required because each module's `pom.xml` has a `<parent>` pointing at the root POM) via `mvn -pl <module> -am package`. |
+
+Still explicitly deferred (flagged, not implemented, given scope): removing `.block()` calls from servlet threads for full non-blocking I/O, distributed tracing/LLM cost metrics, and OAuth2/JWT with per-role scopes.
+
+## Real-time / production-readiness fixes (round 4)
+
+Another review pass found gaps in what round 3 shipped, plus pre-existing ones it hadn't reached:
+
+| Gap | Fix |
+|---|---|
+| SLA/reclassification sweeps silently capped at one page (50 items) — a real backlog beyond that was never checked, with no error | `UrbanDataClient.fetchAllPages()` now walks every page (up to a 50-page/5,000-item safety cap, which itself logs a warning if hit instead of failing silently). `complaint-service`'s `/needing-reclassification` endpoint is now paginated to match. |
+| Duplicate detection re-fetched and re-embedded every open complaint in a zone on every single check (N embedding-API calls per submission) | `DuplicateDetectionService` now queries the persistent pgvector index directly (already populated by index-on-write) via a new `UrbanDataRetriever.retrieve(question, zone, type, excludeId, topK)` overload — one embedding call (the query itself) instead of one per existing complaint. `DuplicateCheckRequest` gained an `excludeComplaintId` field so a complaint doesn't match its own just-indexed copy. |
+| RAG sub-query retrieval (query rewriting expands one question into 2-4) ran fully sequentially — pure added latency for independent operations | `RagInsightService` now fires all sub-query retrievals concurrently via `CompletableFuture` on a dedicated bounded thread pool, instead of a `for` loop awaiting each one in turn. |
+| `kafkaTemplate.send()`'s result was discarded entirely in both `traffic-service` and `complaint-service` — a failed publish was invisible; the client got a success response for data that was silently dropped | Both now attach `.whenComplete()` logging to the async result. `traffic-service` additionally falls back to a synchronous direct-ingest path if the publish call itself throws, so a reading is written even in that case (not a substitute for a transactional outbox — see below). |
+| `docker-compose` build was still theoretically untested end-to-end | Re-validated: all `application.yml`/`docker-compose.yml` parse as valid YAML, all `pom.xml` as valid XML, all Java files brace-balanced, and every cross-service method signature checked against its caller. Full `mvn compile` still isn't possible in the environment these fixes were authored in (no Maven Central access) — run it locally before deploying. |
+
+**Still open, honestly**: no transactional outbox (the save-then-publish in both
+services is still two non-atomic steps — a crash between them loses the event,
+mitigated but not fixed by the reclassification sweep and Kafka delivery
+logging above), single-node Kafka with `acks=1` and replication factor 1 (no
+durability guarantee under a broker failure), no dead-letter topic for
+messages that fail processing repeatedly, and Kafka payloads are untyped
+`Map<String,Object>` with no schema contract between services.
 
 ## AI-powered features (added)
 

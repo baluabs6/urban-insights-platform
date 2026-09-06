@@ -56,7 +56,7 @@ public class GenAiController {
 
     @GetMapping("/city-briefing")
     public ResponseEntity<CityBriefingResponse> cityBriefing(@RequestParam(defaultValue = "false") boolean refresh) {
-        return ResponseEntity.ok(refresh ? cityBriefingService.generate() : cityBriefingService.getLatest());
+        return ResponseEntity.ok(refresh ? cityBriefingService.refreshAndPersist() : cityBriefingService.getLatest());
     }
 
     @PostMapping("/complaint-status")

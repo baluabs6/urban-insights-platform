@@ -20,8 +20,8 @@ import java.util.Map;
  * multiple dashboards.
  *
  * Runs on a schedule (default: every morning) and also exposed on-demand.
- * The latest briefing is cached in memory here; in production this would be
- * written to Redis/Postgres and pushed to a Slack/email channel.
+ * The latest briefing is persisted in Redis (survives restarts, consistent
+ * across multiple instances) rather than an in-memory field.
  */
 @Service
 @RequiredArgsConstructor
@@ -30,21 +30,57 @@ public class CityBriefingService {
 
     private final UrbanDataClient dataClient;
     private final ChatLanguageModel chatLanguageModel;
+    private final org.springframework.data.redis.core.RedisTemplate<String, Object> redisTemplate;
+    private final com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+
+    private static final String BRIEFING_CACHE_KEY = "city-briefing:latest";
 
     @Value("${city.zones:Whitefield,Koramangala,Connaught Place,Andheri}")
     private List<String> zones;
-
-    private volatile CityBriefingResponse latestBriefing;
 
     /** Cron: every day at 07:00 server time. Override via city.briefing-cron. */
     @Scheduled(cron = "${city.briefing-cron:0 0 7 * * *}")
     public void generateScheduledBriefing() {
         log.info("Generating scheduled city briefing for zones: {}", zones);
-        this.latestBriefing = generate();
+        CityBriefingResponse briefing = generate();
+        persist(briefing);
     }
 
+    /**
+     * Reads the latest briefing from Redis so it survives restarts and is
+     * consistent across multiple instances of this service — previously this
+     * lived in a single in-memory field, which meant a restart lost it and a
+     * second instance would never agree with the first.
+     */
     public CityBriefingResponse getLatest() {
-        return latestBriefing != null ? latestBriefing : generate();
+        try {
+            Object raw = redisTemplate.opsForValue().get(BRIEFING_CACHE_KEY);
+            if (raw != null) {
+                String json = raw instanceof String s ? s : objectMapper.writeValueAsString(raw);
+                return objectMapper.readValue(json, CityBriefingResponse.class);
+            }
+        } catch (Exception e) {
+            log.warn("Failed to read cached briefing from Redis, regenerating: {}", e.getMessage());
+        }
+        CityBriefingResponse fresh = generate();
+        persist(fresh);
+        return fresh;
+    }
+
+    private void persist(CityBriefingResponse briefing) {
+        try {
+            redisTemplate.opsForValue().set(BRIEFING_CACHE_KEY, objectMapper.writeValueAsString(briefing),
+                    java.time.Duration.ofHours(25)); // outlives the daily cron with a small buffer
+        } catch (Exception e) {
+            log.warn("Failed to persist briefing to Redis: {}", e.getMessage());
+        }
+    }
+
+    /** Used by the on-demand ?refresh=true endpoint. */
+    public CityBriefingResponse refreshAndPersist() {
+        CityBriefingResponse briefing = generate();
+        persist(briefing);
+        return briefing;
     }
 
     public CityBriefingResponse generate() {

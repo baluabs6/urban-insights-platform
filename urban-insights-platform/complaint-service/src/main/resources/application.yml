@@ -13,6 +13,12 @@ spring:
       password: urban_pass
       authentication-database: admin
 
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 services:
   ai-insight-service:
     url: http://localhost:8083
@@ -25,14 +31,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,circuitbreakers
+        include: health,info,metrics
 
-resilience4j:
-  circuitbreaker:
-    instances:
-      aiInsightService:
-        sliding-window-size: 10
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 15s
-        permitted-number-of-calls-in-half-open-state: 3
-        automatic-transition-from-open-to-half-open-enabled: true
+security:
+  enabled: ${SECURITY_ENABLED:true}
+  api-key: ${SECURITY_API_KEY:change-me-in-prod}

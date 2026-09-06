@@ -84,13 +84,13 @@ public class TrafficIngestionService {
 
     @Cacheable(value = "zoneSummary", key = "#zone")
     public Map<String, Object> getZoneSummary(String zone) {
-        List<TrafficSensorReading> readings = repository.findByZone(zone);
-        double avg = readings.stream().mapToDouble(TrafficSensorReading::getValue).average().orElse(0);
-        long anomalies = readings.stream().filter(TrafficSensorReading::getAnomaly).count();
+        long readingCount = repository.countByZone(zone);
+        Double avg = repository.averageValueByZone(zone);
+        long anomalies = repository.countAnomaliesByZone(zone);
         return Map.of(
                 "zone", zone,
-                "readingCount", readings.size(),
-                "averageValue", avg,
+                "readingCount", readingCount,
+                "averageValue", avg != null ? avg : 0.0,
                 "anomalyCount", anomalies
         );
     }
@@ -100,7 +100,8 @@ public class TrafficIngestionService {
         log.info("Manually evicted traffic caches");
     }
 
-    public List<TrafficSensorReading> recentAnomalies() {
-        return repository.findByAnomalyTrueAndRecordedAtAfter(Instant.now().minus(24, ChronoUnit.HOURS));
+    public org.springframework.data.domain.Page<TrafficSensorReading> recentAnomalies(
+            org.springframework.data.domain.Pageable pageable) {
+        return repository.findByAnomalyTrueAndRecordedAtAfter(Instant.now().minus(24, ChronoUnit.HOURS), pageable);
     }
 }

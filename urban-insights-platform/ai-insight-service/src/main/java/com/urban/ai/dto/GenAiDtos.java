@@ -29,6 +29,7 @@ public class GenAiDtos {
         private List<String> tags;
         private String reasoning;
         private String detectedLanguage; // e.g. "Hindi", "English"
+        private String source; // "AI" or "HEURISTIC_FALLBACK"
     }
 
     @Data
@@ -37,6 +38,8 @@ public class GenAiDtos {
         private String description;
         @NotBlank
         private String zone;
+        /** Optional — if the complaint being checked is already indexed (post-write), exclude its own id from matches. */
+        private String excludeComplaintId;
     }
 
     @Data

@@ -29,9 +29,13 @@ public class SlaEscalationService {
 
     private final UrbanDataClient dataClient;
     private final ChatLanguageModel chatLanguageModel;
+    private final org.springframework.data.redis.core.RedisTemplate<String, Object> redisTemplate;
 
     @Value("${sla.hours.default:120}") // 5 days
     private long defaultSlaHours;
+
+    @Value("${sla.re-escalation-cooldown-hours:24}")
+    private long reEscalationCooldownHours;
 
     private static final Map<String, Long> CATEGORY_SLA_HOURS = Map.of(
             "POTHOLE", 120L,
@@ -78,6 +82,7 @@ public class SlaEscalationService {
     private EscalationItem toBreachOrNull(Map<String, Object> complaint) {
         String category = String.valueOf(complaint.get("category"));
         long slaHours = CATEGORY_SLA_HOURS.getOrDefault(category, defaultSlaHours);
+        String id = String.valueOf(complaint.get("id"));
 
         Object createdAtObj = complaint.get("createdAt");
         if (createdAtObj == null) return null;
@@ -92,10 +97,20 @@ public class SlaEscalationService {
         long hoursOpen = Duration.between(createdAt, Instant.now()).toHours();
         if (hoursOpen < slaHours) return null;
 
+        // Dedup: don't draft a fresh escalation for the same complaint every single
+        // sweep — only re-escalate after the cooldown window (default 24h).
+        String escalationKey = "sla-escalated:" + id;
+        Boolean alreadyEscalated = redisTemplate.hasKey(escalationKey);
+        if (Boolean.TRUE.equals(alreadyEscalated)) {
+            return null;
+        }
+
         String draft = draftEscalation(complaint, hoursOpen, slaHours);
+        redisTemplate.opsForValue().set(escalationKey, Instant.now().toString(),
+                Duration.ofHours(reEscalationCooldownHours));
 
         return EscalationItem.builder()
-                .complaintId(String.valueOf(complaint.get("id")))
+                .complaintId(id)
                 .category(category)
                 .zone(String.valueOf(complaint.get("zone")))
                 .assignedDepartment(String.valueOf(complaint.get("assignedDepartment")))

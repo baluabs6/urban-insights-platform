@@ -1,0 +1,5402 @@
+[
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 93.0,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 86.79,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 148.38,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 141.2,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 167.06,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 70.43,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 110.63,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 63.58,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 86.24,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 120.64,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 63.18,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 83.86,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 137.99,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 431.74,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-01",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.972589,
+    "longitude": 77.7405,
+    "value": 383.07,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 60.78,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 156.7,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 143.78,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 100.83,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 78.66,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 174.87,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 100.39,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 71.13,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 71.61,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 161.7,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 132.45,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 156.86,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 147.57,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 430.43,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-WH-02",
+    "sensorType": "AQI",
+    "zone": "Whitefield",
+    "latitude": 12.971585,
+    "longitude": 77.756189,
+    "value": 495.97,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 189.29,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 151.33,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 195.11,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 143.92,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 166.82,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 48.25,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 81.02,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 92.09,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 54.36,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 81.9,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 58.18,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 90.04,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 154.42,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 645.93,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.967371,
+    "longitude": 77.751041,
+    "value": 648.07,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 208.6,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 156.65,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 149.64,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 70.8,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 171.24,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 69.41,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 108.3,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 218.11,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 155.2,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 140.25,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 163.23,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 191.71,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 179.68,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 591.62,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-WH-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Whitefield",
+    "latitude": 12.96399,
+    "longitude": 77.74534,
+    "value": 512.84,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 50.27,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 68.57,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 66.91,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 52.87,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 61.39,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 54.89,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 67.86,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 56.47,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 51.62,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 51.17,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 59.03,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 51.57,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 59.61,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 117.45,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-01",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.966109,
+    "longitude": 77.745355,
+    "value": 104.99,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 57.74,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 47.27,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 46.18,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 47.74,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 60.69,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 64.8,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 55.55,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 46.59,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 54.54,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 69.9,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 58.23,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 69.28,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 66.52,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 95.29,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-WH-02",
+    "sensorType": "NOISE",
+    "zone": "Whitefield",
+    "latitude": 12.964186,
+    "longitude": 77.759951,
+    "value": 113.02,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 18.0,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 29.23,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 13.35,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 23.04,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 23.61,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 38.61,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 36.28,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 17.9,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 25.02,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 15.36,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 37.38,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 36.12,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 18.95,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 128.34,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.973434,
+    "longitude": 77.750739,
+    "value": 126.54,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 26.18,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 33.36,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 25.91,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 10.02,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 19.72,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 10.58,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 37.87,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 36.36,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 34.95,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 19.23,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 11.74,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 36.34,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 38.41,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 95.14,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-WH-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Whitefield",
+    "latitude": 12.962857,
+    "longitude": 77.75525,
+    "value": 119.16,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 47.12,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 12.06,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 31.14,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 35.24,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 19.58,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 52.98,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 28.27,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 16.65,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 34.66,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 45.15,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 16.06,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 22.14,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 59.73,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 98.25,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-01",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.961184,
+    "longitude": 77.755212,
+    "value": 97.19,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 17.36,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 23.59,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 37.36,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 17.66,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 17.11,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 8.9,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 39.71,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 17.59,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 54.8,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 52.28,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 8.9,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 18.09,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 41.79,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 96.07,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-WH-02",
+    "sensorType": "PARKING",
+    "zone": "Whitefield",
+    "latitude": 12.970152,
+    "longitude": 77.74242,
+    "value": 95.66,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 116.72,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 154.15,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 156.9,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 82.85,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 71.63,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 111.73,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 110.83,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 116.04,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 147.49,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 140.8,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 178.1,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 71.81,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 108.31,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 400.9,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-01",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.94391,
+    "longitude": 77.625921,
+    "value": 479.25,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 113.83,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 110.63,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 93.43,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 89.98,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 170.79,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 113.18,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 163.36,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 126.04,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 66.07,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 179.91,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 160.32,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 176.28,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 171.16,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 477.3,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-KO-02",
+    "sensorType": "AQI",
+    "zone": "Koramangala",
+    "latitude": 12.930173,
+    "longitude": 77.618304,
+    "value": 374.95,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 112.19,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 50.55,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 108.22,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 217.36,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 87.74,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 181.13,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 121.9,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 116.14,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 212.32,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 219.18,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 140.04,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 169.31,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 67.86,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 618.68,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.934913,
+    "longitude": 77.618775,
+    "value": 887.48,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 174.64,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 50.29,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 145.15,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 130.51,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 193.49,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 68.34,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 212.94,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 54.42,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 73.45,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 147.11,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 161.54,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 82.34,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 61.58,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 856.11,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-KO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Koramangala",
+    "latitude": 12.936784,
+    "longitude": 77.625344,
+    "value": 598.49,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 55.48,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 59.59,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 58.07,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 68.37,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 50.11,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 62.9,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 50.97,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 54.89,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 61.79,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 52.5,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 52.9,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 63.8,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 46.81,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 106.46,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-01",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.93709,
+    "longitude": 77.626888,
+    "value": 119.96,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 50.33,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 51.63,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 68.33,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 67.02,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 66.98,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 54.24,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 48.94,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 65.84,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 62.59,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 60.29,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 69.68,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 61.35,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 45.2,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 115.43,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-KO-02",
+    "sensorType": "NOISE",
+    "zone": "Koramangala",
+    "latitude": 12.945122,
+    "longitude": 77.615965,
+    "value": 102.48,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 14.03,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 13.46,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 13.21,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 26.6,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 18.17,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 28.14,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 31.53,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 16.11,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 29.03,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 17.92,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 24.66,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 37.16,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 35.38,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 95.54,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.938468,
+    "longitude": 77.633279,
+    "value": 115.41,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 33.13,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 29.11,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 17.86,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 32.24,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 26.55,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 22.83,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 10.29,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 12.26,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 36.49,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 37.12,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 26.37,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 35.04,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 27.48,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 98.89,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-KO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Koramangala",
+    "latitude": 12.930734,
+    "longitude": 77.614571,
+    "value": 97.65,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 48.79,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 52.34,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 54.44,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 16.55,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 18.72,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 10.65,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 47.91,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 53.63,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 27.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 39.14,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 13.5,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 56.14,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 52.55,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 99.88,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-01",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.931365,
+    "longitude": 77.63248,
+    "value": 99.05,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 45.51,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 23.27,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 56.19,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 49.12,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 52.52,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 49.59,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 19.67,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 48.31,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 10.95,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 52.97,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 52.22,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 17.23,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 49.91,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 97.3,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-KO-02",
+    "sensorType": "PARKING",
+    "zone": "Koramangala",
+    "latitude": 12.942828,
+    "longitude": 77.614996,
+    "value": 96.53,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 62.84,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 83.18,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 99.39,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 163.72,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 176.03,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 93.49,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 136.98,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 107.96,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 177.74,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 124.35,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 172.71,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 73.84,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 176.45,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 376.79,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-01",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.637407,
+    "longitude": 77.211252,
+    "value": 494.38,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 112.15,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 147.43,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 97.64,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 132.75,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 121.37,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 106.22,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 129.19,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 90.57,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 145.05,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 60.2,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 171.07,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 124.61,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 146.33,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 461.29,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-CO-02",
+    "sensorType": "AQI",
+    "zone": "Connaught Place",
+    "latitude": 28.626809,
+    "longitude": 77.208868,
+    "value": 450.59,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 159.56,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 99.44,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 96.5,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 192.64,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 169.56,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 94.06,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 95.67,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 113.51,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 112.43,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 93.22,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 62.91,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 115.68,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 209.27,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 770.93,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.628784,
+    "longitude": 77.208099,
+    "value": 861.12,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 138.63,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 40.07,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 91.64,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 117.38,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 144.4,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 157.85,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 123.7,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 119.59,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 78.47,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 125.17,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 202.21,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 183.28,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 70.54,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 533.92,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-CO-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Connaught Place",
+    "latitude": 28.63381,
+    "longitude": 77.212719,
+    "value": 706.18,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 65.46,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 63.78,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 61.82,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 50.62,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 49.98,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 45.61,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 51.12,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 56.88,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 66.24,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 46.82,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 55.36,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 60.74,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 49.86,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 112.41,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-01",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.634159,
+    "longitude": 77.213404,
+    "value": 107.36,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 45.14,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 63.77,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 64.25,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 47.66,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 55.63,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 49.4,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 68.95,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 57.95,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 46.26,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 51.23,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 66.21,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 56.41,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 65.04,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 111.69,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-CO-02",
+    "sensorType": "NOISE",
+    "zone": "Connaught Place",
+    "latitude": 28.62638,
+    "longitude": 77.219821,
+    "value": 119.7,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 36.74,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 28.38,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 31.58,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 25.14,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 34.92,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 26.44,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 36.92,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 32.31,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 24.24,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 17.78,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 17.42,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 29.13,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 32.97,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 121.28,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.633409,
+    "longitude": 77.225701,
+    "value": 127.6,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 18.57,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 18.15,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 19.59,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 26.2,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 14.15,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 16.94,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 30.82,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 31.19,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 11.93,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 22.23,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 26.28,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 22.47,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 16.21,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 115.21,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-CO-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Connaught Place",
+    "latitude": 28.626992,
+    "longitude": 77.20825,
+    "value": 144.29,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 52.12,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 47.11,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 25.92,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 5.32,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 24.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 46.44,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 51.94,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 57.44,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 28.05,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 46.11,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 35.04,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 38.18,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 17.13,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 96.1,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-01",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.633182,
+    "longitude": 77.22061,
+    "value": 97.18,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 42.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 27.24,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 14.08,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 30.71,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 12.02,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 39.22,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 6.48,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 26.67,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 36.04,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 6.49,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 40.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 12.46,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 30.39,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 95.25,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-CO-02",
+    "sensorType": "PARKING",
+    "zone": "Connaught Place",
+    "latitude": 28.62208,
+    "longitude": 77.213423,
+    "value": 96.9,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 151.35,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 105.5,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 150.24,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 159.83,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 90.27,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 69.83,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 62.33,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 124.73,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 179.99,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 102.0,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 138.02,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 153.75,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 138.21,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 463.13,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-01",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113933,
+    "longitude": 72.843337,
+    "value": 492.44,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 78.29,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 75.15,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 140.34,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 127.68,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 86.16,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 143.94,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 152.03,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 80.13,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 132.87,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 149.75,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 73.74,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 158.32,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 175.77,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 366.21,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "AQI-AN-02",
+    "sensorType": "AQI",
+    "zone": "Andheri",
+    "latitude": 19.113687,
+    "longitude": 72.837208,
+    "value": 353.85,
+    "unit": "AQI"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 212.47,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 111.4,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 168.7,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 53.68,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 164.31,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 152.9,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 58.34,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 179.05,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 193.05,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 148.07,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 61.79,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 217.09,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 180.87,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 638.88,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-01",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.115939,
+    "longitude": 72.850347,
+    "value": 671.35,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 101.42,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 192.92,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 188.02,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 59.0,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 212.94,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 154.41,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 189.17,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 167.32,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 118.39,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 172.08,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 213.79,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 88.61,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 185.48,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 715.27,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "TRAFFIC_FLOW-AN-02",
+    "sensorType": "TRAFFIC_FLOW",
+    "zone": "Andheri",
+    "latitude": 19.117111,
+    "longitude": 72.846919,
+    "value": 693.4,
+    "unit": "vehicles/5min"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 51.71,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 66.29,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 65.77,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 47.17,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 67.04,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 51.1,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 56.62,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 60.26,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 54.47,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 45.72,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 66.27,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 49.55,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 50.3,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 114.95,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-01",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.118411,
+    "longitude": 72.851421,
+    "value": 103.51,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 51.91,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 45.25,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 68.7,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 47.14,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 63.0,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 57.21,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 63.95,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 62.27,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 61.15,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 57.27,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 64.82,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 47.33,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 50.54,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 112.29,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "NOISE-AN-02",
+    "sensorType": "NOISE",
+    "zone": "Andheri",
+    "latitude": 19.127306,
+    "longitude": 72.850824,
+    "value": 102.66,
+    "unit": "dB"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 25.93,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 22.77,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 32.38,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 19.92,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 31.09,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 18.13,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 17.54,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 13.62,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 15.78,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 13.59,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 26.08,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 32.87,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 15.55,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 102.98,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-01",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.121331,
+    "longitude": 72.846265,
+    "value": 119.05,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 25.74,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 18.49,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 13.02,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 15.82,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 16.82,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 15.38,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 10.42,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 26.02,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 18.23,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 39.23,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 26.6,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 30.92,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 13.79,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 142.11,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "WATER_LEVEL-AN-02",
+    "sensorType": "WATER_LEVEL",
+    "zone": "Andheri",
+    "latitude": 19.124192,
+    "longitude": 72.856332,
+    "value": 119.45,
+    "unit": "cm"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 30.82,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 29.23,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 15.14,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 7.83,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 56.76,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 31.28,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 50.22,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 27.04,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 9.07,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 39.62,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 7.95,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 13.21,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 35.96,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 96.52,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-01",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.127154,
+    "longitude": 72.848281,
+    "value": 99.97,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 38.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 48.49,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 17.41,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 33.74,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 29.78,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 29.35,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 52.31,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 59.45,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 21.8,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 39.16,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 38.53,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 45.7,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 57.12,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 96.04,
+    "unit": "occupied_spots"
+  },
+  {
+    "sensorId": "PARKING-AN-02",
+    "sensorType": "PARKING",
+    "zone": "Andheri",
+    "latitude": 19.112069,
+    "longitude": 72.852089,
+    "value": 96.06,
+    "unit": "occupied_spots"
+  }
+]

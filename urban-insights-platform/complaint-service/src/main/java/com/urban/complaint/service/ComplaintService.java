@@ -1,28 +1,33 @@
 package com.urban.complaint.service;
 
-import com.urban.complaint.client.AiInsightClient;
-import com.urban.complaint.client.AiInsightClient.ClassifyResult;
-import com.urban.complaint.client.AiInsightClient.DuplicateResult;
+import com.urban.complaint.config.KafkaProducerConfig;
+import com.urban.complaint.dto.ClassificationUpdateRequest;
 import com.urban.complaint.dto.ComplaintRequest;
 import com.urban.complaint.entity.CitizenComplaint;
 import com.urban.complaint.repository.ComplaintRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ComplaintService {
 
     private final ComplaintRepository repository;
-    private final AiInsightClient aiInsightClient;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     private static final Map<String, String> DEPARTMENT_ROUTING = Map.of(
             "POTHOLE", "ROADS_AND_INFRASTRUCTURE",
@@ -34,46 +39,77 @@ public class ComplaintService {
     );
 
     /**
-     * `urgencyScore`, `tags` and department routing now come from the
-     * ai-insight-service's GenAI classifier (reading the free-text description),
-     * with a local heuristic fallback if that service is unavailable — submission
-     * never fails just because the AI layer is down. A duplicate check against
-     * other open complaints in the same zone runs in parallel via embeddings.
+     * Submission is now fast and fully local: save immediately with a cheap
+     * heuristic classification (classificationSource=PENDING_AI), then publish
+     * a "complaint.created" event. ai-insight-service consumes it asynchronously,
+     * runs the real LLM classification + embedding-based duplicate check (which
+     * used to happen synchronously here, blocking the citizen on 2+ LLM round
+     * trips), and PATCHes the real result back via updateClassification().
+     *
+     * If ai-insight-service or Kafka is ever down, the complaint still exists
+     * with a usable heuristic classification — it just won't get refined until
+     * the AI service catches up (see ai-insight-service's reclassification
+     * sweep, which re-scans anything still PENDING_AI/HEURISTIC_FALLBACK).
      */
     public CitizenComplaint submit(ComplaintRequest request) {
         Instant now = Instant.now();
 
-        ClassifyResult classification = aiInsightClient.classify(request.getDescription(), request.getZone());
-        DuplicateResult duplicateResult = aiInsightClient.duplicateCheck(request.getDescription(), request.getZone());
-
-        String category = classification != null ? classification.getCategory() : request.getCategory();
-        String department = classification != null
-                ? classification.getDepartment()
-                : DEPARTMENT_ROUTING.getOrDefault(request.getCategory(), "GENERAL_CIVIC");
-        Double urgency = classification != null ? classification.getUrgencyScore() : heuristicUrgency(request.getDescription());
-        List<String> tags = classification != null && classification.getTags() != null
-                ? classification.getTags()
-                : List.of(request.getCategory().toLowerCase());
-        String source = classification != null ? "AI" : "HEURISTIC_FALLBACK";
+        String heuristicCategory = heuristicCategory(request.getDescription(), request.getCategory());
 
         CitizenComplaint complaint = CitizenComplaint.builder()
                 .citizenId(request.getCitizenId())
-                .category(category)
+                .category(heuristicCategory)
                 .description(request.getDescription())
                 .zone(request.getZone())
                 .status("OPEN")
-                .assignedDepartment(department)
+                .assignedDepartment(DEPARTMENT_ROUTING.getOrDefault(heuristicCategory, "GENERAL_CIVIC"))
                 .location(new GeoJsonPoint(request.getLongitude(), request.getLatitude()))
                 .photoUrls(request.getPhotoUrls())
-                .tags(tags)
-                .urgencyScore(urgency)
-                .classificationSource(source)
-                .likelyDuplicate(duplicateResult != null && duplicateResult.isDuplicate())
-                .duplicateSimilarityScore(duplicateResult != null ? duplicateResult.getMaxSimilarityScore() : null)
-                .similarComplaintDescriptions(duplicateResult != null ? duplicateResult.getSimilarComplaints() : null)
+                .tags(List.of(heuristicCategory.toLowerCase()))
+                .urgencyScore(heuristicUrgency(request.getDescription()))
+                .classificationSource("PENDING_AI")
+                .likelyDuplicate(false)
                 .createdAt(now)
                 .updatedAt(now)
                 .build();
+
+        CitizenComplaint saved = repository.save(complaint);
+
+        try {
+            kafkaTemplate.send(KafkaProducerConfig.TOPIC_COMPLAINT_CREATED, saved.getId(), saved)
+                    .whenComplete((result, ex) -> {
+                        if (ex != null) {
+                            // Not silently lost: this complaint keeps its usable heuristic
+                            // classification (classificationSource=PENDING_AI) and WILL be
+                            // picked up by ai-insight-service's reclassification sweep —
+                            // logged here so an operator can also see it happened in real time.
+                            log.error("Async publish of complaint.created failed for {} after send() returned: {}. " +
+                                    "Will be caught by the reclassification sweep.", saved.getId(), ex.getMessage(), ex);
+                        }
+                    });
+        } catch (Exception e) {
+            // Submission already succeeded and is usable; async enrichment can catch up
+            // later via the reclassification sweep even if the publish itself fails.
+            log.warn("Failed to publish complaint.created event for {}: {}", saved.getId(), e.getMessage());
+        }
+
+        return saved;
+    }
+
+    /** Called back by ai-insight-service once async classification/duplicate-check completes. */
+    public CitizenComplaint updateClassification(String id, ClassificationUpdateRequest update) {
+        CitizenComplaint complaint = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Complaint not found: " + id));
+
+        complaint.setCategory(update.getCategory());
+        complaint.setAssignedDepartment(update.getDepartment());
+        complaint.setUrgencyScore(update.getUrgencyScore());
+        complaint.setTags(update.getTags());
+        complaint.setClassificationSource(update.getClassificationSource());
+        complaint.setLikelyDuplicate(update.getLikelyDuplicate());
+        complaint.setDuplicateSimilarityScore(update.getDuplicateSimilarityScore());
+        complaint.setSimilarComplaintDescriptions(update.getSimilarComplaintDescriptions());
+        complaint.setUpdatedAt(Instant.now());
 
         return repository.save(complaint);
     }
@@ -86,18 +122,19 @@ public class ComplaintService {
         return repository.save(complaint);
     }
 
-    public List<CitizenComplaint> byZone(String zone) {
-        return repository.findByZone(zone);
+    public Page<CitizenComplaint> byZone(String zone, Pageable pageable) {
+        return repository.findByZone(zone, pageable);
     }
 
-    public java.util.Optional<CitizenComplaint> byId(String id) {
+    public Optional<CitizenComplaint> byId(String id) {
         return repository.findById(id);
     }
 
-    public List<CitizenComplaint> byStatus(String status) {
-        return repository.findByStatus(status);
+    public Page<CitizenComplaint> byStatus(String status, Pageable pageable) {
+        return repository.findByStatus(status, pageable);
     }
 
+    /** Still unbounded by design — small, curated top-N list for dashboards/briefings. */
     public List<CitizenComplaint> topUrgent() {
         return repository.findTop20ByOrderByUrgencyScoreDesc();
     }
@@ -106,7 +143,23 @@ public class ComplaintService {
         return repository.findNear(new GeoJsonPoint(lon, lat), new Distance(radiusKm, Metrics.KILOMETERS));
     }
 
-    /** Placeholder for the real GenAI urgency classifier — keyword heuristic only. */
+    /** Anything still awaiting or stuck on heuristic classification — used by the reclassification sweep. */
+    public Page<CitizenComplaint> findNeedingReclassification(Pageable pageable) {
+        return repository.findByClassificationSourceIn(List.of("PENDING_AI", "HEURISTIC_FALLBACK"), pageable);
+    }
+
+    private String heuristicCategory(String description, String suppliedCategory) {
+        if (suppliedCategory != null && !suppliedCategory.isBlank()) return suppliedCategory.toUpperCase();
+        String text = description.toLowerCase();
+        if (text.contains("pothole") || text.contains("road")) return "POTHOLE";
+        if (text.contains("garbage") || text.contains("trash")) return "GARBAGE";
+        if (text.contains("light")) return "STREETLIGHT";
+        if (text.contains("water") || text.contains("leak")) return "WATER_LEAKAGE";
+        if (text.contains("encroach")) return "ENCROACHMENT";
+        if (text.contains("noise") || text.contains("loud")) return "NOISE";
+        return "OTHER";
+    }
+
     private Double heuristicUrgency(String description) {
         String text = description.toLowerCase();
         if (text.contains("danger") || text.contains("accident") || text.contains("sewage")) return 0.9;
