@@ -1,0 +1,522 @@
+[
+  {
+    "idempotencyKey": "318fe7df-2bdd-4168-9dd9-b80ecc0e6514",
+    "citizenId": "CIT-F13DB637",
+    "category": "STREETLIGHT",
+    "description": "Streetlight outside the government school has been broken for 10 days, area is unsafe at night.",
+    "zone": "Whitefield",
+    "latitude": 12.965562,
+    "longitude": 77.745654,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "c8d70124-c2db-4f98-a596-9ce22496789e",
+    "citizenId": "CIT-A49DD20D",
+    "category": "WATER_LEAKAGE",
+    "description": "Danger: sewage water leak near the metro station has flooded the road, risk of accidents at night.",
+    "zone": "Koramangala",
+    "latitude": 12.937377,
+    "longitude": 77.619286,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "9cf1077e-af0c-47b6-803c-9c133dc6870b",
+    "citizenId": "CIT-434A6CBB",
+    "category": "GARBAGE",
+    "description": "Garbage has not been collected near the flyover underpass for over a week, smell is unbearable.",
+    "zone": "Whitefield",
+    "latitude": 12.96881,
+    "longitude": 77.751876,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "8ba0bfc7-c7e9-43b6-9b1f-e64a17cb3704",
+    "citizenId": "CIT-0FD6DD7A",
+    "category": "STREETLIGHT",
+    "description": "Multiple streetlights not working on the stretch near the main bus stop.",
+    "zone": "Koramangala",
+    "latitude": 12.934297,
+    "longitude": 77.62079,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "474e8177-fc37-42c2-a6b9-890a7c1fbf6f",
+    "citizenId": "CIT-BA2C455E",
+    "category": "POTHOLE",
+    "description": "The pothole close to the metro station has gotten much bigger after the rain.",
+    "zone": "Koramangala",
+    "latitude": 12.943753,
+    "longitude": 77.623262,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "a4b6ed2c-3c0d-41b6-8997-e9d259eaf3bf",
+    "citizenId": "CIT-BE965F4E",
+    "category": "POTHOLE",
+    "description": "The pothole close to the government school has gotten much bigger after the rain.",
+    "zone": "Connaught Place",
+    "latitude": 28.632936,
+    "longitude": 77.211371,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "ba33351f-cd6c-49e7-b704-fba776cbe2b4",
+    "citizenId": "CIT-CF34F41F",
+    "category": "NOISE",
+    "description": "Construction near the market junction runs loud machinery late at night, disturbing residents.",
+    "zone": "Connaught Place",
+    "latitude": 28.62981,
+    "longitude": 77.21635,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "c7cd8379-9213-4629-90db-94951185f1ba",
+    "citizenId": "CIT-93B3EC08",
+    "category": "STREETLIGHT",
+    "description": "Multiple streetlights not working on the stretch near the metro station.",
+    "zone": "Connaught Place",
+    "latitude": 28.630431,
+    "longitude": 77.216387,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "2f347e85-6ad8-4c08-af41-7a51d6bb6a51",
+    "citizenId": "CIT-1B18B147",
+    "category": "STREETLIGHT",
+    "description": "Streetlight outside the flyover underpass has been broken for 10 days, area is unsafe at night.",
+    "zone": "Connaught Place",
+    "latitude": 28.623364,
+    "longitude": 77.226545,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "bf1574be-a1d1-4d4c-9043-d1b1e1f98fa0",
+    "citizenId": "CIT-34E3D3AB",
+    "category": "POTHOLE",
+    "description": "There is a huge pothole near the government school, almost caused an accident.",
+    "zone": "Connaught Place",
+    "latitude": 28.632936,
+    "longitude": 77.211371,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "e0489abb-8299-4e86-83e5-d338752fe0ba",
+    "citizenId": "CIT-754C3CD3",
+    "category": "POTHOLE",
+    "description": "Big pothole right outside the government school, very dangerous for two-wheelers.",
+    "zone": "Connaught Place",
+    "latitude": 28.632936,
+    "longitude": 77.211371,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "e8094647-8c2f-42c4-a334-65c78489f4b3",
+    "citizenId": "CIT-CC43226A",
+    "category": "POTHOLE",
+    "description": "Large pothole near the market junction, cars are swerving dangerously to avoid it.",
+    "zone": "Andheri",
+    "latitude": 19.129649,
+    "longitude": 72.851735,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "f4805214-2924-4760-b3a8-c2e7f33859a5",
+    "citizenId": "CIT-CBB63CC7",
+    "category": "POTHOLE",
+    "description": "Big pothole right outside the main bus stop, very dangerous for two-wheelers.",
+    "zone": "Andheri",
+    "latitude": 19.11062,
+    "longitude": 72.852723,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "2730f558-f628-436d-8944-766d3bf56792",
+    "citizenId": "CIT-7E27DAF0",
+    "category": "POTHOLE",
+    "description": "The pothole close to the main bus stop has gotten much bigger after the rain.",
+    "zone": "Andheri",
+    "latitude": 19.11062,
+    "longitude": 72.852723,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "5c52a5e6-a555-4ab3-b63a-d4975033c961",
+    "citizenId": "CIT-67BC7FDA",
+    "category": "POTHOLE",
+    "description": "Big pothole right outside the metro station, very dangerous for two-wheelers.",
+    "zone": "Koramangala",
+    "latitude": 12.943753,
+    "longitude": 77.623262,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "8d242755-d6eb-4692-9fa7-7abc8690e695",
+    "citizenId": "CIT-FF4E7232",
+    "category": "POTHOLE",
+    "description": "Road has multiple potholes near the residents' welfare office, badly needs repair before monsoon.",
+    "zone": "Koramangala",
+    "latitude": 12.933465,
+    "longitude": 77.618252,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "211705a9-11ba-4478-aee1-e0c666980aa3",
+    "citizenId": "CIT-36CBE42B",
+    "category": "NOISE",
+    "description": "Construction near the market junction runs loud machinery late at night, disturbing residents.",
+    "zone": "Whitefield",
+    "latitude": 12.969809,
+    "longitude": 77.749876,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "370b4b28-6e6d-4911-9622-ceac8001c236",
+    "citizenId": "CIT-F64EE036",
+    "category": "WATER_LEAKAGE",
+    "description": "Major water pipeline leakage near the government school, wasting a lot of water daily.",
+    "zone": "Whitefield",
+    "latitude": 12.978278,
+    "longitude": 77.755757,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "4af15eb6-7b16-4e60-83c7-314d0982ef41",
+    "citizenId": "CIT-DE54F439",
+    "category": "WATER_LEAKAGE",
+    "description": "Sewage water leaking onto the road near the residents' welfare office, health hazard.",
+    "zone": "Andheri",
+    "latitude": 19.127148,
+    "longitude": 72.837518,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "75922a7e-bf03-4482-960c-3ad69908f4ca",
+    "citizenId": "CIT-DC85679F",
+    "category": "WATER_LEAKAGE",
+    "description": "Danger: sewage water leak near the main bus stop has flooded the road, risk of accidents at night.",
+    "zone": "Whitefield",
+    "latitude": 12.964378,
+    "longitude": 77.753486,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "3514dc38-84cf-4348-ac0f-5a8e675aff1c",
+    "citizenId": "CIT-E6A6C2AC",
+    "category": "STREETLIGHT",
+    "description": "Multiple streetlights not working on the stretch near the residents' welfare office.",
+    "zone": "Whitefield",
+    "latitude": 12.962287,
+    "longitude": 77.753774,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "ef22493d-43fd-4689-8c4d-fac6d2d7fe56",
+    "citizenId": "CIT-0BEEF749",
+    "category": "POTHOLE",
+    "description": "Deep pothole on the main road by the community park entrance, caused a two-wheeler accident yesterday.",
+    "zone": "Connaught Place",
+    "latitude": 28.634454,
+    "longitude": 77.209779,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "506ba58b-6605-4a67-bddb-0ac776a26a7c",
+    "citizenId": "CIT-951E37C0",
+    "category": "ENCROACHMENT",
+    "description": "Vendors have encroached on the footpath near the community park entrance, pedestrians forced onto the road.",
+    "zone": "Connaught Place",
+    "latitude": 28.627025,
+    "longitude": 77.2225,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "a3464689-a282-4b62-a33f-08717ec24904",
+    "citizenId": "CIT-1BA2A303",
+    "category": "POTHOLE",
+    "description": "Big pothole right outside the community park entrance, very dangerous for two-wheelers.",
+    "zone": "Whitefield",
+    "latitude": 12.971761,
+    "longitude": 77.757788,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "02c91c82-393d-44a2-895c-49180b5be444",
+    "citizenId": "CIT-11CE2677",
+    "category": "POTHOLE",
+    "description": "There is a huge pothole near the metro station, almost caused an accident.",
+    "zone": "Koramangala",
+    "latitude": 12.943753,
+    "longitude": 77.623262,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "cf7e7648-74cf-4544-b3a6-1fd5c4c954d6",
+    "citizenId": "CIT-5E73A734",
+    "category": "NOISE",
+    "description": "Construction near the main bus stop runs loud machinery late at night, disturbing residents.",
+    "zone": "Koramangala",
+    "latitude": 12.940462,
+    "longitude": 77.618004,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "74375b3a-5e2b-4c28-9f4c-fcc457c7cf56",
+    "citizenId": "CIT-AC4F66FC",
+    "category": "STREETLIGHT",
+    "description": "Multiple streetlights not working on the stretch near the residents' welfare office.",
+    "zone": "Koramangala",
+    "latitude": 12.9404,
+    "longitude": 77.618571,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "63b77287-b50a-4b33-afb6-c134b72aa9a7",
+    "citizenId": "CIT-CB2C26AB",
+    "category": "NOISE",
+    "description": "Construction near the flyover underpass runs loud machinery late at night, disturbing residents.",
+    "zone": "Andheri",
+    "latitude": 19.127119,
+    "longitude": 72.856199,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "073d184c-28a0-49a8-bd7c-dd63a7cd7146",
+    "citizenId": "CIT-E3234BC8",
+    "category": "STREETLIGHT",
+    "description": "Multiple streetlights not working on the stretch near the residents' welfare office.",
+    "zone": "Connaught Place",
+    "latitude": 28.640157,
+    "longitude": 77.224092,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "ede4990c-a600-4ac9-812e-3538feebc1b5",
+    "citizenId": "CIT-ABF1D622",
+    "category": "POTHOLE",
+    "description": "the water tank ke pass kai dinon se kachra nahi uthaya gaya hai, badboo aa rahi hai.",
+    "zone": "Andheri",
+    "latitude": 19.117197,
+    "longitude": 72.839711,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "af0b3a2c-70c8-4ef7-8b1f-bed2bc0a1484",
+    "citizenId": "CIT-6C3F3516",
+    "category": "POTHOLE",
+    "description": "Deep pothole on the main road by the community park entrance, caused a two-wheeler accident yesterday.",
+    "zone": "Andheri",
+    "latitude": 19.120219,
+    "longitude": 72.845939,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "c1f94c59-6ceb-40d4-9e7a-387479ed4ecb",
+    "citizenId": "CIT-FE05E33B",
+    "category": "NOISE",
+    "description": "Construction near the flyover underpass runs loud machinery late at night, disturbing residents.",
+    "zone": "Whitefield",
+    "latitude": 12.962096,
+    "longitude": 77.744496,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "84741c13-a4ca-4368-bac0-01dd377daee2",
+    "citizenId": "CIT-7BE8E994",
+    "category": "WATER_LEAKAGE",
+    "description": "Danger: sewage water leak near the metro station has flooded the road, risk of accidents at night.",
+    "zone": "Andheri",
+    "latitude": 19.120323,
+    "longitude": 72.848119,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "163862bd-a737-49d1-a2f5-9e2300609eba",
+    "citizenId": "CIT-B825D82F",
+    "category": "STREETLIGHT",
+    "description": "Streetlight outside the flyover underpass has been broken for 10 days, area is unsafe at night.",
+    "zone": "Koramangala",
+    "latitude": 12.942498,
+    "longitude": 77.630999,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "a1a28c78-2542-4873-9c89-307f3fb1b199",
+    "citizenId": "CIT-40A8A12F",
+    "category": "POTHOLE",
+    "description": "Deep pothole on the main road by the market junction, caused a two-wheeler accident yesterday.",
+    "zone": "Andheri",
+    "latitude": 19.116471,
+    "longitude": 72.850654,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "e7804d33-058a-4249-9c49-77ed8693fe60",
+    "citizenId": "CIT-BC7DE312",
+    "category": "NOISE",
+    "description": "Construction near the metro station runs loud machinery late at night, disturbing residents.",
+    "zone": "Whitefield",
+    "latitude": 12.964597,
+    "longitude": 77.75104,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "3ac16b49-fac8-4ab4-a4e3-da62187a52db",
+    "citizenId": "CIT-9D2FC7F2",
+    "category": "WATER_LEAKAGE",
+    "description": "Danger: sewage water leak near the metro station has flooded the road, risk of accidents at night.",
+    "zone": "Connaught Place",
+    "latitude": 28.639769,
+    "longitude": 77.214325,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "b8f2dcc3-9cca-4245-9100-42b5a32669b3",
+    "citizenId": "CIT-AA21BDA7",
+    "category": "WATER_LEAKAGE",
+    "description": "Major water pipeline leakage near the community park entrance, wasting a lot of water daily.",
+    "zone": "Andheri",
+    "latitude": 19.118574,
+    "longitude": 72.85068,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "8813ab1d-3758-4387-95a1-c09e5ad5ec7c",
+    "citizenId": "CIT-88A45DB7",
+    "category": "STREETLIGHT",
+    "description": "Streetlight outside the metro station has been broken for 10 days, area is unsafe at night.",
+    "zone": "Koramangala",
+    "latitude": 12.931796,
+    "longitude": 77.628373,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "0d6986c2-dbab-4846-98a4-ccf31803e0b2",
+    "citizenId": "CIT-A697B13F",
+    "category": "WATER_LEAKAGE",
+    "description": "Major water pipeline leakage near the residents' welfare office, wasting a lot of water daily.",
+    "zone": "Connaught Place",
+    "latitude": 28.632525,
+    "longitude": 77.214372,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "fdc857a8-464a-4f2d-bf35-af5e342fda9a",
+    "citizenId": "CIT-95D49B30",
+    "category": "ENCROACHMENT",
+    "description": "Vendors have encroached on the footpath near the market junction, pedestrians forced onto the road.",
+    "zone": "Koramangala",
+    "latitude": 12.92883,
+    "longitude": 77.626207,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "33d658bf-0769-4c2e-9cd4-42b9188f3d10",
+    "citizenId": "CIT-7B57A68D",
+    "category": "POTHOLE",
+    "description": "There is a huge pothole near the community park entrance, almost caused an accident.",
+    "zone": "Whitefield",
+    "latitude": 12.971761,
+    "longitude": 77.757788,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "c64d3dfb-e42f-4aa4-8874-bd1de85e4921",
+    "citizenId": "CIT-0805B7C3",
+    "category": "POTHOLE",
+    "description": "the main bus stop ke pass kai dinon se kachra nahi uthaya gaya hai, badboo aa rahi hai.",
+    "zone": "Connaught Place",
+    "latitude": 28.627864,
+    "longitude": 77.21616,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "78de080a-bb6d-4781-ae72-5c8c4142d79f",
+    "citizenId": "CIT-2095EF02",
+    "category": "WATER_LEAKAGE",
+    "description": "Sewage water leaking onto the road near the market junction, health hazard.",
+    "zone": "Connaught Place",
+    "latitude": 28.637911,
+    "longitude": 77.212357,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "d34b772d-6367-49fa-b2a9-8b99beeee318",
+    "citizenId": "CIT-56F7B4BF",
+    "category": "NOISE",
+    "description": "Construction near the community park entrance runs loud machinery late at night, disturbing residents.",
+    "zone": "Koramangala",
+    "latitude": 12.9346,
+    "longitude": 77.622667,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "01a31dbb-352f-4638-866a-c47c668f1177",
+    "citizenId": "CIT-53C99053",
+    "category": "NOISE",
+    "description": "Construction near the water tank runs loud machinery late at night, disturbing residents.",
+    "zone": "Andheri",
+    "latitude": 19.126747,
+    "longitude": 72.853987,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "943c83e3-c0a5-477d-98a7-1f89906bfb13",
+    "citizenId": "CIT-E3AA27FF",
+    "category": "POTHOLE",
+    "description": "There is a huge pothole near the main bus stop, almost caused an accident.",
+    "zone": "Andheri",
+    "latitude": 19.11062,
+    "longitude": 72.852723,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "e00e6873-64a0-4a9c-bbb1-79f585bd8a11",
+    "citizenId": "CIT-FAE55171",
+    "category": "STREETLIGHT",
+    "description": "the residents' welfare office ಬಳಿ ಬೀದಿ ದೀಪ ಕೆಟ್ಟಿದೆ, ರಾತ್ರಿ ತುಂಬಾ ಕತ್ತಲೆ ಇರುತ್ತದೆ.",
+    "zone": "Koramangala",
+    "latitude": 12.927629,
+    "longitude": 77.633963,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "2e656c4a-f071-4c9b-9fa2-a71fd9dd8de0",
+    "citizenId": "CIT-BC0927AA",
+    "category": "WATER_LEAKAGE",
+    "description": "Major water pipeline leakage near the metro station, wasting a lot of water daily.",
+    "zone": "Andheri",
+    "latitude": 19.119746,
+    "longitude": 72.848604,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "106b197f-47e6-4246-9bd6-0fca9dc86854",
+    "citizenId": "CIT-B7A544B0",
+    "category": "GARBAGE",
+    "description": "Overflowing garbage bin outside the metro station, attracting stray animals.",
+    "zone": "Whitefield",
+    "latitude": 12.961228,
+    "longitude": 77.743318,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "bd7caa64-be7a-4443-952f-cffbba6f08fc",
+    "citizenId": "CIT-3F096785",
+    "category": "STREETLIGHT",
+    "description": "the water tank ಬಳಿ ಬೀದಿ ದೀಪ ಕೆಟ್ಟಿದೆ, ರಾತ್ರಿ ತುಂಬಾ ಕತ್ತಲೆ ಇರುತ್ತದೆ.",
+    "zone": "Whitefield",
+    "latitude": 12.971874,
+    "longitude": 77.740517,
+    "photoUrls": []
+  },
+  {
+    "idempotencyKey": "d8c62c2a-33fc-4ea7-821b-2a357f9212d7",
+    "citizenId": "CIT-3464A8FC",
+    "category": "POTHOLE",
+    "description": "The pothole close to the community park entrance has gotten much bigger after the rain.",
+    "zone": "Whitefield",
+    "latitude": 12.971761,
+    "longitude": 77.757788,
+    "photoUrls": []
+  }
+]

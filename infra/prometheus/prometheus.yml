@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s
+
+# NOTE: bearer_token is hardcoded to the DEFAULT SECURITY_API_KEY below because
+# this is a static file mounted into the Prometheus container, not templated
+# from docker-compose's env vars. If you override INTERNAL_API_KEY, update this
+# file to match — a real deployment would generate this from a secrets store
+# rather than checking a working credential into a config file at all.
+scrape_configs:
+  - job_name: traffic-service
+    metrics_path: /actuator/prometheus
+    bearer_token: change-me-in-prod # matches the default SECURITY_API_KEY — see docker-compose.yml
+    static_configs:
+      - targets: ["traffic-service:8081"]
+
+  - job_name: complaint-service
+    metrics_path: /actuator/prometheus
+    bearer_token: change-me-in-prod
+    static_configs:
+      - targets: ["complaint-service:8082"]
+
+  - job_name: ai-insight-service
+    metrics_path: /actuator/prometheus
+    bearer_token: change-me-in-prod
+    static_configs:
+      - targets: ["ai-insight-service:8083"]

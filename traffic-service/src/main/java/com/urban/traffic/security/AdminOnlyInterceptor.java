@@ -1,0 +1,29 @@
+package com.urban.traffic.security;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+/**
+ * Gates endpoints registered in WebMvcConfig to the ADMIN API-key tier —
+ * closes the "one shared key reads any citizen's PII" gap for endpoints that
+ * expose complaint details/PII in bulk or perform privileged writes.
+ * ApiKeyAuthFilter runs first and sets the "apiKeyTier" request attribute;
+ * this interceptor just checks it.
+ */
+@Component
+public class AdminOnlyInterceptor implements HandlerInterceptor {
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Object tier = request.getAttribute(ApiKeyAuthFilter.TIER_ATTRIBUTE);
+        if (!ApiKeyAuthFilter.TIER_ADMIN.equals(tier)) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"error\":\"this endpoint requires the admin API key\"}");
+            return false;
+        }
+        return true;
+    }
+}
