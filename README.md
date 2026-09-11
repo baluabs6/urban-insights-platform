@@ -38,7 +38,9 @@ air quality, citizen complaints) built as **Java Spring Boot microservices**, co
                  └─────────────────────────────────┘
 ```
 
-## About This Application
+## About This Application and Different from other applications
+
+### About This Application
 
 Urban Insights Platform is a **reference / demo architecture**, not a deployed
 production system. It exists to show, in working code, how a city-scale civic
@@ -83,4 +85,39 @@ retrieval-augmented generation) behind three cooperating Spring Boot services.
 combining polyglot persistence (SQL + document + cache + vector), an
 event-driven backbone (Kafka), and a grounded LLM/RAG layer in one coherent
 Java codebase — not a finished product ready to serve a real city.
+
+### Different from Other Applications
+
+Most sample or tutorial applications pick a single technology and show it in
+isolation — a CRUD app over one database, a standalone chatbot, or a Kafka
+"hello world." Urban Insights Platform is different in a few specific ways:
+
+- **Polyglot persistence used for a reason, not for show.** Each data store
+  was chosen because of the shape of the data it holds — PostgreSQL for
+  structured, aggregate-heavy time-series sensor readings; MongoDB for
+  irregularly-shaped citizen complaints; Redis for sub-millisecond hot reads;
+  and pgvector for persistent semantic search — rather than routing
+  everything through one general-purpose database.
+- **The AI layer is grounded, not a bolt-on chatbot.** Instead of a generic
+  wrapper around an LLM API, `ai-insight-service` implements a full RAG
+  pipeline (query rewriting → hybrid retrieval → reranking → grounded
+  generation → a faithfulness check) so answers are tied to live sensor and
+  complaint data instead of the model's own unverified output.
+- **Event-driven by default, not request/response everywhere.** Sensor
+  ingestion and complaint submission both return immediately and do the real
+  work (persistence, classification, indexing) asynchronously off Kafka,
+  rather than making the caller wait on every downstream step — including the
+  slowest ones (LLM/embedding calls).
+- **Multiple cooperating services, not one monolith.** `traffic-service`,
+  `complaint-service`, and `ai-insight-service` are independently deployable
+  Spring Boot applications that call each other over authenticated REST and
+  Kafka, exercising patterns (circuit breakers, retries, rate limiting,
+  service-to-service auth) that a single-service sample app has no reason to
+  demonstrate.
+- **Honest about its own gaps.** The codebase and its documentation explicitly
+  call out what was deferred (schema-less Kafka payloads, no dead-letter
+  topic, single-broker Kafka, hardcoded service URLs, etc.) rather than
+  presenting itself as deployment-ready — which is unusual for a reference
+  project, but intentional here: it's meant to teach the pattern honestly, not
+  to look finished.
 
