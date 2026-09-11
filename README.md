@@ -84,35 +84,3 @@ combining polyglot persistence (SQL + document + cache + vector), an
 event-driven backbone (Kafka), and a grounded LLM/RAG layer in one coherent
 Java codebase — not a finished product ready to serve a real city.
 
-## How This Differs from a Real-Time Production Application
-
-The codebase uses real-time-*style* building blocks — Kafka topics, async
-consumers, Redis caching, circuit breakers — and several rounds of hardening
-went into narrowing the gap between "demo" and "production." But there is
-still an important difference between an architecture that *uses* real-time
-patterns and a system that meets the operational guarantees of genuine
-real-time production software. Concretely:
-
-| Dimension | This platform | A true real-time production system |
-|---|---|---|
-| **Kafka topology** | Single broker, `acks=1`, replication factor 1 — a broker crash can lose in-flight messages | A cluster of 3+ brokers with a replication factor ≥3, so no single node failure loses data |
-| **Delivery guarantees** | "Save, then publish" is two separate, non-atomic steps in `traffic-service`/`complaint-service`; a crash between them silently drops the event (partly mitigated, not fixed, by periodic reclassification sweeps) | A transactional outbox (or Kafka transactions) makes the DB write and the publish atomic, so nothing is silently lost |
-| **Message contract** | Kafka payloads are untyped `Map<String,Object>` with no schema | A schema registry (Avro/Protobuf) enforces and versions the contract between producers and consumers |
-| **Failure handling** | No dead-letter topic — a message that fails processing repeatedly is retried in place or dropped | Dead-letter queues isolate poison messages so they don't block or repeatedly fail the whole consumer group |
-| **Latency guarantees** | "Fast" in practice (sub-second for most paths) but with no enforced SLA, no backpressure signaling, and no load-shedding under overload | Explicit latency SLOs, backpressure, and load-shedding are designed in and continuously measured |
-| **Scaling model** | Manual `docker compose` topology; a single Resilience4j rate limiter was originally per-JVM (later fixed with a Redis-backed distributed limiter) but there is still no autoscaling | Horizontal Pod Autoscaling driven by real signals (e.g. Kafka consumer lag), not just CPU |
-| **Service discovery** | Hardcoded service URLs (`http://traffic-service:8081`, etc.) baked into config | A service registry / API gateway (Eureka, Consul, Kubernetes DNS) so services are discovered, not hardcoded |
-| **Data lifecycle** | No partitioning or retention policy on the fast-growing `sensor_readings` table; no Mongo sharding; no Redis clustering | Time-based partitioning/retention on hot tables, sharded document stores, and clustered caches sized for real traffic volumes |
-| **Security** | A single shared-secret API key (two tiers: public/admin) enforced per service; secrets have working (if flagged) defaults that must be manually overridden | OAuth2/JWT with per-role scopes, secrets pulled from a vault/secrets manager with no functional defaults, and mutual TLS between internal services |
-| **Observability** | Prometheus scraping + basic Micrometer metrics (LLM call latency/cost, circuit-breaker state); no pre-built dashboards or alerting rules | Full observability stack with dashboards, alerting thresholds, distributed tracing, and on-call runbooks |
-| **Testing & validation** | A handful of fast unit tests around the riskiest logic (heuristics, prompt-injection detection, anomaly scoring); no integration or load testing; `mvn compile` has not been run against Maven Central from within this environment | Full unit/integration/contract/load test suites running in CI against every change, plus chaos/failure-injection testing |
-| **Concurrency model** | Some inter-service calls still block the servlet thread (`.block()` on a reactive client) rather than being fully non-blocking end-to-end | Fully asynchronous, non-blocking I/O throughout the request path, sized to the actual concurrency the system must sustain |
-
-In short: this project demonstrates the *shape* of a real-time, event-driven,
-AI-augmented system — asynchronous ingestion, event-driven indexing, caching,
-circuit breakers, rate limiting, and a working RAG pipeline — well enough to
-be a solid learning reference or a starting point for a proof of concept. It
-does not carry the durability guarantees, schema discipline, elastic scaling,
-security hardening, or operational tooling (alerting, tracing, on-call
-runbooks) that a system handling real citizen data and real city
-infrastructure in production would need before going live.
