@@ -14,10 +14,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Two-tier auth: submission uses the PUBLIC key; status changes and the
 # needing-reclassification check are admin-gated (see WebMvcConfig in each
 # service) and need the ADMIN key.
-API_KEY="${API_KEY:-${SECURITY_API_KEY:-change-me-in-prod}}"
-ADMIN_API_KEY="${ADMIN_API_KEY:-${SECURITY_ADMIN_API_KEY:-change-me-admin-in-prod}}"
-TRAFFIC_URL="${TRAFFIC_URL:-http://localhost:8081}"
-COMPLAINT_URL="${COMPLAINT_URL:-http://localhost:8082}"
+API_KEY="${API_KEY:-${SECURITY_API_KEY:-***************}}"
+ADMIN_API_KEY="${ADMIN_API_KEY:-${SECURITY_ADMIN_API_KEY:-***************}}"
+TRAFFIC_URL="${TRAFFIC_URL:-***************}"
+COMPLAINT_URL="${COMPLAINT_URL:-***************}"
 
 READINGS_FILE="$SCRIPT_DIR/traffic_sensor_readings.json"
 COMPLAINTS_FILE="$SCRIPT_DIR/citizen_complaints.json"

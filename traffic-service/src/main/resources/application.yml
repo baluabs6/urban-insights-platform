@@ -6,9 +6,9 @@ spring:
     name: traffic-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/urban_traffic
-    username: ${SPRING_DATASOURCE_USERNAME:traffic_app}
-    password: ${SPRING_DATASOURCE_PASSWORD:traffic_app_pass}
+    url: ***************
+    username: ${SPRING_DATASOURCE_USERNAME:***************}
+    password: ${SPRING_DATASOURCE_PASSWORD:***************}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -22,12 +22,12 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: ***************
       port: 6379
       timeout: 2000ms
 
   kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:***************}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -59,5 +59,5 @@ management:
 
 security:
   enabled: ${SECURITY_ENABLED:true}
-  api-key: ${SECURITY_API_KEY:change-me-in-prod}
-  admin-api-key: ${SECURITY_ADMIN_API_KEY:change-me-admin-in-prod}
+  api-key: ${SECURITY_API_KEY:***************}
+  admin-api-key: ${SECURITY_ADMIN_API_KEY:***************}

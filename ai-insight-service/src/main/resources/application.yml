@@ -6,20 +6,20 @@ spring:
     name: ai-insight-service
   data:
     redis:
-      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      host: ${SPRING_DATA_REDIS_HOST:***************}
       port: 6379
       timeout: 2000ms
   kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:***************}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 services:
   traffic-service:
-    url: http://localhost:8081
+    url: ***************
   complaint-service:
-    url: http://localhost:8082
+    url: ***************
 
 rag:
   index-on-query-fallback: ${RAG_INDEX_ON_QUERY_FALLBACK:false}
@@ -38,23 +38,23 @@ sla:
   # Optional Slack-compatible incoming webhook URL for delivering SLA escalation
   # drafts somewhere instead of leaving them behind a GET endpoint nobody polls.
   # Leave blank to disable (default) — see README "SLA escalation delivery".
-  webhook-url: ${SLA_WEBHOOK_URL:}
+  webhook-url: ${SLA_WEBHOOK_URL:***************}
 
 ai:
   openai:
-    api-key: ${OPENAI_API_KEY:demo-key}
-    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    api-key: ${OPENAI_API_KEY:***************}
+    base-url: ${OPENAI_BASE_URL:***************}
     model: ${OPENAI_MODEL:gpt-4o-mini}
     # To use a local/open model instead (e.g. Ollama), set:
-    # OPENAI_BASE_URL=http://localhost:11434/v1
+    # OPENAI_BASE_URL=***************
     # OPENAI_MODEL=llama3
   pgvector:
     enabled: ${PGVECTOR_ENABLED:true}
-    host: ${PGVECTOR_HOST:localhost}
+    host: ${PGVECTOR_HOST:***************}
     port: ${PGVECTOR_PORT:5432}
     database: ${PGVECTOR_DATABASE:urban_traffic}
-    user: ${PGVECTOR_USER:ai_insight_app}
-    password: ${PGVECTOR_PASSWORD:ai_insight_app_pass}
+    user: ${PGVECTOR_USER:***************}
+    password: ${PGVECTOR_PASSWORD:***************}
     table: urban_embeddings
     dimension: 1536 # matches text-embedding-3-small
 
@@ -116,5 +116,5 @@ resilience4j:
 
 security:
   enabled: ${SECURITY_ENABLED:true}
-  api-key: ${SECURITY_API_KEY:change-me-in-prod}
-  admin-api-key: ${SECURITY_ADMIN_API_KEY:change-me-admin-in-prod}
+  api-key: ${SECURITY_API_KEY:***************}
+  admin-api-key: ${SECURITY_ADMIN_API_KEY:***************}

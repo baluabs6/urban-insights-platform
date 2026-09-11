@@ -6,22 +6,22 @@ spring:
     name: complaint-service
   data:
     mongodb:
-      host: localhost
+      host: ***************
       port: 27017
       database: urban_complaints
-      username: urban_user
-      password: urban_pass
+      username: ***************
+      password: ***************
       authentication-database: admin
 
   kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:***************}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 services:
   ai-insight-service:
-    url: http://localhost:8083
+    url: ***************
 
 logging:
   level:
@@ -42,5 +42,5 @@ management:
 
 security:
   enabled: ${SECURITY_ENABLED:true}
-  api-key: ${SECURITY_API_KEY:change-me-in-prod}
-  admin-api-key: ${SECURITY_ADMIN_API_KEY:change-me-admin-in-prod}
+  api-key: ${SECURITY_API_KEY:***************}
+  admin-api-key: ${SECURITY_ADMIN_API_KEY:***************}

@@ -7,8 +7,8 @@ services:
     container_name: urban_postgres
     environment:
       POSTGRES_DB: urban_traffic
-      POSTGRES_USER: urban_user
-      POSTGRES_PASSWORD: urban_pass
+      POSTGRES_USER: ***************
+      POSTGRES_PASSWORD: ***************
     ports:
       - "5432:5432"
     volumes:
@@ -19,8 +19,8 @@ services:
     image: mongo:7
     container_name: urban_mongo
     environment:
-      MONGO_INITDB_ROOT_USERNAME: urban_user
-      MONGO_INITDB_ROOT_PASSWORD: urban_pass
+      MONGO_INITDB_ROOT_USERNAME: ***************
+      MONGO_INITDB_ROOT_PASSWORD: ***************
     ports:
       - "27017:27017"
     volumes:
@@ -47,7 +47,7 @@ services:
       KAFKA_CFG_NODE_ID: 0
       KAFKA_CFG_PROCESS_ROLES: controller,broker
       KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CFG_ADVERTISED_LISTENERS: ***************
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 0@kafka:9093
       ALLOW_PLAINTEXT_LISTENER: "yes"
@@ -67,13 +67,13 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/urban_traffic
-      SPRING_DATASOURCE_USERNAME: traffic_app
-      SPRING_DATASOURCE_PASSWORD: traffic_app_pass
+      SPRING_DATASOURCE_URL: ***************
+      SPRING_DATASOURCE_USERNAME: ***************
+      SPRING_DATASOURCE_PASSWORD: ***************
       SPRING_DATA_REDIS_HOST: redis
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      SECURITY_API_KEY: ${INTERNAL_API_KEY:-change-me-in-prod}
-      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-change-me-admin-in-prod}
+      SECURITY_API_KEY: ${INTERNAL_API_KEY:-***************}
+      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-***************}
 
   complaint-service:
     build:
@@ -88,8 +88,8 @@ services:
     environment:
       SPRING_DATA_MONGODB_HOST: mongodb
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      SECURITY_API_KEY: ${INTERNAL_API_KEY:-change-me-in-prod}
-      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-change-me-admin-in-prod}
+      SECURITY_API_KEY: ${INTERNAL_API_KEY:-***************}
+      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-***************}
 
   ai-insight-service:
     build:
@@ -105,20 +105,20 @@ services:
     ports:
       - "8083:8083"
     environment:
-      SERVICES_TRAFFIC_SERVICE_URL: http://traffic-service:8081
-      SERVICES_COMPLAINT_SERVICE_URL: http://complaint-service:8082
+      SERVICES_TRAFFIC_SERVICE_URL: ***************
+      SERVICES_COMPLAINT_SERVICE_URL: ***************
       SPRING_DATA_REDIS_HOST: redis
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-demo-key}
-      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-***************}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-***************}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
       PGVECTOR_HOST: postgres
       PGVECTOR_PORT: 5432
       PGVECTOR_DATABASE: urban_traffic
-      PGVECTOR_USER: ai_insight_app
-      PGVECTOR_PASSWORD: ai_insight_app_pass
-      SECURITY_API_KEY: ${INTERNAL_API_KEY:-change-me-in-prod}
-      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-change-me-admin-in-prod}
+      PGVECTOR_USER: ***************
+      PGVECTOR_PASSWORD: ***************
+      SECURITY_API_KEY: ${INTERNAL_API_KEY:-***************}
+      SECURITY_ADMIN_API_KEY: ${INTERNAL_ADMIN_API_KEY:-***************}
 
   # ---------- Observability ----------
   prometheus:
@@ -146,7 +146,7 @@ services:
       # same as every other default secret in this project (see SecretsStartupCheck
       # for the equivalent enforcement on the app services; Grafana has no such
       # check of its own).
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-***************}
     volumes:
       - grafana_data:/var/lib/grafana
 
