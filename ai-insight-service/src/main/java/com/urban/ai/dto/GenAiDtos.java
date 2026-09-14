@@ -98,6 +98,139 @@ public class GenAiDtos {
         private String briefing;
     }
 
+    // ---------------------------------------------------------------------
+    // Hotspot prediction (complaint-volume forecasting AI module)
+    // ---------------------------------------------------------------------
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ZoneHotspotScore {
+        private String zone;
+        private double riskScore;      // 0.0-1.0, higher = more likely to spike
+        private String riskLevel;      // LOW / MEDIUM / HIGH
+        private int recentComplaintCount;
+        private int recentAnomalyCount;
+        private String trend;          // from ForecastingService: RISING/STABLE/FALLING/unknown
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class HotspotPredictionResponse {
+        private String generatedAt;
+        private List<ZoneHotspotScore> zones;
+    }
+
+    // ---------------------------------------------------------------------
+    // Photo verification (vision AI module)
+    // ---------------------------------------------------------------------
+
+    @Data
+    public static class PhotoVerificationRequest {
+        @NotBlank
+        private String complaintId;
+        @NotBlank
+        private String category;
+        @NotNull
+        @Size(min = 1, max = 5, message = "provide between 1 and 5 photo URLs")
+        private List<@NotBlank String> photoUrls;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PhotoVerificationResponse {
+        private String complaintId;
+        private boolean verified;
+        private double confidence; // 0.0-1.0
+        private String note;
+    }
+
+    // ---------------------------------------------------------------------
+    // Sentiment / frustration scoring (separate signal from category urgency)
+    // ---------------------------------------------------------------------
+
+    @Data
+    public static class SentimentRequest {
+        @NotBlank
+        @Size(max = 2000)
+        private String description;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SentimentResponse {
+        private double sentimentUrgencyScore; // 0.0-1.0 — tone/frustration/safety-language signal
+        private boolean repeatComplainantLanguage;
+        private boolean safetyCriticalLanguage;
+        private String summary;
+    }
+
+    // ---------------------------------------------------------------------
+    // Root-cause / multi-hop causal-chain inference
+    // ---------------------------------------------------------------------
+
+    @Data
+    public static class RootCauseRequest {
+        @NotNull
+        @Size(min = 1, max = 10, message = "provide between 1 and 10 zones")
+        private List<@Size(max = 200) String> zones;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class RootCauseResponse {
+        private List<String> zonesConsidered;
+        private String causalChain; // the LLM's multi-hop reasoning, grounded in retrieved evidence
+        private int evidenceItemCount;
+    }
+
+    // ---------------------------------------------------------------------
+    // Classification feedback loop (ops corrections -> few-shot exemplars)
+    // ---------------------------------------------------------------------
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ClassificationFeedbackStats {
+        private int exemplarCount;
+        private List<String> recentCorrections; // short human-readable summaries, most recent first
+    }
+
+    // ---------------------------------------------------------------------
+    // Voice complaint intake (transcription -> translate -> classify)
+    // ---------------------------------------------------------------------
+
+    @Data
+    public static class VoiceComplaintRequest {
+        @NotBlank
+        private String audioBase64;
+        /** e.g. "wav", "mp3", "ogg" — passed through to the transcription backend. */
+        @NotBlank
+        private String audioFormat;
+        @Size(max = 200)
+        private String zone;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class VoiceComplaintResponse {
+        private String transcript;
+        private String detectedLanguage;
+        private ClassifyResponse classification;
+    }
+
     @Data
     public static class StatusChatRequest {
         @NotBlank

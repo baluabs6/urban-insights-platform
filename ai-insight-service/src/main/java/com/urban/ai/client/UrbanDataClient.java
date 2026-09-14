@@ -120,6 +120,26 @@ public class UrbanDataClient {
                 .toList();
     }
 
+    /** Short-horizon forecast from traffic-service's ForecastingService — used by
+     *  HotspotPredictionService to fold "trending up" into complaint-hotspot risk. */
+    @SuppressWarnings("unchecked")
+    @Retry(name = "trafficService")
+    @CircuitBreaker(name = "trafficService", fallbackMethod = "zoneForecastFallback")
+    public Map<String, Object> getZoneForecast(String zone) {
+        return trafficClient.get()
+                .uri("/api/traffic/zones/{zone}/forecast", zone)
+                .retrieve()
+                .bodyToMono(Map.class)
+                .timeout(Duration.ofSeconds(3))
+                .block();
+    }
+
+    @SuppressWarnings("unused")
+    private Map<String, Object> zoneForecastFallback(String zone, Throwable t) {
+        log.warn("traffic-service circuit open/unavailable for forecast of zone {}: {}", zone, t.getMessage());
+        return Map.of();
+    }
+
     @Retry(name = "complaintService")
     @CircuitBreaker(name = "complaintService", fallbackMethod = "topUrgentComplaintsFallback")
     @SuppressWarnings("unchecked")

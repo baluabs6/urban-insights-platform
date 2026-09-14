@@ -36,6 +36,8 @@ public class ComplaintCreatedListener {
 
     private final ComplaintClassificationService classificationService;
     private final DuplicateDetectionService duplicateDetectionService;
+    private final PhotoVerificationService photoVerificationService;
+    private final SentimentUrgencyService sentimentUrgencyService;
     private final UrbanDataRetriever retriever;
     private final UrbanDataClient dataClient;
 
@@ -81,6 +83,37 @@ public class ComplaintCreatedListener {
             update.put("likelyDuplicate", duplicate.isDuplicate());
             update.put("duplicateSimilarityScore", duplicate.getMaxSimilarityScore());
             update.put("similarComplaintDescriptions", duplicate.getSimilarComplaints());
+        }
+
+        // Vision check — only if the citizen actually attached photos. Never blocks
+        // classification: a slow/unavailable vision model degrades to "not checked",
+        // not a failed submission.
+        Object photoUrlsObj = complaint.get("photoUrls");
+        if (photoUrlsObj instanceof List<?> photoUrls && !photoUrls.isEmpty()) {
+            try {
+                com.urban.ai.dto.GenAiDtos.PhotoVerificationRequest photoRequest =
+                        new com.urban.ai.dto.GenAiDtos.PhotoVerificationRequest();
+                photoRequest.setComplaintId(id);
+                photoRequest.setCategory(classification.getCategory());
+                photoRequest.setPhotoUrls(photoUrls.stream().map(String::valueOf).toList());
+                var photoResult = photoVerificationService.verify(photoRequest);
+                update.put("photoVerified", photoResult.isVerified());
+                update.put("photoVerificationNote", photoResult.getNote());
+            } catch (Exception e) {
+                log.warn("Photo verification failed for complaint {}: {}", id, e.getMessage());
+            }
+        }
+
+        // Sentiment/frustration scoring — independent signal from category urgency,
+        // stored alongside it rather than merged into it.
+        try {
+            com.urban.ai.dto.GenAiDtos.SentimentRequest sentimentRequest = new com.urban.ai.dto.GenAiDtos.SentimentRequest();
+            sentimentRequest.setDescription(description);
+            var sentimentResult = sentimentUrgencyService.score(sentimentRequest);
+            update.put("sentimentUrgencyScore", sentimentResult.getSentimentUrgencyScore());
+            update.put("sentimentSummary", sentimentResult.getSummary());
+        } catch (Exception e) {
+            log.warn("Sentiment scoring failed for complaint {}: {}", id, e.getMessage());
         }
 
         try {

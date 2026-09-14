@@ -38,6 +38,19 @@ public class ComplaintController {
     }
 
     /**
+     * Ops-reviewer correction of an AI/heuristic classification. Admin tier only.
+     * Always stamps HUMAN_OVERRIDE and fires the feedback event ai-insight-service's
+     * ClassificationFeedbackService consumes — see ComplaintService.overrideClassification.
+     */
+    @PatchMapping("/{id}/classification/override")
+    public ResponseEntity<CitizenComplaint> overrideClassification(
+            @PathVariable String id, @Valid @RequestBody com.urban.complaint.dto.ClassificationOverrideRequest override,
+            @RequestHeader(value = "X-Caller-Id", required = false) String callerId) {
+        log.info("AUDIT action=overrideClassification complaintId={} caller={}", id, callerId != null ? callerId : "unknown");
+        return ResponseEntity.ok(service.overrideClassification(id, override, callerId));
+    }
+
+    /**
      * Admin tier only. X-Caller-Id is an optional lightweight audit trail — not
      * cryptographically verified identity, just a caller-supplied label logged
      * alongside the change and recorded in the complaint's own history[] array,

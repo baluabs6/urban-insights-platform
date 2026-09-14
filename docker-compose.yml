@@ -149,6 +149,12 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-***************}
     volumes:
       - grafana_data:/var/lib/grafana
+      # Auto-provisions the Prometheus datasource + the "LLM Cost & Latency"
+      # dashboard (see infra/grafana) — no manual clickthrough needed after
+      # `docker compose up`.
+      - ./infra/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./infra/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./infra/grafana/dashboards:/etc/grafana/provisioning/dashboards/json:ro
 
 volumes:
   postgres_data:

@@ -61,3 +61,10 @@ security:
   enabled: ${SECURITY_ENABLED:true}
   api-key: ${SECURITY_API_KEY:***************}
   admin-api-key: ${SECURITY_ADMIN_API_KEY:***************}
+
+# Short-horizon forecasting AI module (see ForecastingService).
+forecast:
+  zones: ${FORECAST_ZONES:Whitefield,Koramangala,Connaught Place,Andheri}
+  horizon-minutes: ${FORECAST_HORIZON_MINUTES:30}
+  lookback-minutes: ${FORECAST_LOOKBACK_MINUTES:180}
+  refresh-cron: "0 */10 * * * *"   # every 10 minutes

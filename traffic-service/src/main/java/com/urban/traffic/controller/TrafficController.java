@@ -25,6 +25,7 @@ public class TrafficController {
 
     private final TrafficIngestionService service;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final com.urban.traffic.service.ForecastingService forecastingService;
 
     /**
      * Real-time ingestion path: publish to Kafka and return immediately (202).
@@ -91,6 +92,20 @@ public class TrafficController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
         return ResponseEntity.ok(service.recentAnomalies(PageRequest.of(page, Math.min(size, 100))));
+    }
+
+    /**
+     * Short-horizon forecast (AI module #2, alongside the z-score anomaly
+     * detector): where this zone's readings are trending over the next
+     * forecast.horizon-minutes, plus a "likelyBreach" flag ai-insight-service's
+     * CityBriefingService/SlaEscalationService can fold into proactive output.
+     * Served from Redis (refreshed on a schedule) — cheap enough for dashboards
+     * to poll directly.
+     */
+    @GetMapping("/zones/{zone}/forecast")
+    public ResponseEntity<com.urban.traffic.service.ForecastingService.ZoneForecast> zoneForecast(
+            @PathVariable String zone) {
+        return ResponseEntity.ok(forecastingService.getForecast(zone));
     }
 
     /** Admin tier only (see WebMvcConfig) — audit-logged privileged action. */

@@ -31,6 +31,10 @@ city:
   zones: Whitefield,Koramangala,Connaught Place,Andheri
   briefing-cron: 0 0 7 * * *   # every day at 7:00 AM server time
 
+# Complaint-hotspot prediction AI module (see HotspotPredictionService).
+hotspot:
+  refresh-cron: "0 30 * * * *"   # hourly, offset from other scheduled jobs
+
 sla:
   hours:
     default: 120
@@ -57,6 +61,13 @@ ai:
     password: ${PGVECTOR_PASSWORD:***************}
     table: urban_embeddings
     dimension: 1536 # matches text-embedding-3-small
+  # Voice-complaint transcription backend (see VoiceTranscriptionService). Defaults
+  # to OpenAI's Whisper endpoint; point at a self-hosted faster-whisper server for
+  # local/offline use, same swap pattern as the chat/embedding models above.
+  transcription:
+    url: ${TRANSCRIPTION_URL:https://api.openai.com/v1/audio/transcriptions}
+    api-key: ${TRANSCRIPTION_API_KEY:${OPENAI_API_KEY:demo-key}}
+    model: ${TRANSCRIPTION_MODEL:whisper-1}
 
 logging:
   level:
@@ -66,6 +77,9 @@ management:
   metrics:
     tags:
       application: ai-insight-service
+    distribution:
+      percentiles-histogram:
+        urban.llm.call: true   # backs the p99-latency panel in the Grafana LLM dashboard
   endpoints:
     web:
       exposure:

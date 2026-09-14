@@ -38,4 +38,10 @@ public interface TrafficSensorRepository extends JpaRepository<TrafficSensorRead
 
     @Query("SELECT COUNT(r) FROM TrafficSensorReading r WHERE r.zone = :zone AND r.anomaly = true")
     long countAnomaliesByZone(@Param("zone") String zone);
+
+    // Feeds ForecastingService: recent history per zone, grouped/sorted in-service
+    // by sensorId so each sensor's short-term trend is projected independently
+    // before being combined into a zone-level forecast.
+    List<TrafficSensorReading> findByZoneAndRecordedAtBetweenOrderByRecordedAtAsc(
+            String zone, Instant from, Instant to);
 }

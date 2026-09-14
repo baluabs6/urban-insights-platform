@@ -38,6 +38,12 @@ public class GenAiController {
     private final CityBriefingService cityBriefingService;
     private final ComplaintStatusChatService complaintStatusChatService;
     private final com.urban.ai.genai.SlaEscalationService slaEscalationService;
+    private final com.urban.ai.genai.HotspotPredictionService hotspotPredictionService;
+    private final com.urban.ai.genai.PhotoVerificationService photoVerificationService;
+    private final com.urban.ai.genai.SentimentUrgencyService sentimentUrgencyService;
+    private final com.urban.ai.genai.RootCauseChainService rootCauseChainService;
+    private final com.urban.ai.genai.ClassificationFeedbackService classificationFeedbackService;
+    private final com.urban.ai.genai.VoiceTranscriptionService voiceTranscriptionService;
 
     @PostMapping("/classify-complaint")
     public ResponseEntity<ClassifyResponse> classify(@Valid @RequestBody ClassifyRequest request) {
@@ -77,5 +83,45 @@ public class GenAiController {
     @GetMapping("/sla-escalations")
     public ResponseEntity<java.util.List<com.urban.ai.genai.SlaEscalationService.EscalationItem>> slaEscalations() {
         return ResponseEntity.ok(slaEscalationService.checkBreaches());
+    }
+
+    /** Complaint-volume hotspot risk per zone (see HotspotPredictionService). Served from
+     *  an hourly-refreshed cache — cheap enough for a dashboard to poll directly. */
+    @GetMapping("/hotspots")
+    public ResponseEntity<HotspotPredictionResponse> hotspots() {
+        return ResponseEntity.ok(hotspotPredictionService.getLatest());
+    }
+
+    /** On-demand vision check that a complaint's photo(s) match its category. Normally
+     *  runs automatically in ComplaintCreatedListener; this is for manual re-checks. */
+    @PostMapping("/verify-photo")
+    public ResponseEntity<PhotoVerificationResponse> verifyPhoto(@Valid @RequestBody PhotoVerificationRequest request) {
+        return ResponseEntity.ok(photoVerificationService.verify(request));
+    }
+
+    /** Tone/frustration scoring, kept separate from category-based urgencyScore. */
+    @PostMapping("/sentiment")
+    public ResponseEntity<SentimentResponse> sentiment(@Valid @RequestBody SentimentRequest request) {
+        return ResponseEntity.ok(sentimentUrgencyService.score(request));
+    }
+
+    /** Multi-hop, cross-zone causal reasoning — see RootCauseChainService for how this
+     *  differs from the single-zone /anomaly-explanation/{zone}. */
+    @PostMapping("/root-cause")
+    public ResponseEntity<RootCauseResponse> rootCause(@Valid @RequestBody RootCauseRequest request) {
+        return ResponseEntity.ok(rootCauseChainService.analyze(request));
+    }
+
+    /** Visibility into the classification feedback loop — how many correction exemplars
+     *  are currently primed into the classification prompt. Admin tier (see WebMvcConfig). */
+    @GetMapping("/classification-feedback")
+    public ResponseEntity<com.urban.ai.dto.GenAiDtos.ClassificationFeedbackStats> classificationFeedback() {
+        return ResponseEntity.ok(classificationFeedbackService.getStats());
+    }
+
+    /** Voice-note complaint intake: transcribe -> detect/translate language -> classify. */
+    @PostMapping("/voice-complaint")
+    public ResponseEntity<VoiceComplaintResponse> voiceComplaint(@Valid @RequestBody VoiceComplaintRequest request) {
+        return ResponseEntity.ok(voiceTranscriptionService.transcribeAndClassify(request));
     }
 }

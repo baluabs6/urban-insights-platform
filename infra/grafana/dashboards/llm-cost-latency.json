@@ -1,0 +1,87 @@
+{
+  "title": "Urban Insights — LLM Cost & Latency",
+  "uid": "urban-llm-cost-latency",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-6h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "LLM/embedding call volume by call site (calls/min)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "sum by (call_site, application) (rate(urban_llm_call_seconds_count[5m])) * 60",
+          "legendFormat": "{{application}} · {{call_site}}"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Average LLM/embedding call latency by call site",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "targets": [
+        {
+          "expr": "sum by (call_site, application) (rate(urban_llm_call_seconds_sum[5m])) / sum by (call_site, application) (rate(urban_llm_call_seconds_count[5m]))",
+          "legendFormat": "{{application}} · {{call_site}}"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "LLM call error rate (failure / total) by call site",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "fieldConfig": { "defaults": { "unit": "percentunit", "max": 1, "min": 0 }, "overrides": [] },
+      "targets": [
+        {
+          "expr": "sum by (call_site) (rate(urban_llm_call_outcome_total{outcome=\"failure\"}[15m])) / sum by (call_site) (rate(urban_llm_call_outcome_total[15m]))",
+          "legendFormat": "{{call_site}}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "p99 latency (approx, from histogram if enabled) by call site",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, sum by (le, call_site) (rate(urban_llm_call_seconds_bucket[5m])))",
+          "legendFormat": "{{call_site}}"
+        }
+      ],
+      "description": "Requires urban.llm.call to be configured as a Timer with percentile histograms (management.metrics.distribution.percentiles-histogram) — falls back to no data otherwise, use the average-latency panel in that case."
+    },
+    {
+      "id": 5,
+      "title": "Total calls in range, by outcome",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 12, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "expr": "sum by (outcome) (increase(urban_llm_call_outcome_total[$__range]))",
+          "legendFormat": "{{outcome}}"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Calls by call site, this service",
+      "type": "piechart",
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 16 },
+      "targets": [
+        {
+          "expr": "sum by (call_site) (increase(urban_llm_call_seconds_count[$__range]))",
+          "legendFormat": "{{call_site}}"
+        }
+      ]
+    }
+  ]
+}

@@ -32,6 +32,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/ai/compare-zones",
                         "/api/ai/anomaly-explanation/**",
                         "/api/ai/city-briefing",
+                        "/api/ai/hotspots",
+                        "/api/ai/verify-photo",
+                        "/api/ai/sentiment",
+                        "/api/ai/root-cause",
+                        "/api/ai/classification-feedback",
                         "/api/insights/ask"
                 );
 
@@ -45,10 +50,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/ai/duplicate-check",
                         "/api/ai/compare-zones",
                         "/api/ai/anomaly-explanation/**",
-                        "/api/ai/complaint-status"
-                        // /api/ai/city-briefing and /api/ai/sla-escalations are excluded:
-                        // both read from Redis/cache rather than calling the LLM on every
-                        // request (see GenAiController javadoc on cityBriefing()).
+                        "/api/ai/complaint-status",
+                        "/api/ai/verify-photo",
+                        "/api/ai/sentiment",
+                        "/api/ai/root-cause",
+                        "/api/ai/voice-complaint"
+                        // /api/ai/city-briefing, /api/ai/sla-escalations and /api/ai/hotspots are
+                        // excluded: all three read from Redis/cache rather than calling the LLM on
+                        // every request (see GenAiController javadoc on each).
                 );
     }
 }

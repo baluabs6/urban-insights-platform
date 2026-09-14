@@ -49,6 +49,18 @@ public class CitizenComplaint {
     private Double duplicateSimilarityScore;
     private List<String> similarComplaintDescriptions;
 
+    /** Set by ai-insight-service's PhotoVerificationService (vision-model check that a
+     *  submitted photo plausibly matches the claimed category). Null = not yet checked
+     *  (no photos, or check hasn't run yet) rather than "verified false". */
+    private Boolean photoVerified;
+    private String photoVerificationNote;
+
+    /** Separate from urgencyScore: a tone/frustration/repeat-complainant signal from
+     *  ai-insight-service's SentimentUrgencyService, kept alongside (not merged into)
+     *  the category-based urgency score so either can be inspected independently. */
+    private Double sentimentUrgencyScore;
+    private String sentimentSummary;
+
     /**
      * Optional client-supplied key (e.g. a UUID generated once by the mobile
      * app before the first submit attempt). Unique + sparse: null for most

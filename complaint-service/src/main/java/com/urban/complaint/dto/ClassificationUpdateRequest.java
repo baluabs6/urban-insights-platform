@@ -24,4 +24,10 @@ public class ClassificationUpdateRequest {
     private Boolean likelyDuplicate;
     private Double duplicateSimilarityScore;
     private List<String> similarComplaintDescriptions;
+
+    private Boolean photoVerified;
+    private String photoVerificationNote;
+
+    private Double sentimentUrgencyScore;
+    private String sentimentSummary;
 }

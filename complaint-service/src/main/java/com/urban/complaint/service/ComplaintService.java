@@ -1,6 +1,7 @@
 package com.urban.complaint.service;
 
 import com.urban.complaint.config.KafkaProducerConfig;
+import com.urban.complaint.dto.ClassificationOverrideRequest;
 import com.urban.complaint.dto.ClassificationUpdateRequest;
 import com.urban.complaint.dto.ComplaintRequest;
 import com.urban.complaint.entity.CitizenComplaint;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -147,11 +149,71 @@ public class ComplaintService {
         complaint.setLikelyDuplicate(update.getLikelyDuplicate());
         complaint.setDuplicateSimilarityScore(update.getDuplicateSimilarityScore());
         complaint.setSimilarComplaintDescriptions(update.getSimilarComplaintDescriptions());
+        if (update.getPhotoVerified() != null) {
+            complaint.setPhotoVerified(update.getPhotoVerified());
+            complaint.setPhotoVerificationNote(update.getPhotoVerificationNote());
+        }
+        if (update.getSentimentUrgencyScore() != null) {
+            complaint.setSentimentUrgencyScore(update.getSentimentUrgencyScore());
+            complaint.setSentimentSummary(update.getSentimentSummary());
+        }
         complaint.setUpdatedAt(Instant.now());
 
         appendHistory(complaint, "CLASSIFICATION", previousCategory, update.getCategory(), "system");
 
         return repository.save(complaint);
+    }
+
+    /**
+     * Ops reviewer corrects an AI (or heuristic) classification. Unlike
+     * updateClassification (the AI's own callback), this always stamps
+     * classificationSource=HUMAN_OVERRIDE and publishes a feedback event so
+     * ai-insight-service can learn from the correction (see
+     * ClassificationFeedbackService on that side) — closes the "no mechanism
+     * to learn from corrections" gap.
+     */
+    public CitizenComplaint overrideClassification(String id, ClassificationOverrideRequest override, String actor) {
+        CitizenComplaint complaint = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Complaint not found: " + id));
+
+        String previousCategory = complaint.getCategory();
+        String previousDepartment = complaint.getAssignedDepartment();
+        Double previousUrgency = complaint.getUrgencyScore();
+
+        complaint.setCategory(override.getCategory().toUpperCase());
+        complaint.setAssignedDepartment(override.getDepartment());
+        if (override.getUrgencyScore() != null) {
+            complaint.setUrgencyScore(override.getUrgencyScore());
+        }
+        complaint.setClassificationSource("HUMAN_OVERRIDE");
+        complaint.setUpdatedAt(Instant.now());
+        appendHistory(complaint, "CLASSIFICATION", previousCategory, complaint.getCategory(),
+                actor != null ? actor : "ops-reviewer");
+
+        CitizenComplaint saved = repository.save(complaint);
+
+        Map<String, Object> event = new HashMap<>();
+        event.put("complaintId", id);
+        event.put("description", saved.getDescription());
+        event.put("zone", saved.getZone());
+        event.put("previousCategory", previousCategory);
+        event.put("previousDepartment", previousDepartment);
+        event.put("previousUrgencyScore", previousUrgency);
+        event.put("correctedCategory", saved.getCategory());
+        event.put("correctedDepartment", saved.getAssignedDepartment());
+        event.put("correctedUrgencyScore", saved.getUrgencyScore());
+        event.put("correctionNote", override.getCorrectionNote());
+        event.put("actor", actor != null ? actor : "ops-reviewer");
+
+        try {
+            kafkaTemplate.send(KafkaProducerConfig.TOPIC_CLASSIFICATION_OVERRIDDEN, id, event);
+        } catch (Exception e) {
+            // Best-effort: the override itself already succeeded and is durable;
+            // only the downstream learning signal is lost if this publish fails.
+            log.warn("Failed to publish classification-overridden feedback event for {}: {}", id, e.getMessage());
+        }
+
+        return saved;
     }
 
     /** actor: caller identity from the X-Caller-Id header (see ComplaintController) — "unknown" if not supplied. */

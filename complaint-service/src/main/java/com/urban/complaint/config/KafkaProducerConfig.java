@@ -28,6 +28,10 @@ public class KafkaProducerConfig {
 
     public static final String TOPIC_COMPLAINT_CREATED = "complaint.created";
 
+    /** Feedback-loop signal: an ops reviewer corrected an AI classification. Consumed by
+     *  ai-insight-service's ClassificationFeedbackService to build few-shot correction examples. */
+    public static final String TOPIC_CLASSIFICATION_OVERRIDDEN = "complaint.classification.overridden";
+
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
     private String bootstrapServers;
 
@@ -48,5 +52,11 @@ public class KafkaProducerConfig {
     @Bean
     public NewTopic complaintCreatedTopic() {
         return TopicBuilder.name(TOPIC_COMPLAINT_CREATED).partitions(6).replicas(1).build();
+    }
+
+    @Bean
+    public NewTopic classificationOverriddenTopic() {
+        // Low volume (human-driven) — one partition is plenty.
+        return TopicBuilder.name(TOPIC_CLASSIFICATION_OVERRIDDEN).partitions(1).replicas(1).build();
     }
 }
