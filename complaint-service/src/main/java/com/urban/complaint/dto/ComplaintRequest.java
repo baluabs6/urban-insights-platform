@@ -35,7 +35,6 @@ public class ComplaintRequest {
     @Size(max = 10, message = "at most 10 photos per complaint")
     private List<String> photoUrls;
 
-    /** Optional client-supplied idempotency key — see ComplaintService.submit(). */
     @Size(max = 200)
     private String idempotencyKey;
 }

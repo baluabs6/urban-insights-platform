@@ -27,9 +27,6 @@ public interface TrafficSensorRepository extends JpaRepository<TrafficSensorRead
 
     org.springframework.data.domain.Page<TrafficSensorReading> findByZone(String zone, org.springframework.data.domain.Pageable pageable);
 
-    // Aggregate queries so zone-summary doesn't have to load every row for a zone
-    // into memory just to compute an average/count (a real gap in a zone that
-    // accumulates millions of readings over time).
     @Query("SELECT COUNT(r) FROM TrafficSensorReading r WHERE r.zone = :zone")
     long countByZone(@Param("zone") String zone);
 
@@ -39,9 +36,6 @@ public interface TrafficSensorRepository extends JpaRepository<TrafficSensorRead
     @Query("SELECT COUNT(r) FROM TrafficSensorReading r WHERE r.zone = :zone AND r.anomaly = true")
     long countAnomaliesByZone(@Param("zone") String zone);
 
-    // Feeds ForecastingService: recent history per zone, grouped/sorted in-service
-    // by sensorId so each sensor's short-term trend is projected independently
-    // before being combined into a zone-level forecast.
     List<TrafficSensorReading> findByZoneAndRecordedAtBetweenOrderByRecordedAtAsc(
             String zone, Instant from, Instant to);
 }

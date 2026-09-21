@@ -11,12 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Replaces the keyword heuristic in complaint-service with an LLM call: given a
- * citizen's free-text description (in any language — see LanguageSupportService),
- * ask the model to return category, department, an urgency score and tags as
- * strict JSON.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -43,8 +37,6 @@ public class ComplaintClassificationService {
     );
 
     public ClassifyResponse classify(ClassifyRequest request) {
-        // Detect language and translate to English first so classification quality
-        // doesn't depend on the LLM's fluency in the citizen's original language.
         LanguageSupportService.DetectionResult detected =
                 languageSupportService.detectAndTranslateToEnglish(request.getDescription());
 
@@ -96,7 +88,6 @@ public class ComplaintClassificationService {
         }
     }
 
-    /** Same-shape fallback so callers never have to special-case AI downtime. */
     private ClassifyResponse heuristicFallback(ClassifyRequest request) {
         String text = request.getDescription().toLowerCase();
         String category = "OTHER";
@@ -125,7 +116,6 @@ public class ComplaintClassificationService {
         return Math.max(0.0, Math.min(1.0, v));
     }
 
-    /** Strips accidental markdown fences some models add despite instructions. */
     private String extractJson(String raw) {
         String trimmed = raw.trim();
         if (trimmed.startsWith("```")) {

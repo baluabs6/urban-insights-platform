@@ -17,13 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-/**
- * Pure unit tests — no Spring context, no real Mongo/Kafka. Focused on the
- * logic most likely to silently regress across future edits: heuristic
- * classification/urgency (the fallback path when AI is unavailable) and the
- * idempotency-key short-circuit added to fix the "network retry creates a
- * duplicate complaint" gap.
- */
 class ComplaintServiceTest {
 
     @Mock

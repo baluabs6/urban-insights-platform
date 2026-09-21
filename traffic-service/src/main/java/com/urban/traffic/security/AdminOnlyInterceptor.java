@@ -5,13 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-/**
- * Gates endpoints registered in WebMvcConfig to the ADMIN API-key tier —
- * closes the "one shared key reads any citizen's PII" gap for endpoints that
- * expose complaint details/PII in bulk or perform privileged writes.
- * ApiKeyAuthFilter runs first and sets the "apiKeyTier" request attribute;
- * this interceptor just checks it.
- */
 @Component
 public class AdminOnlyInterceptor implements HandlerInterceptor {
 

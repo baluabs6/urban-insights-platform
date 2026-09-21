@@ -8,12 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-/**
- * Consumes "complaint.classification.overridden" (published by
- * complaint-service when an ops reviewer corrects an AI classification) and
- * feeds it into ClassificationFeedbackService, which turns it into a few-shot
- * exemplar for future classification prompts.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j

@@ -18,15 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Scans open complaints and flags any that have breached a per-category SLA
- * (e.g. a pothole open for more than 5 days), then drafts an escalation note
- * a supervisor could send to the responsible department — turning "someone
- * has to remember to check this" into an automated daily sweep. Optionally
- * pushes the draft to a webhook (Slack-compatible incoming webhook format)
- * so escalations are actually delivered somewhere instead of sitting behind
- * a GET endpoint nobody polls.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,7 +30,7 @@ public class SlaEscalationService {
     private final PromptSafetyUtils promptSafetyUtils;
     private final WebClient.Builder webClientBuilder;
 
-    @Value("${sla.hours.default:120}") // 5 days
+    @Value("${sla.hours.default:120}")
     private long defaultSlaHours;
 
     @Value("${sla.re-escalation-cooldown-hours:24}")
@@ -69,7 +60,6 @@ public class SlaEscalationService {
         private String escalationDraft;
     }
 
-    /** Runs every day at 08:00 — checks OPEN and IN_PROGRESS complaints for SLA breaches. */
     @Scheduled(cron = "${sla.check-cron:0 0 8 * * *}")
     public void scheduledSlaSweep() {
         List<EscalationItem> breaches = checkBreaches();
@@ -79,7 +69,6 @@ public class SlaEscalationService {
         }
     }
 
-    /** Best-effort delivery — a webhook failure must never block the sweep or lose the escalation record itself. */
     private void deliverToWebhook(EscalationItem item) {
         if (webhookUrl == null || webhookUrl.isBlank()) return;
         try {
@@ -88,7 +77,7 @@ public class SlaEscalationService {
                     item.getHoursOpen(), item.getSlaHours(), item.getEscalationDraft());
             webClientBuilder.build().post()
                     .uri(webhookUrl)
-                    .bodyValue(Map.of("text", text)) // Slack incoming-webhook payload shape
+                    .bodyValue(Map.of("text", text))
                     .retrieve()
                     .toBodilessEntity()
                     .timeout(Duration.ofSeconds(5))
@@ -128,8 +117,6 @@ public class SlaEscalationService {
         long hoursOpen = Duration.between(createdAt, Instant.now()).toHours();
         if (hoursOpen < slaHours) return null;
 
-        // Dedup: don't draft a fresh escalation for the same complaint every single
-        // sweep — only re-escalate after the cooldown window (default 24h).
         String escalationKey = "sla-escalated:" + id;
         Boolean alreadyEscalated = redisTemplate.hasKey(escalationKey);
         if (Boolean.TRUE.equals(alreadyEscalated)) {

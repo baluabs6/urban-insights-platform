@@ -23,14 +23,6 @@ import org.springframework.util.backoff.FixedBackOff;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Consumes both "complaint.created" (from complaint-service) and
- * "traffic.anomalies" (from traffic-service) as generic Map payloads — there's
- * no shared DTO module between services, and a Map is good enough for the
- * read-only enrichment/indexing this service does with the data. The listener
- * methods declare Map<String, Object> parameters; Spring Kafka matches the
- * deserialized LinkedHashMap to that parameter type at invocation time.
- */
 @Configuration
 public class KafkaConsumerConfig {
 
@@ -48,14 +40,12 @@ public class KafkaConsumerConfig {
         JsonDeserializer<Object> valueDeserializer = new JsonDeserializer<>(Object.class);
         valueDeserializer.addTrustedPackages("*");
         valueDeserializer.setUseTypeMapperForKey(false);
-        valueDeserializer.setRemoveTypeHeaders(true); // ignore type headers from producers we don't control
+        valueDeserializer.setRemoveTypeHeaders(true);
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
                 new ErrorHandlingDeserializer<>(valueDeserializer));
     }
 
-    /** Dedicated producer for dead-letter publishing — kept separate from any future
-     *  business-event producer so DLT config (serializers etc.) never drifts with it. */
     @Bean
     public ProducerFactory<String, Object> dltProducerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -70,7 +60,6 @@ public class KafkaConsumerConfig {
         return new KafkaTemplate<>(dltProducerFactory);
     }
 
-    /** Same backstop as traffic-service's KafkaConsumerConfig — see the javadoc there. */
     @Bean
     public DefaultErrorHandler kafkaErrorHandler(KafkaTemplate<String, Object> dltKafkaTemplate) {
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(dltKafkaTemplate,

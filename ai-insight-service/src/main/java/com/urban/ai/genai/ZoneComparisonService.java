@@ -12,11 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Answers questions that span multiple zones, e.g. "Which of these zones has the
- * worst air quality this week and why?" — pulls a summary + complaint snapshot
- * per zone and lets the LLM reason across all of them at once.
- */
 @Service
 @RequiredArgsConstructor
 public class ZoneComparisonService {

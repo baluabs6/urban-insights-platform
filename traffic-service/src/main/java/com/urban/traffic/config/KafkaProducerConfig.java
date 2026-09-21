@@ -15,13 +15,6 @@ import org.springframework.kafka.config.TopicBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * This is the "real-time" backbone: sensor readings are published here instead
- * of being processed synchronously inside the HTTP request thread. A separate
- * consumer (SensorReadingConsumer) does the actual DB write + anomaly scoring
- * on its own thread pool, so the ingest API can absorb bursts from thousands of
- * concurrent devices without blocking on Postgres.
- */
 @Configuration
 public class KafkaProducerConfig {
 
@@ -37,7 +30,6 @@ public class KafkaProducerConfig {
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        // Favor throughput slightly over strict per-message latency — fine for telemetry.
         config.put(ProducerConfig.LINGER_MS_CONFIG, 5);
         config.put(ProducerConfig.ACKS_CONFIG, "1");
         return new DefaultKafkaProducerFactory<>(config);

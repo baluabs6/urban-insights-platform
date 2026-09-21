@@ -28,11 +28,11 @@ public class GenAiDtos {
     public static class ClassifyResponse {
         private String category;
         private String department;
-        private Double urgencyScore; // 0.0 - 1.0
+        private Double urgencyScore;
         private List<String> tags;
         private String reasoning;
-        private String detectedLanguage; // e.g. "Hindi", "English"
-        private String source; // "AI" or "HEURISTIC_FALLBACK"
+        private String detectedLanguage;
+        private String source;
     }
 
     @Data
@@ -43,7 +43,6 @@ public class GenAiDtos {
         @NotBlank
         @Size(max = 200)
         private String zone;
-        /** Optional — if the complaint being checked is already indexed (post-write), exclude its own id from matches. */
         private String excludeComplaintId;
     }
 
@@ -98,21 +97,17 @@ public class GenAiDtos {
         private String briefing;
     }
 
-    // ---------------------------------------------------------------------
-    // Hotspot prediction (complaint-volume forecasting AI module)
-    // ---------------------------------------------------------------------
-
     @Data
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ZoneHotspotScore {
         private String zone;
-        private double riskScore;      // 0.0-1.0, higher = more likely to spike
-        private String riskLevel;      // LOW / MEDIUM / HIGH
+        private double riskScore;
+        private String riskLevel;
         private int recentComplaintCount;
         private int recentAnomalyCount;
-        private String trend;          // from ForecastingService: RISING/STABLE/FALLING/unknown
+        private String trend;
     }
 
     @Data
@@ -123,10 +118,6 @@ public class GenAiDtos {
         private String generatedAt;
         private List<ZoneHotspotScore> zones;
     }
-
-    // ---------------------------------------------------------------------
-    // Photo verification (vision AI module)
-    // ---------------------------------------------------------------------
 
     @Data
     public static class PhotoVerificationRequest {
@@ -146,13 +137,9 @@ public class GenAiDtos {
     public static class PhotoVerificationResponse {
         private String complaintId;
         private boolean verified;
-        private double confidence; // 0.0-1.0
+        private double confidence;
         private String note;
     }
-
-    // ---------------------------------------------------------------------
-    // Sentiment / frustration scoring (separate signal from category urgency)
-    // ---------------------------------------------------------------------
 
     @Data
     public static class SentimentRequest {
@@ -166,15 +153,11 @@ public class GenAiDtos {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class SentimentResponse {
-        private double sentimentUrgencyScore; // 0.0-1.0 — tone/frustration/safety-language signal
+        private double sentimentUrgencyScore;
         private boolean repeatComplainantLanguage;
         private boolean safetyCriticalLanguage;
         private String summary;
     }
-
-    // ---------------------------------------------------------------------
-    // Root-cause / multi-hop causal-chain inference
-    // ---------------------------------------------------------------------
 
     @Data
     public static class RootCauseRequest {
@@ -189,13 +172,9 @@ public class GenAiDtos {
     @AllArgsConstructor
     public static class RootCauseResponse {
         private List<String> zonesConsidered;
-        private String causalChain; // the LLM's multi-hop reasoning, grounded in retrieved evidence
+        private String causalChain;
         private int evidenceItemCount;
     }
-
-    // ---------------------------------------------------------------------
-    // Classification feedback loop (ops corrections -> few-shot exemplars)
-    // ---------------------------------------------------------------------
 
     @Data
     @Builder
@@ -203,18 +182,13 @@ public class GenAiDtos {
     @AllArgsConstructor
     public static class ClassificationFeedbackStats {
         private int exemplarCount;
-        private List<String> recentCorrections; // short human-readable summaries, most recent first
+        private List<String> recentCorrections;
     }
-
-    // ---------------------------------------------------------------------
-    // Voice complaint intake (transcription -> translate -> classify)
-    // ---------------------------------------------------------------------
 
     @Data
     public static class VoiceComplaintRequest {
         @NotBlank
         private String audioBase64;
-        /** e.g. "wav", "mp3", "ogg" — passed through to the transcription backend. */
         @NotBlank
         private String audioFormat;
         @Size(max = 200)
@@ -239,13 +213,6 @@ public class GenAiDtos {
         @NotBlank
         @Size(max = 1000)
         private String question;
-        /**
-         * Ownership check: the citizenId that filed the complaint, supplied by the
-         * caller. ComplaintStatusChatService verifies this matches the complaint's
-         * actual citizenId before answering — closes the "guess an ID, read anyone's
-         * complaint" gap. Optional only for backwards-compat with admin/internal
-         * callers using the ADMIN API key tier (see ApiKeyAuthFilter).
-         */
         private String citizenId;
     }
 }

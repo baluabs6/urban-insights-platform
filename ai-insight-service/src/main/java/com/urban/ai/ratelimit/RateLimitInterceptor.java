@@ -9,14 +9,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.time.Duration;
 
-/**
- * Applies DistributedRateLimiter to the two cost buckets registered in
- * WebMvcConfig: "ragQuery" (the single most expensive endpoint — query
- * rewrite + parallel retrieval + generation + faithfulness check, several
- * LLM/embedding calls per request) and "aiEndpoints" (everything else that's
- * 1-2 LLM calls). Runs after ApiKeyAuthFilter/AdminOnlyInterceptor so an
- * unauthenticated or unauthorized request never counts against the shared quota.
- */
 @Component
 @RequiredArgsConstructor
 public class RateLimitInterceptor implements HandlerInterceptor {

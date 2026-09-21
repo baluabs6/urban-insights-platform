@@ -9,13 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Rewrites a (possibly vague) user question into 2-3 more specific sub-queries
- * before retrieval, e.g. "what's going on there?" -> ["current traffic conditions",
- * "recent sensor anomalies", "open citizen complaints"]. Each variant is embedded
- * and searched separately in RagInsightService; results are merged and re-ranked.
- * Falls back to the original question if the LLM call fails.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -46,7 +39,6 @@ public class QueryRewriteService {
             if (queries == null || queries.isEmpty()) {
                 return List.of(question);
             }
-            // Always include the original question too — rewriting augments, doesn't replace.
             List<String> all = new java.util.ArrayList<>(queries);
             all.add(question);
             return all.stream().distinct().toList();

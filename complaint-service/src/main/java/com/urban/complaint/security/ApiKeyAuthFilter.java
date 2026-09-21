@@ -11,22 +11,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Two-tier shared-secret auth: every request must carry the key either as
- * X-API-Key, OR as a standard "Authorization: Bearer <key>" header (accepted
- * so tools with universal bearer-token support — notably Prometheus's
- * scrape_config bearer_token field — can authenticate without needing a
- * custom-header extension). A request carrying the ADMIN key gets request
- * attribute "apiKeyTier"="admin"; the general-purpose key gets "public".
- * AdminOnlyInterceptor uses that attribute to gate privileged/PII-exposing
- * endpoints to the admin tier.
- *
- * This is intentionally still simple (two static secrets, not OAuth2/JWT with
- * real per-user identity or scopes) — it stops "one key does everything,
- * including reading any citizen's PII" without the complexity of a full auth
- * server. Swap for OAuth2 + per-role scopes (citizen vs city-official vs
- * admin) before any real deployment.
- */
 @Component
 public class ApiKeyAuthFilter extends OncePerRequestFilter {
 

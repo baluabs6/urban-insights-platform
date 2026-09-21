@@ -11,14 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-/**
- * Sentiment/frustration scoring AI module — a signal deliberately kept
- * SEPARATE from ComplaintClassificationService's category-based urgencyScore
- * rather than folded into it, so either can be inspected (and, in the UI,
- * shown) independently: a low-severity category (e.g. NOISE) can still carry
- * high sentiment urgency ("third time reporting this, nobody has come"),
- * which a purely category-based score would miss entirely.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j

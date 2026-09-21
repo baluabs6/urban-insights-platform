@@ -27,23 +27,6 @@ public class TrafficController {
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final com.urban.traffic.service.ForecastingService forecastingService;
 
-    /**
-     * Real-time ingestion path: publish to Kafka and return immediately (202).
-     * Actual DB write + anomaly scoring happens asynchronously in
-     * SensorReadingConsumer, off this request thread — this is what lets the
-     * endpoint absorb bursts from a large sensor fleet instead of blocking on
-     * Postgres per-request.
-     *
-     * Gap fix: the previous version discarded kafkaTemplate.send()'s returned
-     * future entirely — a failed publish (broker down, serialization error,
-     * etc.) meant the client got a 202 "accepted" for a reading that was
-     * actually silently dropped forever. This now (a) logs publish failures
-     * with full context instead of losing them silently, and (b) falls back to
-     * the synchronous path so the reading isn't lost — at the cost of the
-     * request blocking for that one call. This is NOT a substitute for a real
-     * transactional outbox pattern (still a gap — see README), but it closes
-     * the "202 lied to the client" failure mode.
-     */
     @PostMapping("/ingest")
     public ResponseEntity<?> ingest(@Valid @RequestBody SensorReadingRequest request) {
         try {
@@ -64,17 +47,11 @@ public class TrafficController {
                 .body(Map.of("status", "accepted", "sensorId", request.getSensorId()));
     }
 
-    /**
-     * Synchronous fallback for local dev/testing without Kafka running, or for
-     * callers that need the persisted row back immediately. Not the primary
-     * path in production — prefer /ingest.
-     */
     @PostMapping("/ingest-sync")
     public ResponseEntity<TrafficSensorReading> ingestSync(@Valid @RequestBody SensorReadingRequest request) {
         return ResponseEntity.ok(service.ingest(request));
     }
 
-    /** Dashboard hot path — served from Redis in normal operation. */
     @GetMapping("/sensors/{sensorId}/latest")
     public ResponseEntity<TrafficSensorReading> latest(@PathVariable String sensorId) {
         TrafficSensorReading reading = service.getLatest(sensorId);
@@ -86,7 +63,6 @@ public class TrafficController {
         return ResponseEntity.ok(service.getZoneSummary(zone));
     }
 
-    /** Paginated — a zone can accumulate a very large number of anomalies over time. */
     @GetMapping("/anomalies")
     public ResponseEntity<Page<TrafficSensorReading>> anomalies(
             @RequestParam(defaultValue = "0") int page,
@@ -94,21 +70,12 @@ public class TrafficController {
         return ResponseEntity.ok(service.recentAnomalies(PageRequest.of(page, Math.min(size, 100))));
     }
 
-    /**
-     * Short-horizon forecast (AI module #2, alongside the z-score anomaly
-     * detector): where this zone's readings are trending over the next
-     * forecast.horizon-minutes, plus a "likelyBreach" flag ai-insight-service's
-     * CityBriefingService/SlaEscalationService can fold into proactive output.
-     * Served from Redis (refreshed on a schedule) — cheap enough for dashboards
-     * to poll directly.
-     */
     @GetMapping("/zones/{zone}/forecast")
     public ResponseEntity<com.urban.traffic.service.ForecastingService.ZoneForecast> zoneForecast(
             @PathVariable String zone) {
         return ResponseEntity.ok(forecastingService.getForecast(zone));
     }
 
-    /** Admin tier only (see WebMvcConfig) — audit-logged privileged action. */
     @PostMapping("/cache/evict")
     public ResponseEntity<Void> evictCache(@RequestHeader(value = "X-Caller-Id", required = false) String callerId) {
         log.info("AUDIT action=evictCache caller={}", callerId != null ? callerId : "unknown");

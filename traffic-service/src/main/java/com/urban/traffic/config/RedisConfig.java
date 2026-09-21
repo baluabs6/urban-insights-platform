@@ -17,13 +17,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
-/**
- * Redis is used here as:
- *  1) A read-through cache (@Cacheable) for "latest reading per sensor / zone" — the
- *     data the city dashboard polls every few seconds.
- *  2) A fast key-value store for pre-aggregated rolling stats (avg/stddev) used by
- *     the anomaly detector, avoiding a Postgres round trip on every ingested event.
- */
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
@@ -48,7 +41,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofSeconds(30)) // dashboards want fresh data
+                .entryTtl(Duration.ofSeconds(30))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
                         .fromSerializer(new GenericJackson2JsonRedisSerializer()))
                 .disableCachingNullValues();

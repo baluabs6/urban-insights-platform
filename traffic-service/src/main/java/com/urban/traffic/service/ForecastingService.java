@@ -18,25 +18,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-/**
- * Short-horizon forecasting AI module: predicts where each zone's traffic/AQI
- * reading is headed over the next {@code forecast.horizon-minutes}, instead of
- * only reacting to anomalies after they've already happened (the z-score
- * detector in TrafficIngestionService).
- *
- * Deliberately NOT a heavyweight model (no Prophet/ARIMA dependency): per
- * sensor, a simple ordinary-least-squares line is fit over its recent
- * readings (time in seconds vs. value) and projected forward. Per-sensor
- * projections are then averaged into a zone-level forecast. This is a
- * legitimate, well-understood baseline for short horizons and keeps the
- * module dependency-free and easy to reason about — swap in a proper
- * time-series library if the city wants multi-hour/day forecasts.
- *
- * Forecasts are cached in Redis (survive restarts, shared across replicas)
- * and refreshed on a schedule so CityBriefingService/SlaEscalationService in
- * ai-insight-service can fold "trending toward a breach" into their output
- * instead of only ever describing what already happened.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -63,8 +44,7 @@ public class ForecastingService {
                                 double avgProjectedValue, String trend, boolean likelyBreach,
                                 String generatedAt) {}
 
-    /** Runs shortly after the anomaly-sweep style cadence — cheap enough (in-memory regression) to run often. */
-    @Scheduled(cron = "${forecast.refresh-cron:0 */10 * * * *}") // every 10 minutes
+    @Scheduled(cron = "${forecast.refresh-cron:0 */10 * * * *}")
     public void refreshAllZones() {
         for (String zone : zones) {
             try {
@@ -76,7 +56,6 @@ public class ForecastingService {
         }
     }
 
-    /** On-demand — reads the cache first; only recomputes if nothing cached yet for this zone. */
     @SuppressWarnings("unchecked")
     public ZoneForecast getForecast(String zone) {
         Object cached = redisTemplate.opsForValue().get(cacheKey(zone));
@@ -117,17 +96,12 @@ public class ForecastingService {
                 : avgProjected < avgCurrent * 0.90 ? "FALLING"
                 : "STABLE";
 
-        // "Likely breach" flag: a cheap forward-looking signal for
-        // SlaEscalationService/CityBriefingService — projected value at least
-        // 50% above the zone's own recent average counts as trending toward
-        // an anomaly, without recomputing a full z-score model here.
         boolean likelyBreach = avgCurrent > 0 && avgProjected > avgCurrent * 1.5;
 
         return new ZoneForecast(zone, perSensor.size(),
                 round2(avgCurrent), round2(avgProjected), trend, likelyBreach, now.toString());
     }
 
-    /** Ordinary least squares over (secondsSinceFirstReading, value), projected horizonMinutes ahead. */
     private SensorForecast projectSensor(String sensorId, List<TrafficSensorReading> series, Instant now) {
         series.sort(Comparator.comparing(TrafficSensorReading::getRecordedAt));
         Instant t0 = series.get(0).getRecordedAt();
@@ -140,7 +114,7 @@ public class ForecastingService {
             sumX += x; sumY += y; sumXY += x * y; sumXX += x * x;
         }
         double denom = (n * sumXX - sumX * sumX);
-        if (denom == 0) return null; // all readings at the same instant — can't fit a slope
+        if (denom == 0) return null;
 
         double slope = (n * sumXY - sumX * sumY) / denom;
         double intercept = (sumY - slope * sumX) / n;

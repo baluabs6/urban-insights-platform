@@ -28,33 +28,10 @@ public class TrafficIngestionService {
 
     private static final double ANOMALY_Z_SCORE_THRESHOLD = 3.0;
 
-    // Rolling-window anomaly baseline, kept entirely in Redis — see javadoc on ingest().
     private static final int ROLLING_WINDOW_SIZE = 100;
     private static final int MIN_SAMPLES_FOR_SCORING = 10;
-    private static final Duration ROLLING_WINDOW_TTL = Duration.ofHours(48); // stale/dead sensors self-clean
+    private static final Duration ROLLING_WINDOW_TTL = Duration.ofHours(48);
 
-    /**
-     * Real-time ingestion path:
-     *  1. Score the incoming value against a per-sensor rolling baseline —
-     *     entirely in Redis (see below), NOT a Postgres aggregate query.
-     *  2. Persist to Postgres (source of truth for the actual reading).
-     *  3. Push "latest reading" into Redis so dashboards get sub-ms reads.
-     *
-     * Scalability fix: this used to run TWO Postgres aggregate queries
-     * (AVG/STDDEV over a 24h window) on every single ingested reading — at
-     * real sensor-fleet throughput that's a DB round-trip per event, and it
-     * gets slower as the 24h window fills with more rows. The baseline is now
-     * a bounded Redis LIST per sensor (last ROLLING_WINDOW_SIZE readings,
-     * O(1) push+trim, mean/stddev computed over at most 100 values in-process)
-     * — Postgres is no longer touched at all for anomaly scoring, only for
-     * the actual persistence write below.
-     *
-     * Trade-off: this is now "baseline = last N readings" rather than
-     * "baseline = all readings in the last 24h" — for a sensor reporting
-     * every few minutes those are similar in practice, but it's a genuine
-     * semantic change worth knowing about if reporting frequency varies wildly
-     * across sensors.
-     */
     @CachePut(value = "latestReadings", key = "#request.sensorId")
     public TrafficSensorReading ingest(SensorReadingRequest request) {
         Instant now = Instant.now();
@@ -79,7 +56,6 @@ public class TrafficIngestionService {
         if (score.anomaly()) {
             log.warn("Anomaly detected on sensor {} in zone {}: value={}, zScore={}",
                     request.getSensorId(), request.getZone(), request.getValue(), score.zScore());
-            // Bump a Redis counter the ops dashboard / alerting service can watch.
             redisTemplate.opsForValue().increment("anomaly:count:" + request.getZone());
             redisTemplate.expire("anomaly:count:" + request.getZone(), 1, TimeUnit.HOURS);
         }
@@ -91,19 +67,13 @@ public class TrafficIngestionService {
 
     private record AnomalyScore(boolean anomaly, Double zScore) {}
 
-    /**
-     * Reads the sensor's current rolling window from Redis, scores the new
-     * value against it. Deliberately reads BEFORE pushing the new value (see
-     * pushToRollingWindow) so a single spike doesn't immediately pollute its
-     * own baseline before being scored against it.
-     */
     @SuppressWarnings("unchecked")
     private AnomalyScore scoreAgainstRollingWindow(String sensorId, double newValue) {
         String key = rollingWindowKey(sensorId);
         List<Object> raw = redisTemplate.opsForList().range(key, 0, -1);
 
         if (raw == null || raw.size() < MIN_SAMPLES_FOR_SCORING) {
-            return new AnomalyScore(false, null); // not enough history to establish a baseline yet
+            return new AnomalyScore(false, null);
         }
 
         double[] values = raw.stream().mapToDouble(v -> Double.parseDouble(String.valueOf(v))).toArray();
@@ -114,7 +84,7 @@ public class TrafficIngestionService {
         double stdDev = Math.sqrt(variance);
 
         if (stdDev <= 0) {
-            return new AnomalyScore(false, null); // no variation in the baseline yet — can't compute a meaningful z-score
+            return new AnomalyScore(false, null);
         }
 
         double zScore = Math.abs((newValue - mean) / stdDev);

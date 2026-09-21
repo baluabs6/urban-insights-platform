@@ -9,12 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-/**
- * Foundation for a citizen-facing "where's my complaint?" chatbot (the next step
- * being to front this with WhatsApp/SMS via a messaging connector). Grounds the
- * LLM's answer strictly in that one complaint's live status/fields fetched from
- * complaint-service — never guesses about complaints it wasn't given.
- */
 @Service
 @RequiredArgsConstructor
 public class ComplaintStatusChatService {
@@ -44,16 +38,9 @@ public class ComplaintStatusChatService {
                     .build();
         }
 
-        // Ownership check: without this, knowing/guessing any complaint ID was
-        // enough to read another citizen's PII (their own citizenId, GPS location,
-        // description) through this chatbot. requesterCitizenId is optional so
-        // internal/admin callers (ADMIN API key tier) can still look up any
-        // complaint, but a public-facing caller supplying a citizenId must match.
         if (requesterCitizenId != null && !requesterCitizenId.isBlank()) {
             String actualCitizenId = String.valueOf(complaint.get("citizenId"));
             if (!requesterCitizenId.equals(actualCitizenId)) {
-                // Same response shape as "not found" — don't leak that the complaint
-                // exists but belongs to someone else.
                 return StatusChatResponse.builder()
                         .complaintId(complaintId)
                         .found(false)
@@ -62,7 +49,6 @@ public class ComplaintStatusChatService {
             }
         }
 
-        // Support the citizen asking in their own language.
         LanguageSupportService.DetectionResult detected = languageSupportService.detectAndTranslateToEnglish(question);
 
         String prompt = """
@@ -88,7 +74,6 @@ public class ComplaintStatusChatService {
                     + ", assigned to " + complaint.getOrDefault("assignedDepartment", "the relevant department") + ".";
         }
 
-        // Reply in the citizen's own language if they didn't ask in English.
         String finalAnswer = languageSupportService.translateFromEnglish(englishAnswer, detected.languageName());
 
         return StatusChatResponse.builder()

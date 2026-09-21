@@ -42,26 +42,6 @@ public class ComplaintService {
             "NOISE", "POLLUTION_CONTROL"
     );
 
-    /**
-     * Submission is now fast and fully local: save immediately with a cheap
-     * heuristic classification (classificationSource=PENDING_AI), then publish
-     * a "complaint.created" event. ai-insight-service consumes it asynchronously,
-     * runs the real LLM classification + embedding-based duplicate check (which
-     * used to happen synchronously here, blocking the citizen on 2+ LLM round
-     * trips), and PATCHes the real result back via updateClassification().
-     *
-     * If ai-insight-service or Kafka is ever down, the complaint still exists
-     * with a usable heuristic classification — it just won't get refined until
-     * the AI service catches up (see ai-insight-service's reclassification
-     * sweep, which re-scans anything still PENDING_AI/HEURISTIC_FALLBACK).
-     *
-     * Idempotency: if the caller supplies idempotencyKey (e.g. a UUID the
-     * mobile app generates once before its first submit attempt) and a
-     * complaint with that key already exists, that existing complaint is
-     * returned instead of creating a second one — closes the "network retry
-     * creates a duplicate complaint" gap. Complaints without a key behave as
-     * before (each POST creates a new complaint).
-     */
     public CitizenComplaint submit(ComplaintRequest request) {
         if (request.getIdempotencyKey() != null && !request.getIdempotencyKey().isBlank()) {
             Optional<CitizenComplaint> existing = repository.findByIdempotencyKey(request.getIdempotencyKey());
@@ -104,9 +84,6 @@ public class ComplaintService {
         try {
             saved = repository.save(complaint);
         } catch (org.springframework.dao.DuplicateKeyException e) {
-            // Race: two requests with the same idempotencyKey arrived concurrently and
-            // both passed the findByIdempotencyKey check above before either saved.
-            // The unique index is the real guard; on conflict, return the winner.
             log.info("Concurrent duplicate submission for idempotencyKey {} — returning the winning record",
                     request.getIdempotencyKey());
             return repository.findByIdempotencyKey(request.getIdempotencyKey())
@@ -117,24 +94,17 @@ public class ComplaintService {
             kafkaTemplate.send(KafkaProducerConfig.TOPIC_COMPLAINT_CREATED, saved.getId(), saved)
                     .whenComplete((result, ex) -> {
                         if (ex != null) {
-                            // Not silently lost: this complaint keeps its usable heuristic
-                            // classification (classificationSource=PENDING_AI) and WILL be
-                            // picked up by ai-insight-service's reclassification sweep —
-                            // logged here so an operator can also see it happened in real time.
                             log.error("Async publish of complaint.created failed for {} after send() returned: {}. " +
                                     "Will be caught by the reclassification sweep.", saved.getId(), ex.getMessage(), ex);
                         }
                     });
         } catch (Exception e) {
-            // Submission already succeeded and is usable; async enrichment can catch up
-            // later via the reclassification sweep even if the publish itself fails.
             log.warn("Failed to publish complaint.created event for {}: {}", saved.getId(), e.getMessage());
         }
 
         return saved;
     }
 
-    /** Called back by ai-insight-service once async classification/duplicate-check completes. */
     public CitizenComplaint updateClassification(String id, ClassificationUpdateRequest update) {
         CitizenComplaint complaint = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Complaint not found: " + id));
@@ -164,14 +134,6 @@ public class ComplaintService {
         return repository.save(complaint);
     }
 
-    /**
-     * Ops reviewer corrects an AI (or heuristic) classification. Unlike
-     * updateClassification (the AI's own callback), this always stamps
-     * classificationSource=HUMAN_OVERRIDE and publishes a feedback event so
-     * ai-insight-service can learn from the correction (see
-     * ClassificationFeedbackService on that side) — closes the "no mechanism
-     * to learn from corrections" gap.
-     */
     public CitizenComplaint overrideClassification(String id, ClassificationOverrideRequest override, String actor) {
         CitizenComplaint complaint = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Complaint not found: " + id));
@@ -208,15 +170,12 @@ public class ComplaintService {
         try {
             kafkaTemplate.send(KafkaProducerConfig.TOPIC_CLASSIFICATION_OVERRIDDEN, id, event);
         } catch (Exception e) {
-            // Best-effort: the override itself already succeeded and is durable;
-            // only the downstream learning signal is lost if this publish fails.
             log.warn("Failed to publish classification-overridden feedback event for {}: {}", id, e.getMessage());
         }
 
         return saved;
     }
 
-    /** actor: caller identity from the X-Caller-Id header (see ComplaintController) — "unknown" if not supplied. */
     public CitizenComplaint updateStatus(String id, String status, String actor) {
         CitizenComplaint complaint = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Complaint not found: " + id));
@@ -252,7 +211,6 @@ public class ComplaintService {
         return repository.findByStatus(status, pageable);
     }
 
-    /** Still unbounded by design — small, curated top-N list for dashboards/briefings. */
     public List<CitizenComplaint> topUrgent() {
         return repository.findTop20ByOrderByUrgencyScoreDesc();
     }
@@ -261,12 +219,10 @@ public class ComplaintService {
         return repository.findNear(new GeoJsonPoint(lon, lat), new Distance(radiusKm, Metrics.KILOMETERS));
     }
 
-    /** Anything still awaiting or stuck on heuristic classification — used by the reclassification sweep. */
     public Page<CitizenComplaint> findNeedingReclassification(Pageable pageable) {
         return repository.findByClassificationSourceIn(List.of("PENDING_AI", "HEURISTIC_FALLBACK"), pageable);
     }
 
-    // Package-private for unit testing (see ComplaintServiceTest).
     String heuristicCategory(String description, String suppliedCategory) {
         if (suppliedCategory != null && !suppliedCategory.isBlank()) return suppliedCategory.toUpperCase();
         String text = description.toLowerCase();
@@ -279,7 +235,6 @@ public class ComplaintService {
         return "OTHER";
     }
 
-    // Package-private for unit testing (see ComplaintServiceTest).
     Double heuristicUrgency(String description) {
         String text = description.toLowerCase();
         if (text.contains("danger") || text.contains("accident") || text.contains("sewage")) return 0.9;

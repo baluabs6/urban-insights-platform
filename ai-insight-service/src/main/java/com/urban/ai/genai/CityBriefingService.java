@@ -13,16 +13,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Generates a plain-language "city ops" briefing summarizing anomalies and the
- * most urgent open complaints across all configured zones — the kind of daily
- * digest a city control-room team would otherwise assemble by hand from
- * multiple dashboards.
- *
- * Runs on a schedule (default: every morning) and also exposed on-demand.
- * The latest briefing is persisted in Redis (survives restarts, consistent
- * across multiple instances) rather than an in-memory field.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,7 +29,6 @@ public class CityBriefingService {
     @Value("${city.zones:Whitefield,Koramangala,Connaught Place,Andheri}")
     private List<String> zones;
 
-    /** Cron: every day at 07:00 server time. Override via city.briefing-cron. */
     @Scheduled(cron = "${city.briefing-cron:0 0 7 * * *}")
     public void generateScheduledBriefing() {
         log.info("Generating scheduled city briefing for zones: {}", zones);
@@ -47,12 +36,6 @@ public class CityBriefingService {
         persist(briefing);
     }
 
-    /**
-     * Reads the latest briefing from Redis so it survives restarts and is
-     * consistent across multiple instances of this service — previously this
-     * lived in a single in-memory field, which meant a restart lost it and a
-     * second instance would never agree with the first.
-     */
     public CityBriefingResponse getLatest() {
         try {
             Object raw = redisTemplate.opsForValue().get(BRIEFING_CACHE_KEY);
@@ -71,13 +54,12 @@ public class CityBriefingService {
     private void persist(CityBriefingResponse briefing) {
         try {
             redisTemplate.opsForValue().set(BRIEFING_CACHE_KEY, objectMapper.writeValueAsString(briefing),
-                    java.time.Duration.ofHours(25)); // outlives the daily cron with a small buffer
+                    java.time.Duration.ofHours(25));
         } catch (Exception e) {
             log.warn("Failed to persist briefing to Redis: {}", e.getMessage());
         }
     }
 
-    /** Used by the on-demand ?refresh=true endpoint. */
     public CityBriefingResponse refreshAndPersist() {
         CityBriefingResponse briefing = generate();
         persist(briefing);

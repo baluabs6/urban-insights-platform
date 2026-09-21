@@ -8,7 +8,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/** Backs the semantic cache (SemanticCacheService) — same Redis instance the platform already runs. */
 @Configuration
 public class RedisConfig {
 

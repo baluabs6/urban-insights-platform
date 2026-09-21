@@ -16,23 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Complaint-hotspot prediction AI module: scores each zone's likelihood of a
- * complaint-volume spike in the next 24-48h, rather than only ever reacting
- * to complaints/anomalies after they're filed (ZoneComparisonService,
- * AnomalyExplanationService).
- *
- * Deliberately a transparent weighted-signal model, not a trained classifier —
- * there's no historical labeled "did a spike happen" dataset in this reference
- * project to train one against. It combines three signals this platform
- * already has:
- *   1. recent complaint volume in the zone (complaint-service)
- *   2. recent sensor anomaly count in the zone (traffic-service)
- *   3. the zone's short-horizon forecast trend (ForecastingService, via traffic-service)
- * into a single 0-1 risk score. Swap in a real trained model (e.g. gradient-
- * boosted trees on historical spike labels) once that data exists — the
- * scoring method below is the seam to replace.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -48,7 +31,7 @@ public class HotspotPredictionService {
     private static final int HIGH_COMPLAINT_COUNT = 15;
     private static final int HIGH_ANOMALY_COUNT = 5;
 
-    @Scheduled(cron = "${hotspot.refresh-cron:0 30 * * * *}") // hourly, offset from other jobs
+    @Scheduled(cron = "${hotspot.refresh-cron:0 30 * * * *}")
     public void refresh() {
         try {
             HotspotPredictionResponse response = computeAll();
@@ -77,7 +60,6 @@ public class HotspotPredictionService {
                 log.warn("Hotspot scoring failed for zone {}: {}", zone, e.getMessage());
             }
         }
-        // Highest risk first — this is the list ops actually wants to scan top-down.
         scores.sort((a, b) -> Double.compare(b.getRiskScore(), a.getRiskScore()));
         return HotspotPredictionResponse.builder()
                 .generatedAt(Instant.now().toString())
@@ -95,10 +77,6 @@ public class HotspotPredictionService {
         String trend = forecast != null ? String.valueOf(forecast.getOrDefault("trend", "UNKNOWN")) : "UNKNOWN";
         boolean likelyBreach = forecast != null && Boolean.TRUE.equals(forecast.get("likelyBreach"));
 
-        // Weighted, capped 0-1 signal blend:
-        //   complaint volume  — 50% weight (the thing we're actually predicting more of)
-        //   anomaly volume    — 30% weight (environmental conditions that tend to generate complaints)
-        //   forecast trend    — 20% weight (forward-looking: is it getting worse right now)
         double complaintSignal = Math.min(1.0, complaintCount / (double) HIGH_COMPLAINT_COUNT);
         double anomalySignal = Math.min(1.0, anomalyCount / (double) HIGH_ANOMALY_COUNT);
         double trendSignal = likelyBreach ? 1.0 : "RISING".equals(trend) ? 0.6 : 0.0;

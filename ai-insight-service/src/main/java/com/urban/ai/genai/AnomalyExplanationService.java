@@ -10,12 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Turns a raw anomaly flag (z-score > threshold) into a plain-language, possibly
- * causally-linked explanation by cross-referencing it with citizen complaints
- * filed in the same zone around the same time — e.g. correlating an AQI spike
- * with nearby "construction dust" or "open burning" complaints.
- */
 @Service
 @RequiredArgsConstructor
 public class AnomalyExplanationService {

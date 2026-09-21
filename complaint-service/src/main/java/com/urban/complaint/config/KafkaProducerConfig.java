@@ -15,21 +15,11 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Publishing "complaint.created" here decouples the citizen-facing submit
- * response from the AI classification/duplicate-check work (previously two+
- * blocking LLM/embedding round trips inside the request). Submission now
- * returns immediately with a fast local heuristic classification, and
- * ai-insight-service asynchronously classifies for real and PATCHes the
- * result back in.
- */
 @Configuration
 public class KafkaProducerConfig {
 
     public static final String TOPIC_COMPLAINT_CREATED = "complaint.created";
 
-    /** Feedback-loop signal: an ops reviewer corrected an AI classification. Consumed by
-     *  ai-insight-service's ClassificationFeedbackService to build few-shot correction examples. */
     public static final String TOPIC_CLASSIFICATION_OVERRIDDEN = "complaint.classification.overridden";
 
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
@@ -56,7 +46,6 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic classificationOverriddenTopic() {
-        // Low volume (human-driven) — one partition is plenty.
         return TopicBuilder.name(TOPIC_CLASSIFICATION_OVERRIDDEN).partitions(1).replicas(1).build();
     }
 }

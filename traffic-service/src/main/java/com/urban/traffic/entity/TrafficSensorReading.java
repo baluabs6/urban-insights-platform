@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
-/**
- * A single reading from a city sensor (traffic camera/loop detector, AQI station,
- * noise meter, water-level sensor, etc.) — the structured "system of record" table.
- */
 @Entity
 @Table(name = "sensor_readings", indexes = {
         @Index(name = "idx_sensor_id_time", columnList = "sensorId,recordedAt"),
@@ -31,16 +27,16 @@ public class TrafficSensorReading {
     private String sensorId;
 
     @Column(nullable = false)
-    private String sensorType; // TRAFFIC_FLOW, AQI, NOISE, WATER_LEVEL, PARKING
+    private String sensorType;
 
     @Column(nullable = false)
-    private String zone; // e.g. "Koramangala", "Connaught Place"
+    private String zone;
 
     private Double latitude;
     private Double longitude;
 
     @Column(nullable = false)
-    private Double value; // vehicle count / AQI index / dB / cm etc.
+    private Double value;
 
     private String unit;
 

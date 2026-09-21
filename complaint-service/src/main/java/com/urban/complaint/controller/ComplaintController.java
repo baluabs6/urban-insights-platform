@@ -28,7 +28,6 @@ public class ComplaintController {
         return ResponseEntity.ok(service.submit(request));
     }
 
-    /** Internal callback used by ai-insight-service once async classification completes. Admin tier only. */
     @PatchMapping("/{id}/classification")
     public ResponseEntity<CitizenComplaint> updateClassification(
             @PathVariable String id, @Valid @RequestBody ClassificationUpdateRequest update,
@@ -37,11 +36,6 @@ public class ComplaintController {
         return ResponseEntity.ok(service.updateClassification(id, update));
     }
 
-    /**
-     * Ops-reviewer correction of an AI/heuristic classification. Admin tier only.
-     * Always stamps HUMAN_OVERRIDE and fires the feedback event ai-insight-service's
-     * ClassificationFeedbackService consumes — see ComplaintService.overrideClassification.
-     */
     @PatchMapping("/{id}/classification/override")
     public ResponseEntity<CitizenComplaint> overrideClassification(
             @PathVariable String id, @Valid @RequestBody com.urban.complaint.dto.ClassificationOverrideRequest override,
@@ -50,13 +44,6 @@ public class ComplaintController {
         return ResponseEntity.ok(service.overrideClassification(id, override, callerId));
     }
 
-    /**
-     * Admin tier only. X-Caller-Id is an optional lightweight audit trail — not
-     * cryptographically verified identity, just a caller-supplied label logged
-     * alongside the change and recorded in the complaint's own history[] array,
-     * so "who marked this resolved" is at least answerable from records instead
-     * of unanswerable.
-     */
     @PatchMapping("/{id}/status")
     public ResponseEntity<CitizenComplaint> updateStatus(
             @PathVariable String id, @RequestParam String status,
@@ -73,7 +60,6 @@ public class ComplaintController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /** Anything still on heuristic classification — used by ai-insight-service's reclassification sweep. */
     @GetMapping("/needing-reclassification")
     public ResponseEntity<Page<CitizenComplaint>> needingReclassification(
             @RequestParam(defaultValue = "0") int page,

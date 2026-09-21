@@ -10,12 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * A second LLM pass that checks whether the generated answer is actually
- * supported by the retrieved context, rather than trusting the first pass
- * blindly. Cheap insurance against hallucination — flags low-confidence
- * answers so a human/ops-dashboard can treat them with more skepticism.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -28,7 +22,7 @@ public class FaithfulnessChecker {
 
     @Value
     public static class FaithfulnessResult {
-        double score; // 0.0 (unsupported/hallucinated) - 1.0 (fully grounded)
+        double score;
         String rationale;
     }
 

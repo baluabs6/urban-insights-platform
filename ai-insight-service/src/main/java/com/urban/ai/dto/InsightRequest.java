@@ -13,5 +13,5 @@ public class InsightRequest {
 
     @NotBlank
     @Size(max = 1000, message = "question must be 1000 characters or fewer")
-    private String question; // e.g. "Why is traffic bad here today and what's being done about it?"
+    private String question;
 }

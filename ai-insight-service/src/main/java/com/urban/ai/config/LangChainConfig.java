@@ -20,12 +20,6 @@ import java.time.Duration;
 @Slf4j
 public class LangChainConfig {
 
-    /**
-     * Chat model used for the final "generate" step of RAG.
-     * baseUrl is overridable so this can point at OpenAI, Azure OpenAI, or a
-     * self-hosted OpenAI-compatible endpoint (vLLM / Ollama / LocalAI) running
-     * an open model — same LangChain4j code either way.
-     */
     @Bean
     public ChatLanguageModel chatLanguageModel(
             @Value("${ai.openai.api-key:demo-key}") String apiKey,
@@ -42,7 +36,6 @@ public class LangChainConfig {
                 .build();
     }
 
-    /** Embedding model used to vectorize retrieved traffic/complaint text for similarity search. */
     @Bean
     public EmbeddingModel embeddingModel(
             @Value("${ai.openai.api-key:demo-key}") String apiKey,
@@ -54,15 +47,6 @@ public class LangChainConfig {
                 .build();
     }
 
-    /**
-     * Persistent vector store backed by pgvector, reusing the same PostgreSQL
-     * instance traffic-service already runs on (different logical table:
-     * "urban_embeddings"). Falls back to an in-memory store — logging a warning —
-     * if pgvector isn't reachable, so local dev without Postgres still works.
-     *
-     * Requires the pgvector extension: CREATE EXTENSION IF NOT EXISTS vector;
-     * (run once against the target database — see README).
-     */
     @Bean
     public EmbeddingStore<TextSegment> embeddingStore(
             @Value("${ai.pgvector.enabled:true}") boolean enabled,

@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.List;
 
-/** Payload ai-insight-service PATCHes back once async classification/duplicate-check completes. */
 @Data
 public class ClassificationUpdateRequest {
 
@@ -19,7 +18,7 @@ public class ClassificationUpdateRequest {
     private List<String> tags;
 
     @NotBlank
-    private String classificationSource; // "AI" or "HEURISTIC_FALLBACK"
+    private String classificationSource;
 
     private Boolean likelyDuplicate;
     private Double duplicateSimilarityScore;

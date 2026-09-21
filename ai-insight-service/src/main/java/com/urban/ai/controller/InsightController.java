@@ -15,16 +15,6 @@ public class InsightController {
 
     private final RagInsightService ragInsightService;
 
-    /**
-     * Example:
-     * POST /api/insights/ask
-     * { "zone": "Whitefield", "question": "Why is air quality bad here right now?" }
-     *
-     * Rate-limited via RateLimitInterceptor/DistributedRateLimiter (Redis-backed,
-     * shared across all replicas of this service — see WebMvcConfig) because
-     * every call is a real LLM/embedding cost, and only a shared API key stands
-     * between this endpoint and a caller who hammers it.
-     */
     @PostMapping("/ask")
     public ResponseEntity<InsightResponse> ask(@Valid @RequestBody InsightRequest request) {
         return ResponseEntity.ok(ragInsightService.answer(request));

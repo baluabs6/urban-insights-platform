@@ -12,15 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Multi-hop root-cause inference — a genuine step beyond
- * AnomalyExplanationService, which only correlates anomalies with complaints
- * WITHIN one zone. This chains evidence ACROSS the zones supplied (e.g. an
- * AQI spike downwind of a zone with a cluster of construction/encroachment
- * complaints filed days earlier) and asks the model to reason about
- * cross-zone, cross-time causal links, grounded strictly in the retrieved
- * data rather than speculation.
- */
 @Service
 @RequiredArgsConstructor
 public class RootCauseChainService {

@@ -15,11 +15,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Flexible document shape: a pothole complaint and a "garbage not collected"
- * complaint have very different metadata, tags and attachments — Mongo lets each
- * document carry only what's relevant instead of a table full of nullable columns.
- */
 @Document(collection = "citizen_complaints")
 @Data
 @Builder
@@ -31,52 +26,33 @@ public class CitizenComplaint {
     private String id;
 
     private String citizenId;
-    private String category;      // POTHOLE, GARBAGE, STREETLIGHT, WATER_LEAKAGE, ENCROACHMENT, NOISE
+    private String category;
     private String description;
     private String zone;
-    private String status;        // OPEN, IN_PROGRESS, RESOLVED, REJECTED
+    private String status;
     private String assignedDepartment;
 
     @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
-    private GeoJsonPoint location; // [longitude, latitude]
+    private GeoJsonPoint location;
 
     private List<String> photoUrls;
-    private List<String> tags;    // AI-generated tags from GenAI classification
-    private Double urgencyScore;  // AI-derived priority score (0-1)
-    private String classificationSource; // "AI" or "HEURISTIC_FALLBACK"
+    private List<String> tags;
+    private Double urgencyScore;
+    private String classificationSource;
 
     private Boolean likelyDuplicate;
     private Double duplicateSimilarityScore;
     private List<String> similarComplaintDescriptions;
 
-    /** Set by ai-insight-service's PhotoVerificationService (vision-model check that a
-     *  submitted photo plausibly matches the claimed category). Null = not yet checked
-     *  (no photos, or check hasn't run yet) rather than "verified false". */
     private Boolean photoVerified;
     private String photoVerificationNote;
 
-    /** Separate from urgencyScore: a tone/frustration/repeat-complainant signal from
-     *  ai-insight-service's SentimentUrgencyService, kept alongside (not merged into)
-     *  the category-based urgency score so either can be inspected independently. */
     private Double sentimentUrgencyScore;
     private String sentimentSummary;
 
-    /**
-     * Optional client-supplied key (e.g. a UUID generated once by the mobile
-     * app before the first submit attempt). Unique + sparse: null for most
-     * documents (fine, sparse index skips them), but if two submissions carry
-     * the same key, the second is treated as a retry of the first rather than
-     * a new complaint — closes the "network retry creates a duplicate" gap.
-     */
     @Indexed(unique = true, sparse = true)
     private String idempotencyKey;
 
-    /**
-     * Append-only audit trail of status/classification changes — "who marked
-     * this resolved, and when" for civic accountability. Not enforced at the
-     * DB level (still a plain document field, not a separate immutable log
-     * store), but visible on the record itself.
-     */
     @Builder.Default
     private List<ChangeHistoryEntry> history = new ArrayList<>();
 
@@ -89,10 +65,9 @@ public class CitizenComplaint {
     @AllArgsConstructor
     public static class ChangeHistoryEntry {
         private Instant timestamp;
-        private String changeType; // "STATUS" or "CLASSIFICATION"
+        private String changeType;
         private String fromValue;
         private String toValue;
-        /** Who made the change — "system" for automated classification, or an X-Caller-Id value for human actions. */
         private String actor;
     }
 }

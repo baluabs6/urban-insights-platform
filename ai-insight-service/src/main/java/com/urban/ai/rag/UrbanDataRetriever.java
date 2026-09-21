@@ -19,16 +19,6 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * The "Retrieval" half of RAG — now with:
- *  - Source-tagged segments (id/zone/type/timestamp) so answers can cite what backs them.
- *  - Hybrid scoring: vector similarity blended with simple keyword overlap, so exact
- *    terms (sensor IDs, category names) aren't lost to pure semantic search.
- *  - Recency weighting: fresher sensor readings/complaints are favored over stale ones
- *    with the same similarity score.
- *  - Metadata (zone) filtering applied client-side after an over-fetch, since we don't
- *    assume the underlying store supports server-side filters.
- */
 @Component
 @RequiredArgsConstructor
 public class UrbanDataRetriever {
@@ -38,7 +28,7 @@ public class UrbanDataRetriever {
     private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
     private final EmbeddingStore<TextSegment> embeddingStore;
 
-    private static final int CANDIDATE_POOL_SIZE = 20; // over-fetch before re-ranking
+    private static final int CANDIDATE_POOL_SIZE = 20;
     private static final double MIN_VECTOR_SCORE = 0.35;
     private static final double VECTOR_WEIGHT = 0.65;
     private static final double KEYWORD_WEIGHT = 0.20;
@@ -58,7 +48,6 @@ public class UrbanDataRetriever {
         double combinedScore;
     }
 
-    /** Refresh the vector index for a zone right before answering — keeps RAG grounded in "now". */
     public void indexZone(String zone) {
         Map<String, Object> trafficSummary = dataClient.getZoneTrafficSummary(zone);
         List<Map<String, Object>> complaints = dataClient.getZoneComplaints(zone);
@@ -101,12 +90,6 @@ public class UrbanDataRetriever {
         upsert(deterministicId(type, sourceId), embedding, segment);
     }
 
-    /**
-     * Event-driven upsert used by the Kafka listeners (ComplaintCreatedListener,
-     * TrafficAnomalyListener) — this is what replaces "re-embed everything on
-     * every RAG query" with index-on-write: data is embedded once, when it
-     * changes, not once per question asked about it.
-     */
     public void indexComplaintDocument(Map<String, Object> complaint) {
         String id = String.valueOf(complaint.get("id"));
         String zone = String.valueOf(complaint.get("zone"));
@@ -127,49 +110,26 @@ public class UrbanDataRetriever {
         indexSegment(text, zone, "anomaly", id);
     }
 
-    /**
-     * Deterministic ID so re-indexing the same logical record (e.g. a
-     * complaint's status changing) updates the existing vector instead of
-     * appending a duplicate that grows the index forever.
-     */
     private String deterministicId(String type, String sourceId) {
         return type + ":" + sourceId;
     }
 
-    /** Best-effort upsert: not every EmbeddingStore implementation supports remove(); tolerate it if not. */
     private void upsert(String id, Embedding embedding, TextSegment segment) {
         try {
             embeddingStore.remove(id);
         } catch (Exception e) {
-            // Store doesn't support remove(), or the id didn't exist yet — either way, proceed to add.
         }
         try {
             embeddingStore.addAll(List.of(id), List.of(embedding), List.of(segment));
         } catch (Exception e) {
-            // Fallback for stores whose addAll(ids,...) overload isn't available — assigns its own id,
-            // which means this particular record won't dedupe on re-index, but indexing still succeeds.
             embeddingStore.add(embedding, segment);
         }
     }
 
-    /**
-     * Retrieve the most relevant, freshest, citeable context for a natural-language
-     * question, optionally scoped to a single zone.
-     *
-     * @param question free-text question (or a rewritten sub-query)
-     * @param zoneFilter if non-null, only segments tagged with this zone are considered
-     * @param topK      how many segments to return after re-ranking (adaptive per query type)
-     */
     public List<RetrievedSegment> retrieve(String question, String zoneFilter, int topK) {
         return retrieve(question, zoneFilter, null, null, topK);
     }
 
-    /**
-     * Full form used by duplicate detection: restrict to a single document
-     * "type" (e.g. only "complaint" segments, not traffic summaries/anomalies)
-     * and exclude one specific sourceId (a complaint checking for duplicates
-     * against others must not match its own just-indexed copy of itself).
-     */
     public List<RetrievedSegment> retrieve(String question, String zoneFilter, String typeFilter, String excludeSourceId, int topK) {
         Embedding queryEmbedding = llmCallMetrics.time("embed_query", () -> embeddingModel.embed(question).content());
 
@@ -190,7 +150,7 @@ public class UrbanDataRetriever {
 
             String zone = safe(metadata, "zone");
             if (zoneFilter != null && !zoneFilter.equalsIgnoreCase(zone)) {
-                continue; // client-side metadata filter
+                continue;
             }
             String type = safe(metadata, "type");
             if (typeFilter != null && !typeFilter.equalsIgnoreCase(type)) {
@@ -198,7 +158,7 @@ public class UrbanDataRetriever {
             }
             String sourceId = safe(metadata, "sourceId");
             if (excludeSourceId != null && excludeSourceId.equalsIgnoreCase(sourceId)) {
-                continue; // don't let a record match its own just-indexed copy
+                continue;
             }
 
             double vectorScore = match.score();
@@ -225,7 +185,6 @@ public class UrbanDataRetriever {
                 .collect(Collectors.toList());
     }
 
-    /** Convenience overload matching the previous simple-string API, kept for compatibility. */
     public List<String> retrieveContext(String question) {
         return retrieve(question, null, 5).stream()
                 .map(RetrievedSegment::getText)
@@ -247,7 +206,6 @@ public class UrbanDataRetriever {
     private double recencyScore(String indexedAtIso, Instant now) {
         Instant indexedAt = parseInstantOrNow(indexedAtIso);
         double hoursAge = Duration.between(indexedAt, now).toMinutes() / 60.0;
-        // Exponential decay: score = 0.5 ^ (age / half-life) -> 1.0 when fresh, ~0.5 at half-life.
         return Math.pow(0.5, hoursAge / RECENCY_HALF_LIFE_HOURS);
     }
 

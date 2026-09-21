@@ -9,14 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-/**
- * Both API-key defaults ("change-me-in-prod" / "change-me-admin-in-prod") are
- * functional, not placeholders that fail — if SECURITY_API_KEY/
- * SECURITY_ADMIN_API_KEY are left unset in a real deployment, "auth" is a
- * publicly-known string in this README. This can't stop someone from
- * deploying with defaults under no profile at all, but it makes "prod" mean
- * something: refuses to start rather than silently running insecurely.
- */
 @Component
 @Slf4j
 public class SecretsStartupCheck implements ApplicationRunner {

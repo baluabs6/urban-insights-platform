@@ -5,17 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-/**
- * Lets citizens file complaints (or ask questions) in Hindi or any regional
- * language and still get correctly classified/answered: detects the language,
- * translates to English for the rest of the pipeline (classification, RAG,
- * embeddings), and can translate the final answer back if needed.
- *
- * Uses the same chat model rather than a dedicated translation API, keeping
- * the dependency footprint small; swap for a proper translation service
- * (Google Translate / Azure Translator) if higher throughput or better
- * accuracy on low-resource languages is needed.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,12 +15,6 @@ public class LanguageSupportService {
 
     public record DetectionResult(String languageName, String languageCode, String translatedText) {}
 
-    /**
-     * Detects the language of the input text and, if it's not English,
-     * translates it to English. If detection/translation fails, returns the
-     * original text untouched with languageCode "unknown" so callers can
-     * proceed without blocking on this feature.
-     */
     public DetectionResult detectAndTranslateToEnglish(String text) {
         String prompt = """
                 Identify the language of the following text and translate it to English.
@@ -57,7 +40,6 @@ public class LanguageSupportService {
         }
     }
 
-    /** Translates a generated English answer back into the citizen's original language. */
     public String translateFromEnglish(String englishText, String targetLanguageName) {
         if (targetLanguageName == null || targetLanguageName.equalsIgnoreCase("English")
                 || targetLanguageName.equalsIgnoreCase("unknown")) {

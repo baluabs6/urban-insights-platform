@@ -16,14 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Redis-backed semantic cache: stores the embedding + answer of recent questions
- * per zone, and if a near-duplicate question comes in (cosine similarity above
- * threshold), returns the cached answer instantly instead of re-running
- * retrieval + generation + faithfulness-check. Keeps a small bounded list per
- * zone (most recent N entries) rather than a full vector index, since this is
- * meant to catch "same question asked again" rather than do general retrieval.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j

@@ -10,13 +10,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.time.Duration;
 import java.util.List;
 
-/**
- * Calls the ai-insight-service's GenAI endpoints at complaint-submission time.
- * Wrapped in a Resilience4j circuit breaker: if ai-insight-service is down or
- * slow, the breaker opens after enough failures and calls fail straight to the
- * fallback (null) without waiting on the timeout each time — ComplaintService
- * then falls back to its local heuristic, so submissions never block on AI.
- */
 @Component
 @Slf4j
 public class AiInsightClient {

@@ -16,8 +16,8 @@ public class InsightResponse {
     private String zone;
     private String question;
     private String answer;
-    private List<String> retrievedContext; // shown for transparency / debugging RAG grounding
-    private List<Map<String, String>> sources; // per-segment id/type/scores backing the answer (citations)
-    private Double faithfulnessScore; // 0.0-1.0, from the second-pass groundedness check
+    private List<String> retrievedContext;
+    private List<Map<String, String>> sources;
+    private Double faithfulnessScore;
     private String faithfulnessRationale;
 }

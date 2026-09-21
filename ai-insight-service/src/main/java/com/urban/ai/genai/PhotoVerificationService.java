@@ -15,19 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Vision AI module: checks whether a complaint's submitted photo(s) plausibly
- * show what the category claims (a "pothole" complaint whose photo shows an
- * empty parking lot, for instance) — something nothing else in the pipeline
- * looks at today, since ComplaintClassificationService only ever reasons over
- * the free-text description.
- *
- * Uses the same ChatLanguageModel bean as the rest of the GenAI layer — works
- * as-is when ai.openai.model is a vision-capable model (e.g. gpt-4o-mini
- * supports image input); if the configured model/endpoint doesn't accept
- * image content, this fails soft (verified=null upstream, source stays
- * whatever it already was) rather than blocking classification.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -37,7 +24,7 @@ public class PhotoVerificationService {
     private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final int MAX_PHOTOS_CHECKED = 3; // cap cost — first few photos are representative enough
+    private static final int MAX_PHOTOS_CHECKED = 3;
 
     public PhotoVerificationResponse verify(PhotoVerificationRequest request) {
         List<String> photos = request.getPhotoUrls().stream().limit(MAX_PHOTOS_CHECKED).toList();

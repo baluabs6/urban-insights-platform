@@ -13,9 +13,6 @@ import java.util.List;
 
 public interface ComplaintRepository extends MongoRepository<CitizenComplaint, String> {
 
-    // Paginated versions — a busy zone/status can accumulate thousands of documents,
-    // and returning them all in one response blows up memory and (when fed to an
-    // LLM prompt) the model's context window.
     Page<CitizenComplaint> findByZone(String zone, Pageable pageable);
     Page<CitizenComplaint> findByStatus(String status, Pageable pageable);
 

@@ -16,19 +16,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Consumes "complaint.created" (published by complaint-service the instant a
- * citizen submits) and does the real work asynchronously:
- *   1. LLM classification (was previously a synchronous call blocking the
- *      citizen's submit request — now happens here, off the request path).
- *   2. Embedding-based duplicate check against other open complaints.
- *   3. Index-on-write into the RAG vector store (replaces re-embedding the
- *      whole zone on every question asked).
- *   4. PATCH the real classification back to complaint-service.
- *
- * If any step fails, the complaint keeps its fast heuristic classification
- * (set at submit time) and gets picked up again by ReclassificationSweep.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -49,8 +36,6 @@ public class ComplaintCreatedListener {
         String description = String.valueOf(complaint.get("description"));
 
         try {
-            // Index immediately so RAG queries can see this complaint right away,
-            // even before classification finishes.
             retriever.indexComplaintDocument(complaint);
         } catch (Exception e) {
             log.warn("Failed to index complaint {} on write: {}", id, e.getMessage());
@@ -64,7 +49,7 @@ public class ComplaintCreatedListener {
         DuplicateCheckRequest dupRequest = new DuplicateCheckRequest();
         dupRequest.setDescription(description);
         dupRequest.setZone(zone);
-        dupRequest.setExcludeComplaintId(id); // this complaint was already indexed above — don't match itself
+        dupRequest.setExcludeComplaintId(id);
         DuplicateCheckResponse duplicate;
         try {
             duplicate = duplicateDetectionService.check(dupRequest);
@@ -85,9 +70,6 @@ public class ComplaintCreatedListener {
             update.put("similarComplaintDescriptions", duplicate.getSimilarComplaints());
         }
 
-        // Vision check — only if the citizen actually attached photos. Never blocks
-        // classification: a slow/unavailable vision model degrades to "not checked",
-        // not a failed submission.
         Object photoUrlsObj = complaint.get("photoUrls");
         if (photoUrlsObj instanceof List<?> photoUrls && !photoUrls.isEmpty()) {
             try {
@@ -104,8 +86,6 @@ public class ComplaintCreatedListener {
             }
         }
 
-        // Sentiment/frustration scoring — independent signal from category urgency,
-        // stored alongside it rather than merged into it.
         try {
             com.urban.ai.dto.GenAiDtos.SentimentRequest sentimentRequest = new com.urban.ai.dto.GenAiDtos.SentimentRequest();
             sentimentRequest.setDescription(description);

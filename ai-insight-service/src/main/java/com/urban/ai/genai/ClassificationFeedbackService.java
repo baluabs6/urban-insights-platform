@@ -9,18 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Feedback-loop AI module: turns ops corrections (complaint-service's
- * /classification/override, published as "complaint.classification.overridden")
- * into few-shot exemplars fed back into ComplaintClassificationService's prompt —
- * closing the "no mechanism to learn from corrections" gap. Not fine-tuning (no
- * training pipeline in this reference project), but a real, working feedback
- * loop: the more ops corrects a given mistake pattern, the more likely the next
- * classification call sees a matching example and gets it right the first time.
- *
- * Stored as a bounded Redis LIST (most recent first) rather than growing
- * unboundedly — old corrections age out once MAX_EXEMPLARS is exceeded.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,7 +18,7 @@ public class ClassificationFeedbackService {
 
     private static final String EXEMPLAR_KEY = "classification-feedback:exemplars";
     private static final int MAX_EXEMPLARS = 20;
-    private static final int FEW_SHOT_EXAMPLES_IN_PROMPT = 5; // keep the prompt short — most recent corrections
+    private static final int FEW_SHOT_EXAMPLES_IN_PROMPT = 5;
 
     public void recordCorrection(Map<String, Object> event) {
         String description = String.valueOf(event.getOrDefault("description", ""));
@@ -39,8 +27,6 @@ public class ClassificationFeedbackService {
         Object note = event.get("correctionNote");
 
         if (previousCategory.equalsIgnoreCase(correctedCategory)) {
-            // Ops only touched department/urgency, not the category itself — nothing
-            // useful to teach the classifier's category prompt from this one.
             return;
         }
 
@@ -53,7 +39,6 @@ public class ClassificationFeedbackService {
         log.info("Recorded classification-correction exemplar: {} -> {}", previousCategory, correctedCategory);
     }
 
-    /** Used by ComplaintClassificationService to few-shot-prime future classifications. */
     @SuppressWarnings("unchecked")
     public String buildFewShotBlock() {
         List<Object> raw = redisTemplate.opsForList().range(EXEMPLAR_KEY, 0, FEW_SHOT_EXAMPLES_IN_PROMPT - 1);

@@ -14,14 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Fixes the "mis-tagged forever" gap: if a complaint's async classification
- * never completed (Kafka was down, this service was down, the PATCH callback
- * failed, etc.), it's left with classificationSource PENDING_AI or
- * HEURISTIC_FALLBACK. This sweep periodically finds those and retries
- * classification — a safety net behind the primary event-driven path, not a
- * replacement for it.
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,7 +22,7 @@ public class ReclassificationSweepService {
     private final UrbanDataClient dataClient;
     private final ComplaintClassificationService classificationService;
 
-    @Value("${reclassification.sweep-cron:0 */15 * * * *}") // every 15 minutes
+    @Value("${reclassification.sweep-cron:0 */15 * * * *}")
     private String cron;
 
     @Scheduled(cron = "${reclassification.sweep-cron:0 */15 * * * *}")
@@ -47,7 +39,6 @@ public class ReclassificationSweepService {
                 request.setZone(String.valueOf(complaint.get("zone")));
                 ClassifyResponse classification = classificationService.classify(request);
 
-                // Only bother PATCHing if we actually improved on the previous attempt.
                 if ("AI".equals(classification.getSource())) {
                     Map<String, Object> update = new HashMap<>();
                     update.put("category", classification.getCategory());
