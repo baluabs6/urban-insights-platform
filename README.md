@@ -15,28 +15,125 @@ air quality, citizen complaints) built as **Java Spring Boot microservices**, co
 
 ## Architecture
 
+### 1. System Architecture
+
+```mermaid
+flowchart TB
+    IOT["IoT Sensors<br/>traffic / AQI"]
+    CITIZEN["Citizen App<br/>complaints, photos, voice"]
+    OPS["Ops Team<br/>'Why is AQI high in Whitefield?'"]
+
+    TRAFFIC["<b>traffic-service</b> :8081<br/>ingest · z-score anomalies · forecast"]
+    COMPLAINT["<b>complaint-service</b> :8082<br/>intake · heuristic classify · status / override"]
+    AI["<b>ai-insight-service</b> :8083<br/>RAG · GenAI features · consumers · schedulers"]
+
+    KAFKA{{"<b>Apache Kafka</b> (KRaft)<br/>traffic.readings · traffic.anomalies<br/>complaint.created · complaint.classification.overridden"}}
+
+    PG[("PostgreSQL<br/>sensor time-series")]
+    REDIS[("Redis<br/>hot cache · semantic cache")]
+    MONGO[("MongoDB<br/>complaint documents")]
+    PGV[("pgvector<br/>RAG embeddings")]
+
+    LLM["LLM + Embeddings + Whisper<br/>OpenAI-compatible / Ollama"]
+    OBS["Prometheus :9090 → Grafana :3000"]
+
+    IOT -->|"POST /ingest"| TRAFFIC
+    CITIZEN -->|"POST /complaints"| COMPLAINT
+    OPS -->|"ask / GenAI APIs"| AI
+
+    TRAFFIC <-->|"readings · anomalies"| KAFKA
+    COMPLAINT -->|"created · overridden"| KAFKA
+    KAFKA -->|"anomalies · created · overridden"| AI
+
+    AI -->|"REST pull"| TRAFFIC
+    AI -->|"REST pull + PATCH callback"| COMPLAINT
+    COMPLAINT -.->|"REST classify"| AI
+
+    TRAFFIC --> PG
+    TRAFFIC <--> REDIS
+    COMPLAINT --> MONGO
+    AI <--> PGV
+    AI <--> REDIS
+    AI --> LLM
+
+    TRAFFIC -.-> OBS
+    COMPLAINT -.-> OBS
+    AI -.-> OBS
+
+    classDef svc fill:#e8f1ff,stroke:#2f6fdb,stroke-width:2px,color:#0b2a5b;
+    classDef bus fill:#fff4e0,stroke:#e08a00,stroke-width:2px,color:#5a3600;
+    classDef store fill:#e9f7ec,stroke:#2e9e4f,color:#0d3b1b;
+    classDef ext fill:#f3e9ff,stroke:#7b3fe4,color:#2d0f5e;
+    classDef obs fill:#f2f2f2,stroke:#777,color:#222;
+    classDef client fill:#fff,stroke:#555,color:#222;
+    class TRAFFIC,COMPLAINT,AI svc;
+    class KAFKA bus;
+    class PG,MONGO,REDIS,PGV store;
+    class LLM ext;
+    class OBS obs;
+    class IOT,CITIZEN,OPS client;
 ```
-                 ┌─────────────────────┐
-  IoT sensors ──▶│   traffic-service    │──▶ Kafka "traffic.readings" ──▶ consumer ──▶ PostgreSQL
-  (traffic/AQI)  │  (Spring Boot :8081) │                                          └─▶ Redis (cache)
-                 └─────────┬────────────┘
-                           │ Kafka "traffic.anomalies"
-                           ▼
-                 ┌─────────────────────┐
-  Citizen app ──▶│  complaint-service   │──▶ MongoDB (flexible complaint documents, geo-index)
-                 │  (Spring Boot :8082) │──▶ Kafka "complaint.created"
-                 └─────────┬────────────┘        │
-                           │ REST (PATCH callback,│ consumed by
-                           │ paginated pulls)     ▼
-                 ┌─────────────────────────────────┐
-  Ops team ─────▶│   ai-insight-service             │──▶ pgvector (persistent RAG index)
-  "Why is AQI    │   (Spring Boot :8083)            │──▶ Redis (semantic cache, SLA dedup, briefing)
-   high in       │   Kafka consumers index-on-write; │
-   Whitefield?"  │   LangChain4j RAG pipeline:       │
-                 │   rewrite → retrieve → rerank      │
-                 │   → augment prompt → LLM → verify  │
-                 └─────────────────────────────────┘
+
+### 2. RAG Pipeline (`ai-insight-service`)
+
+```mermaid
+flowchart LR
+    Q["Ops question<br/>+ zone"] --> SC{"Semantic cache<br/>hit? (Redis)"}
+    SC -->|"hit"| R["Response"]
+    SC -->|"miss"| RW["Query rewrite<br/>→ sub-queries"]
+    RW --> RET["Hybrid retrieval (parallel)<br/>vector (pgvector) + keyword + recency"]
+    RET --> MERGE["Merge · de-dup<br/>rerank → top-K (5 / 8)"]
+    MERGE --> AUG["Augment prompt<br/>(untrusted-data wrapping)"]
+    AUG --> LLM["LLM generate<br/>(LangChain4j)"]
+    LLM --> FC["Faithfulness check"]
+    FC -->|"score ≥ 0.6"| STORE["Store in<br/>semantic cache"]
+    FC --> R
+    STORE --> R
+
+    classDef step fill:#e8f1ff,stroke:#2f6fdb,color:#0b2a5b;
+    classDef decision fill:#fff4e0,stroke:#e08a00,color:#5a3600;
+    class RW,RET,MERGE,AUG,LLM,FC,STORE step;
+    class SC decision;
 ```
+
+### 3. Complaint Lifecycle (event-driven enrichment)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor C as Citizen
+    participant CS as complaint-service
+    participant M as MongoDB
+    participant K as Kafka
+    participant AI as ai-insight-service
+    participant V as pgvector
+    participant L as LLM
+
+    C->>CS: POST /api/complaints
+    CS->>CS: Instant heuristic classification
+    CS->>M: Save complaint document
+    CS-->>C: 201 Created (never blocked by AI)
+    CS->>K: publish complaint.created
+    K->>AI: consume complaint.created
+    AI->>V: Embed and index complaint (index-on-write)
+    AI->>L: Classify · detect duplicates · verify photos · score urgency
+    L-->>AI: category, department, urgency, tags
+    AI->>CS: PATCH /api/complaints/{id}/classification
+    CS->>M: Update enriched fields
+    Note over AI,CS: Scheduled jobs — reclassification sweep (15 min), hotspot prediction (hourly),<br/>SLA escalation (08:00), city briefing (07:00)
+    CS->>K: publish complaint.classification.overridden (manual override)
+    K->>AI: consume override → feeds classification feedback loop
+```
+
+### 4. Component Summary
+
+| Component | Port | Role | Stores / Dependencies |
+|---|---|---|---|
+| `traffic-service` | 8081 | Sensor ingestion, rolling z-score anomaly detection, zone summaries, forecasting | PostgreSQL, Redis, Kafka |
+| `complaint-service` | 8082 | Complaint intake, instant heuristic classification, status/override workflow, geo queries | MongoDB, Kafka |
+| `ai-insight-service` | 8083 | RAG Q&A, GenAI features (classification, duplicates, zone comparison, anomaly explanation, SLA escalation, status chatbot, city briefing, hotspots, photo and voice handling) | pgvector, Redis, Kafka, LLM provider |
+| Kafka | 9092 | Event backbone (`traffic.readings`, `traffic.anomalies`, `complaint.created`, `complaint.classification.overridden`) | — |
+| Prometheus / Grafana | 9090 / 3000 | Metrics scraping and the LLM cost and latency dashboard | All three services |
 
 ## About This Application and Different from other applications
 
