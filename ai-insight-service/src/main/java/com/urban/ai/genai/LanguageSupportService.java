@@ -1,6 +1,6 @@
 package com.urban.ai.genai;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,29 +10,28 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class LanguageSupportService {
 
-    private final ChatLanguageModel chatLanguageModel;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
+    private final LlmClient llm;
 
     public record DetectionResult(String languageName, String languageCode, String translatedText) {}
+
+    /** Structured-output target: Spring AI derives the JSON schema from this record. */
+    public record LanguageDetection(String languageName, String languageCode, String translatedText) {}
 
     public DetectionResult detectAndTranslateToEnglish(String text) {
         String prompt = """
                 Identify the language of the following text and translate it to English.
-                Respond with STRICT JSON only, no markdown fences, exactly this shape:
-                {"languageName": "<e.g. Hindi, Tamil, English>", "languageCode": "<ISO 639-1, e.g. hi, ta, en>", "translatedText": "<English translation, or original text if already English>"}
+                "languageName" is e.g. Hindi, Tamil, English; "languageCode" is ISO 639-1 (hi, ta, en);
+                "translatedText" is the English translation, or the original text if it is already English.
 
                 TEXT: "%s"
                 """.formatted(text);
 
         try {
-            String raw = llmCallMetrics.time("language_detect_translate", () -> chatLanguageModel.generate(prompt));
-            String json = stripFences(raw);
-            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            var parsed = mapper.readValue(json, java.util.Map.class);
+            LanguageDetection parsed = llm.structured("language_detect_translate", prompt, LanguageDetection.class);
             return new DetectionResult(
-                    String.valueOf(parsed.getOrDefault("languageName", "unknown")),
-                    String.valueOf(parsed.getOrDefault("languageCode", "unknown")),
-                    String.valueOf(parsed.getOrDefault("translatedText", text))
+                    parsed.languageName() != null ? parsed.languageName() : "unknown",
+                    parsed.languageCode() != null ? parsed.languageCode() : "unknown",
+                    parsed.translatedText() != null ? parsed.translatedText() : text
             );
         } catch (Exception e) {
             log.warn("Language detection/translation failed, using original text: {}", e.getMessage());
@@ -48,18 +47,10 @@ public class LanguageSupportService {
         String prompt = "Translate the following text into %s. Return ONLY the translated text, nothing else.\n\nTEXT: %s"
                 .formatted(targetLanguageName, englishText);
         try {
-            return llmCallMetrics.time("language_translate_reverse", () -> chatLanguageModel.generate(prompt));
+            return llm.text("language_translate_reverse", prompt);
         } catch (Exception e) {
             log.warn("Reverse translation failed, returning English text: {}", e.getMessage());
             return englishText;
         }
-    }
-
-    private String stripFences(String raw) {
-        String trimmed = raw.trim();
-        if (trimmed.startsWith("```")) {
-            trimmed = trimmed.replaceAll("^```(json)?", "").replaceAll("```$", "").trim();
-        }
-        return trimmed;
     }
 }

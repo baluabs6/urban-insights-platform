@@ -2,7 +2,7 @@ package com.urban.ai.genai;
 
 import com.urban.ai.client.UrbanDataClient;
 import com.urban.ai.dto.GenAiDtos.CityBriefingResponse;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +19,7 @@ import java.util.Map;
 public class CityBriefingService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
+    private final LlmClient llm;
     private final org.springframework.data.redis.core.RedisTemplate<String, Object> redisTemplate;
     private final com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
@@ -103,7 +102,7 @@ public class CityBriefingService {
 
         String briefingText;
         try {
-            briefingText = llmCallMetrics.time("city_briefing", () -> chatLanguageModel.generate(prompt));
+            briefingText = llm.text("city_briefing", prompt);
         } catch (Exception e) {
             log.warn("LLM unavailable for briefing, returning raw data summary: {}", e.getMessage());
             briefingText = "AI model unavailable. Raw summary:\nZones:\n" + zoneSummaries

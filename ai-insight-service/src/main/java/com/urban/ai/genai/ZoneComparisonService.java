@@ -4,7 +4,7 @@ import com.urban.ai.client.UrbanDataClient;
 import com.urban.ai.dto.GenAiDtos.CompareZonesRequest;
 import com.urban.ai.dto.GenAiDtos.CompareZonesResponse;
 import com.urban.ai.security.PromptSafetyUtils;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
 public class ZoneComparisonService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
+    private final LlmClient llm;
     private final PromptSafetyUtils promptSafetyUtils;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
 
     public CompareZonesResponse compare(CompareZonesRequest request) {
         String perZoneBlock = request.getZones().stream()
@@ -40,7 +39,7 @@ public class ZoneComparisonService {
 
         String answer;
         try {
-            answer = llmCallMetrics.time("compare_zones", () -> chatLanguageModel.generate(prompt));
+            answer = llm.text("compare_zones", prompt);
         } catch (Exception e) {
             answer = "AI model unavailable right now. Raw per-zone data:\n\n" + perZoneBlock;
         }

@@ -4,6 +4,52 @@ server:
 spring:
   application:
     name: ai-insight-service
+  # Spring AI's pgvector VectorStore runs on a plain JDBC DataSource.
+  datasource:
+    url: jdbc:postgresql://${PGVECTOR_HOST:localhost}:${PGVECTOR_PORT:5432}/${PGVECTOR_DATABASE:urban_traffic}
+    username: ${PGVECTOR_USER:urban_user}
+    password: ${PGVECTOR_PASSWORD:urban_pass}
+  http:
+    client:
+      connect-timeout: 5s
+      read-timeout: 30s     # applies to the RestClient Spring AI uses for model calls
+  ai:
+    # Only the chat + embedding models are used; switch the other OpenAI model types off.
+    model:
+      image: none
+      moderation: none
+      audio:
+        speech: none
+        transcription: none
+    openai:
+      api-key: ${OPENAI_API_KEY:demo-key}
+      # Same convention as before: base URL INCLUDES /v1 (e.g. http://ollama:11434/v1 for a local model),
+      # so the path overrides below drop the default /v1 prefix.
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+      chat:
+        completions-path: /chat/completions
+        options:
+          model: ${OPENAI_MODEL:gpt-4o-mini}
+          temperature: 0.2
+      embedding:
+        embeddings-path: /embeddings
+        options:
+          model: text-embedding-3-small
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        # NEW table (Spring AI schema: id uuid, content, metadata jsonb, embedding vector).
+        # The old LangChain4j table "urban_embeddings" is no longer used and can be dropped.
+        table-name: urban_vector_store
+        dimensions: 1536      # matches text-embedding-3-small
+        distance-type: COSINE_DISTANCE
+        index-type: HNSW
+    mcp:
+      server:
+        enabled: ${MCP_SERVER_ENABLED:false}   # opt-in; endpoints require the admin API key
+        name: urban-insights-mcp
+        version: 1.0.0
+        type: SYNC
   data:
     redis:
       host: ${SPRING_DATA_REDIS_HOST:***************}
@@ -45,22 +91,12 @@ sla:
   webhook-url: ${SLA_WEBHOOK_URL:***************}
 
 ai:
-  openai:
-    api-key: ${OPENAI_API_KEY:***************}
-    base-url: ${OPENAI_BASE_URL:***************}
-    model: ${OPENAI_MODEL:gpt-4o-mini}
-    # To use a local/open model instead (e.g. Ollama), set:
-    # OPENAI_BASE_URL=***************
-    # OPENAI_MODEL=llama3
+  # Kept for the optional in-memory fallback and for the chat-memory settings below.
   pgvector:
     enabled: ${PGVECTOR_ENABLED:true}
-    host: ${PGVECTOR_HOST:***************}
-    port: ${PGVECTOR_PORT:5432}
-    database: ${PGVECTOR_DATABASE:urban_traffic}
-    user: ${PGVECTOR_USER:***************}
-    password: ${PGVECTOR_PASSWORD:***************}
-    table: urban_embeddings
-    dimension: 1536 # matches text-embedding-3-small
+  chat-memory:
+    max-messages: 20      # sliding window of recent turns sent back to the model
+    ttl-hours: 24         # abandoned conversations expire from Redis after this long
   # Voice-complaint transcription backend (see VoiceTranscriptionService). Defaults
   # to OpenAI's Whisper endpoint; point at a self-hosted faster-whisper server for
   # local/offline use, same swap pattern as the chat/embedding models above.

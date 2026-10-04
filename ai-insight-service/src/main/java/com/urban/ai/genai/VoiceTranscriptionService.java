@@ -27,7 +27,7 @@ public class VoiceTranscriptionService {
     @Value("${ai.transcription.url:https://api.openai.com/v1/audio/transcriptions}")
     private String transcriptionUrl;
 
-    @Value("${ai.transcription.api-key:${ai.openai.api-key:demo-key}}")
+    @Value("${ai.transcription.api-key:${spring.ai.openai.api-key:demo-key}}")
     private String transcriptionApiKey;
 
     @Value("${ai.transcription.model:whisper-1}")

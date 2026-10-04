@@ -4,7 +4,7 @@ import com.urban.ai.client.UrbanDataClient;
 import com.urban.ai.dto.GenAiDtos.RootCauseRequest;
 import com.urban.ai.dto.GenAiDtos.RootCauseResponse;
 import com.urban.ai.security.PromptSafetyUtils;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
 public class RootCauseChainService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
+    private final LlmClient llm;
     private final PromptSafetyUtils promptSafetyUtils;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
 
     public RootCauseResponse analyze(RootCauseRequest request) {
         StringBuilder evidenceBlock = new StringBuilder();
@@ -48,7 +47,7 @@ public class RootCauseChainService {
                 %s
                 """.formatted(promptSafetyUtils.wrapUntrusted(evidenceBlock.toString()));
 
-        String answer = llmCallMetrics.time("root_cause_chain", () -> chatLanguageModel.generate(prompt));
+        String answer = llm.text("root_cause_chain", prompt);
 
         return RootCauseResponse.builder()
                 .zonesConsidered(request.getZones())

@@ -1,21 +1,16 @@
 package com.urban.ai.rag;
 
 import com.urban.ai.client.UrbanDataClient;
-import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.Metadata;
-import dev.langchain4j.data.embedding.Embedding;
-import dev.langchain4j.data.segment.TextSegment;
-import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.store.embedding.EmbeddingMatch;
-import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
-import dev.langchain4j.store.embedding.EmbeddingSearchResult;
-import dev.langchain4j.store.embedding.EmbeddingStore;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,11 +19,16 @@ import java.util.stream.Collectors;
 public class UrbanDataRetriever {
 
     private final UrbanDataClient dataClient;
-    private final EmbeddingModel embeddingModel;
     private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
-    private final EmbeddingStore<TextSegment> embeddingStore;
+    /** Spring AI VectorStore (pgvector in production). Embeds on add() and on similaritySearch(). */
+    private final VectorStore vectorStore;
 
     private static final int CANDIDATE_POOL_SIZE = 20;
+    /**
+     * Relevance floor on the 0..1 "relevance" scale, where relevance = (cosine + 1) / 2. This is the scale the
+     * original thresholds (0.35 floor, 0.85 duplicate threshold) were tuned on. Spring AI's VectorStore returns
+     * plain cosine similarity as the score, so it is converted in {@link #retrieve}.
+     */
     private static final double MIN_VECTOR_SCORE = 0.35;
     private static final double VECTOR_WEIGHT = 0.65;
     private static final double KEYWORD_WEIGHT = 0.20;
@@ -78,16 +78,18 @@ public class UrbanDataRetriever {
     }
 
     private void indexSegment(String text, String zone, String type, String sourceId) {
-        Map<String, String> metadataMap = new HashMap<>();
-        metadataMap.put("zone", zone);
-        metadataMap.put("type", type);
-        metadataMap.put("sourceId", sourceId);
-        metadataMap.put("indexedAt", Instant.now().toString());
+        Map<String, Object> metadata = new HashMap<>();
+        metadata.put("zone", zone);
+        metadata.put("type", type);
+        metadata.put("sourceId", sourceId);
+        metadata.put("indexedAt", Instant.now().toString());
 
-        Document document = Document.from(text, Metadata.from(metadataMap));
-        TextSegment segment = TextSegment.from(document.text(), document.metadata());
-        Embedding embedding = llmCallMetrics.time("embed_index", () -> embeddingModel.embed(segment).content());
-        upsert(deterministicId(type, sourceId), embedding, segment);
+        Document document = Document.builder()
+                .id(deterministicId(type, sourceId))
+                .text(text)
+                .metadata(metadata)
+                .build();
+        upsert(document);
     }
 
     public void indexComplaintDocument(Map<String, Object> complaint) {
@@ -110,20 +112,22 @@ public class UrbanDataRetriever {
         indexSegment(text, zone, "anomaly", id);
     }
 
+    /**
+     * Spring AI's pgvector table uses a UUID primary key, so the stable "type:sourceId" key is mapped to a
+     * name-based UUID. Re-indexing the same complaint/summary therefore overwrites its previous embedding
+     * instead of piling up duplicates.
+     */
     private String deterministicId(String type, String sourceId) {
-        return type + ":" + sourceId;
+        return UUID.nameUUIDFromBytes((type + ":" + sourceId).getBytes(StandardCharsets.UTF_8)).toString();
     }
 
-    private void upsert(String id, Embedding embedding, TextSegment segment) {
+    private void upsert(Document document) {
         try {
-            embeddingStore.remove(id);
+            vectorStore.delete(List.of(document.getId()));
         } catch (Exception e) {
+            // nothing to delete yet, or the store doesn't support it — add() below still upserts
         }
-        try {
-            embeddingStore.addAll(List.of(id), List.of(embedding), List.of(segment));
-        } catch (Exception e) {
-            embeddingStore.add(embedding, segment);
-        }
+        llmCallMetrics.timeRunnable("embed_index", () -> vectorStore.add(List.of(document)));
     }
 
     public List<RetrievedSegment> retrieve(String question, String zoneFilter, int topK) {
@@ -131,22 +135,19 @@ public class UrbanDataRetriever {
     }
 
     public List<RetrievedSegment> retrieve(String question, String zoneFilter, String typeFilter, String excludeSourceId, int topK) {
-        Embedding queryEmbedding = llmCallMetrics.time("embed_query", () -> embeddingModel.embed(question).content());
-
-        EmbeddingSearchRequest request = EmbeddingSearchRequest.builder()
-                .queryEmbedding(queryEmbedding)
-                .maxResults(CANDIDATE_POOL_SIZE)
-                .minScore(MIN_VECTOR_SCORE)
+        SearchRequest request = SearchRequest.builder()
+                .query(question)
+                .topK(CANDIDATE_POOL_SIZE)
+                .similarityThreshold(SearchRequest.SIMILARITY_THRESHOLD_ACCEPT_ALL)
                 .build();
 
-        EmbeddingSearchResult<TextSegment> result = embeddingStore.search(request);
+        List<Document> matches = llmCallMetrics.time("embed_query", () -> vectorStore.similaritySearch(request));
         Set<String> queryTerms = tokenize(question);
         Instant now = Instant.now();
 
         List<RetrievedSegment> candidates = new ArrayList<>();
-        for (EmbeddingMatch<TextSegment> match : result.matches()) {
-            TextSegment segment = match.embedded();
-            Metadata metadata = segment.metadata();
+        for (Document match : matches == null ? List.<Document>of() : matches) {
+            Map<String, Object> metadata = match.getMetadata();
 
             String zone = safe(metadata, "zone");
             if (zoneFilter != null && !zoneFilter.equalsIgnoreCase(zone)) {
@@ -161,14 +162,19 @@ public class UrbanDataRetriever {
                 continue;
             }
 
-            double vectorScore = match.score();
-            double keywordScore = keywordOverlap(queryTerms, tokenize(segment.text()));
+            double cosine = match.getScore() != null ? match.getScore() : 0.0;
+            double vectorScore = (cosine + 1.0) / 2.0;
+            if (vectorScore < MIN_VECTOR_SCORE) {
+                continue;
+            }
+            String text = match.getText() != null ? match.getText() : "";
+            double keywordScore = keywordOverlap(queryTerms, tokenize(text));
             double recencyScore = recencyScore(safe(metadata, "indexedAt"), now);
             double combined = VECTOR_WEIGHT * vectorScore + KEYWORD_WEIGHT * keywordScore + RECENCY_WEIGHT * recencyScore;
 
             candidates.add(new RetrievedSegment(
                     sourceId,
-                    segment.text(),
+                    text,
                     zone,
                     type,
                     parseInstantOrNow(safe(metadata, "indexedAt")),
@@ -217,13 +223,9 @@ public class UrbanDataRetriever {
         }
     }
 
-    private String safe(Metadata metadata, String key) {
-        try {
-            String v = metadata.get(key);
-            return v != null ? v : "";
-        } catch (Exception e) {
-            return "";
-        }
+    private String safe(Map<String, Object> metadata, String key) {
+        Object v = metadata == null ? null : metadata.get(key);
+        return v != null ? String.valueOf(v) : "";
     }
 
     private double toDouble(Object o) {

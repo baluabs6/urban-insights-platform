@@ -7,6 +7,8 @@ import com.urban.ai.dto.GenAiDtos.DuplicateCheckRequest;
 import com.urban.ai.dto.GenAiDtos.DuplicateCheckResponse;
 import com.urban.ai.genai.ComplaintClassificationService;
 import com.urban.ai.genai.DuplicateDetectionService;
+import com.urban.ai.genai.PhotoVerificationService;
+import com.urban.ai.genai.SentimentUrgencyService;
 import com.urban.ai.rag.UrbanDataRetriever;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component

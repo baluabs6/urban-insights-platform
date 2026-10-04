@@ -1,30 +1,31 @@
 package com.urban.ai.genai;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.urban.ai.dto.GenAiDtos.PhotoVerificationRequest;
 import com.urban.ai.dto.GenAiDtos.PhotoVerificationResponse;
-import dev.langchain4j.data.message.ImageContent;
-import dev.langchain4j.data.message.TextContent;
-import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.output.Response;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.content.Media;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeType;
+import org.springframework.util.MimeTypeUtils;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 
+/** Multimodal check: sends the complaint photo URLs to a vision-capable model via Spring AI {@link Media}. */
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class PhotoVerificationService {
 
-    private final ChatLanguageModel chatLanguageModel;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final LlmClient llm;
 
     private static final int MAX_PHOTOS_CHECKED = 3;
+
+    /** Structured-output target: Spring AI derives the JSON schema from this record. */
+    public record PhotoVerdict(Boolean verified, Double confidence, String note) {}
 
     public PhotoVerificationResponse verify(PhotoVerificationRequest request) {
         List<String> photos = request.getPhotoUrls().stream().limit(MAX_PHOTOS_CHECKED).toList();
@@ -36,32 +37,24 @@ public class PhotoVerificationService {
                 -> a streetlight/pole, WATER_LEAKAGE -> standing water or a pipe/leak, ENCROACHMENT
                 -> illegal structure/obstruction, NOISE -> no reliable visual evidence is possible,
                 treat as inconclusive rather than false).
-                Respond with STRICT JSON only, no markdown fences, exactly this shape:
-                {"verified": <true|false>, "confidence": <number 0.0-1.0>, "note": "<one short sentence>"}
+                "verified" is a boolean; "confidence" is a number from 0.0 to 1.0; "note" is one short sentence.
                 """.formatted(request.getCategory());
 
         try {
-            List<dev.langchain4j.data.message.Content> contents = new java.util.ArrayList<>();
-            contents.add(TextContent.from(prompt));
-            for (String url : photos) {
-                contents.add(ImageContent.from(url));
-            }
-            UserMessage userMessage = UserMessage.from(contents);
+            List<Media> media = photos.stream()
+                    .map(url -> new Media(mimeTypeFor(url), URI.create(url)))
+                    .toList();
 
-            Response<dev.langchain4j.data.message.AiMessage> response = llmCallMetrics.time(
-                    "photo_verification", () -> chatLanguageModel.generate(userMessage));
+            PhotoVerdict parsed = llm.structuredWithMedia("photo_verification", prompt, media, PhotoVerdict.class);
 
-            String json = extractJson(response.content().text());
-            Map<String, Object> parsed = objectMapper.readValue(json, Map.class);
-
-            boolean verified = Boolean.TRUE.equals(parsed.get("verified"));
-            double confidence = parsed.get("confidence") instanceof Number n ? n.doubleValue() : 0.5;
+            boolean verified = Boolean.TRUE.equals(parsed.verified());
+            double confidence = parsed.confidence() != null ? parsed.confidence() : 0.5;
 
             return PhotoVerificationResponse.builder()
                     .complaintId(request.getComplaintId())
                     .verified(verified)
                     .confidence(clamp(confidence))
-                    .note(String.valueOf(parsed.getOrDefault("note", "")))
+                    .note(parsed.note() != null ? parsed.note() : "")
                     .build();
 
         } catch (Exception e) {
@@ -76,15 +69,18 @@ public class PhotoVerificationService {
         }
     }
 
-    private double clamp(double v) {
-        return Math.max(0.0, Math.min(1.0, v));
+    /** Best-effort MIME type from the URL's extension (query string ignored); defaults to JPEG. */
+    private MimeType mimeTypeFor(String url) {
+        String path = url.toLowerCase(Locale.ROOT);
+        int q = path.indexOf('?');
+        if (q >= 0) path = path.substring(0, q);
+        if (path.endsWith(".png")) return MimeTypeUtils.IMAGE_PNG;
+        if (path.endsWith(".gif")) return MimeTypeUtils.IMAGE_GIF;
+        if (path.endsWith(".webp")) return MimeType.valueOf("image/webp");
+        return MimeTypeUtils.IMAGE_JPEG;
     }
 
-    private String extractJson(String raw) {
-        String trimmed = raw.trim();
-        if (trimmed.startsWith("```")) {
-            trimmed = trimmed.replaceAll("^```(json)?", "").replaceAll("```$", "").trim();
-        }
-        return trimmed;
+    private double clamp(double v) {
+        return Math.max(0.0, Math.min(1.0, v));
     }
 }

@@ -28,12 +28,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/ai/sentiment",
                         "/api/ai/root-cause",
                         "/api/ai/classification-feedback",
-                        "/api/insights/ask"
+                        "/api/insights/ask",
+                        "/api/insights/agent"
                 );
 
         registry.addInterceptor(rateLimitInterceptor)
                 .addPathPatterns(
                         "/api/insights/ask",
+                        "/api/insights/agent",
                         "/api/ai/classify-complaint",
                         "/api/ai/duplicate-check",
                         "/api/ai/compare-zones",

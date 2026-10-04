@@ -3,7 +3,7 @@
 --
 -- Honest scope note: this does NOT achieve full DDL/DML separation. Both
 -- traffic-service (Hibernate ddl-auto=update) and ai-insight-service
--- (PgVectorEmbeddingStore createTable:true) need CREATE privilege on first
+-- (Spring AI PgVectorStore initialize-schema: true) need CREATE privilege on first
 -- boot to auto-create their own tables — stripping CREATE would break
 -- startup unless a real migration tool (Flyway/Liquibase) pre-creates exact
 -- schemas for a fully DML-only runtime role, which this reference project
@@ -31,7 +31,7 @@ GRANT USAGE, CREATE ON SCHEMA public TO ai_insight_app;
 
 -- Once each service's tables exist, grant the other role read access is
 -- deliberately NOT done here — traffic_app has no reason to see
--- urban_embeddings and vice versa. Each role only needs rights on tables it
+-- urban_vector_store and vice versa. Each role only needs rights on tables it
 -- creates itself, which CREATE on the schema + being the table owner already
 -- provides automatically in Postgres.
 

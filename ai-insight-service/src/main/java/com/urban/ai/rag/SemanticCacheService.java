@@ -1,13 +1,12 @@
 package com.urban.ai.rag;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.langchain4j.data.embedding.Embedding;
-import dev.langchain4j.model.embedding.EmbeddingModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +44,7 @@ public class SemanticCacheService {
         if (entries.isEmpty()) return Optional.empty();
 
         float[] queryVector = llmCallMetrics.time("embed_semantic_cache_lookup",
-                () -> embeddingModel.embed(question).content().vector());
+                () -> embeddingModel.embed(question));
 
         CachedEntry best = null;
         double bestScore = -1;
@@ -65,8 +64,8 @@ public class SemanticCacheService {
     }
 
     public void store(String zone, String question, String answer) {
-        Embedding embedding = llmCallMetrics.time("embed_semantic_cache_store", () -> embeddingModel.embed(question).content());
-        CachedEntry entry = new CachedEntry(question, answer, embedding.vector());
+        float[] embedding = llmCallMetrics.time("embed_semantic_cache_store", () -> embeddingModel.embed(question));
+        CachedEntry entry = new CachedEntry(question, answer, embedding);
 
         String key = cacheKey(zone);
         List<CachedEntry> entries = readEntries(key);

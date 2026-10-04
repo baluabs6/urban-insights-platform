@@ -30,6 +30,9 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
     private static final List<String> PUBLIC_PATHS = List.of("/actuator/health", "/actuator/info");
     private static final String BEARER_PREFIX = "Bearer ";
 
+    /** MCP server endpoints (Spring AI MCP, SSE transport) expose tool access, so they need the admin key. */
+    private static final List<String> ADMIN_ONLY_PREFIXES = List.of("/sse", "/mcp");
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -51,7 +54,18 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
             return;
         }
 
+        if (isAdminOnlyPath(request.getRequestURI()) && !TIER_ADMIN.equals(request.getAttribute(TIER_ATTRIBUTE))) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"error\":\"this endpoint requires the admin API key\"}");
+            return;
+        }
+
         chain.doFilter(request, response);
+    }
+
+    private boolean isAdminOnlyPath(String uri) {
+        return ADMIN_ONLY_PREFIXES.stream().anyMatch(prefix -> uri.equals(prefix) || uri.startsWith(prefix + "/"));
     }
 
     private String extractApiKey(HttpServletRequest request) {

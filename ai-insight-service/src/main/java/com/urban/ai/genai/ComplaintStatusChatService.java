@@ -1,7 +1,7 @@
 package com.urban.ai.genai;
 
 import com.urban.ai.client.UrbanDataClient;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +14,9 @@ import java.util.Map;
 public class ComplaintStatusChatService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
+    private final LlmClient llm;
     private final LanguageSupportService languageSupportService;
     private final com.urban.ai.security.PromptSafetyUtils promptSafetyUtils;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
 
     @Data
     @Builder
@@ -68,7 +67,7 @@ public class ComplaintStatusChatService {
 
         String englishAnswer;
         try {
-            englishAnswer = llmCallMetrics.time("complaint_status_chat", () -> chatLanguageModel.generate(prompt));
+            englishAnswer = llm.text("complaint_status_chat", prompt);
         } catch (Exception e) {
             englishAnswer = "Your complaint status is: " + complaint.getOrDefault("status", "unknown")
                     + ", assigned to " + complaint.getOrDefault("assignedDepartment", "the relevant department") + ".";

@@ -31,7 +31,9 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String path = request.getRequestURI();
-        String bucket = path.equals("/api/insights/ask") ? BUCKET_RAG_QUERY : BUCKET_AI_ENDPOINTS;
+        // /agent can trigger several LLM + tool round-trips per request, so it shares the stricter RAG bucket.
+        boolean ragBucket = path.equals("/api/insights/ask") || path.equals("/api/insights/agent");
+        String bucket = ragBucket ? BUCKET_RAG_QUERY : BUCKET_AI_ENDPOINTS;
 
         int limit = bucket.equals(BUCKET_RAG_QUERY) ? ragQueryLimit : aiEndpointsLimit;
         Duration window = Duration.ofSeconds(bucket.equals(BUCKET_RAG_QUERY) ? ragQueryWindowSeconds : aiEndpointsWindowSeconds);

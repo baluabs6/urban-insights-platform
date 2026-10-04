@@ -3,7 +3,7 @@ package com.urban.ai.genai;
 import com.urban.ai.client.UrbanDataClient;
 import com.urban.ai.dto.GenAiDtos.AnomalyExplanationResponse;
 import com.urban.ai.security.PromptSafetyUtils;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,8 @@ import java.util.Map;
 public class AnomalyExplanationService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
+    private final LlmClient llm;
     private final PromptSafetyUtils promptSafetyUtils;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
 
     public AnomalyExplanationResponse explain(String zone) {
         List<Map<String, Object>> anomalies = dataClient.getRecentAnomaliesForZone(zone);
@@ -57,7 +56,7 @@ public class AnomalyExplanationService {
 
         String explanation;
         try {
-            explanation = llmCallMetrics.time("anomaly_explanation", () -> chatLanguageModel.generate(prompt));
+            explanation = llm.text("anomaly_explanation", prompt);
         } catch (Exception e) {
             explanation = "AI model unavailable. Raw anomalies:\n- " + anomalyBlock;
         }

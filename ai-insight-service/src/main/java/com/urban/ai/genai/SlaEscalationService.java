@@ -2,7 +2,7 @@ package com.urban.ai.genai;
 
 import com.urban.ai.client.UrbanDataClient;
 import com.urban.ai.security.PromptSafetyUtils;
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import com.urban.ai.llm.LlmClient;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,7 @@ import java.util.stream.Collectors;
 public class SlaEscalationService {
 
     private final UrbanDataClient dataClient;
-    private final ChatLanguageModel chatLanguageModel;
-    private final com.urban.ai.metrics.LlmCallMetrics llmCallMetrics;
+    private final LlmClient llm;
     private final org.springframework.data.redis.core.RedisTemplate<String, Object> redisTemplate;
     private final PromptSafetyUtils promptSafetyUtils;
     private final WebClient.Builder webClientBuilder;
@@ -155,7 +154,7 @@ public class SlaEscalationService {
                 promptSafetyUtils.wrapUntrusted(String.valueOf(complaint.get("description"))), hoursOpen, slaHours);
 
         try {
-            return llmCallMetrics.time("sla_escalation_draft", () -> chatLanguageModel.generate(prompt));
+            return llm.text("sla_escalation_draft", prompt);
         } catch (Exception e) {
             return String.format(
                     "Complaint %s (%s) in %s has been open %d hours, exceeding the %d-hour SLA. Please action urgently.",

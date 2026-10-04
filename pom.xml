@@ -22,8 +22,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>3.3.2</spring-boot.version>
-        <langchain4j.version>0.33.0</langchain4j.version>
+        <spring-boot.version>3.5.15</spring-boot.version>
+        <spring-ai.version>1.1.8</spring-ai.version>
     </properties>
 
     <dependencyManagement>
